@@ -1,0 +1,2 @@
+/* 전역 스타일 진입점. Tailwind와 디자인 토큰을 불러온다 */
+@import "tailwindcss";
