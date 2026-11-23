@@ -88,7 +88,7 @@ export function DataPage() {
                 <td className="py-2 pr-3 num whitespace-nowrap">{b.lastVerified}</td>
                 <td className="py-2">
                   {b.sourceUrl.map((u) => (
-                    <a key={u} href={u} target="_blank" rel="noreferrer" className="block truncate max-w-56">
+                    <a key={u} href={u} target="_blank" rel="noreferrer" className="block truncate max-w-56 py-1">
                       {new URL(u).hostname.replace(/^www\./, "")}
                     </a>
                   ))}

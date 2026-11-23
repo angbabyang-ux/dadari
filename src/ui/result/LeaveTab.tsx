@@ -81,7 +81,7 @@ export function LeaveTab({ input, scenario }: { input: Input; scenario: Scenario
         </table>
       </div>
 
-      <h3 className="font-serif text-lg font-semibold mt-8 pb-2 rule-b">첫 12개월, 매달 들어오는 돈</h3>
+      <h2 className="font-serif text-lg font-semibold mt-8 pb-2 rule-b">첫 12개월, 매달 들어오는 돈</h2>
       <p className="text-sm text-ink-2 pt-2">휴직 급여에 부모급여 같은 다른 지원을 겹쳐 본 월별 합계예요.</p>
       <div className="mt-3 space-y-4">
         {results.map((r) => (

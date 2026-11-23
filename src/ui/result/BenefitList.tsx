@@ -17,9 +17,9 @@ export function BenefitList({ rows }: { rows: MonthRow[] }) {
       {periods.map(({ period, groups, total }) => (
         <section key={period.key} className="pt-8" aria-labelledby={`p-${period.key}`}>
           <div className="flex items-baseline gap-3 pb-2 rule-b border-ink">
-            <h3 id={`p-${period.key}`} className="font-serif text-xl font-semibold flex-1">
+            <h2 id={`p-${period.key}`} className="font-serif text-xl font-semibold flex-1">
               {period.title}
-            </h3>
+            </h2>
             <p className="num font-semibold">{formatWon(total)}</p>
           </div>
           <ul>
@@ -79,9 +79,9 @@ export function InfoCards({ items, title }: { items: Benefit[]; title: string })
   if (items.length === 0) return null;
   return (
     <section className="pt-10" aria-labelledby="info-cards">
-      <h3 id="info-cards" className="font-serif text-xl font-semibold pb-2 rule-b border-ink">
+      <h2 id="info-cards" className="font-serif text-xl font-semibold pb-2 rule-b border-ink">
         {title}
-      </h3>
+      </h2>
       <p className="text-sm text-ink-2 pt-2">금액이 정해지지 않았거나 서비스형이라 합계에 넣지 않았어요.</p>
       <ul>
         {items.map((b) => (
