@@ -1,0 +1,14 @@
+{
+  "medianIncome": {
+    "2026": { "1": 2564238, "2": 4199292, "3": 5359036, "4": 6494738, "5": 7556719, "6": 8555952, "7": 9515150 },
+    "2027": { "1": 2736042, "2": 4480645, "3": 5718091, "4": 6929885, "5": 8063019, "6": 9129201 }
+  },
+  "childcareFee": { "year": 2026, "age0": 584000, "age1": 515000 },
+  "sourceUrl": [
+    "https://www.mohw.go.kr/menu.es?mid=a10708010900",
+    "https://www.newsis.com/view/NISX20260728_0003726285",
+    "https://www.daegu.go.kr/woman/index.do?menu_id=00050122",
+    "https://www.incheon.go.kr/earlychild/EC030301"
+  ],
+  "lastVerified": "2026-11-23"
+}

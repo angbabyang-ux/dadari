@@ -1,0 +1,27 @@
+{
+  "floor": 700000,
+  "baseMonths": 12,
+  "extendedMonths": 18,
+  "extensionMinEachMonths": 3,
+  "general": [
+    { "fromMonth": 1, "toMonth": 3, "rate": 1, "cap": 2500000 },
+    { "fromMonth": 4, "toMonth": 6, "rate": 1, "cap": 2000000 },
+    { "fromMonth": 7, "toMonth": 18, "rate": 0.8, "cap": 1600000 }
+  ],
+  "sixPlusSix": {
+    "withinChildMonths": 18,
+    "caps": [2500000, 2500000, 3000000, 3500000, 4000000, 4500000],
+    "rate": 1
+  },
+  "singleParent": [
+    { "fromMonth": 1, "toMonth": 3, "rate": 1, "cap": 3000000 },
+    { "fromMonth": 4, "toMonth": 6, "rate": 1, "cap": 2000000 },
+    { "fromMonth": 7, "toMonth": 18, "rate": 0.8, "cap": 1600000 }
+  ],
+  "sourceUrl": [
+    "https://www.moel.go.kr/policy/policyinfo/lobar/list4.do",
+    "https://www.work24.go.kr/",
+    "https://www.ibabynews.com/contents/guide-parental-leave-pay"
+  ],
+  "lastVerified": "2026-11-23"
+}
