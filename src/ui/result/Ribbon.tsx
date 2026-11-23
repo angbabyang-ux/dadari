@@ -58,7 +58,7 @@ export function Ribbon({
   const y = (v: number) => (Math.min(v, cap) / cap) * CHART_H;
 
   return (
-    <div ref={scroller} className="overflow-x-auto overscroll-x-contain -mx-4 px-4 md:mx-0 md:px-0" tabIndex={-1}>
+    <div ref={scroller} className="overflow-x-auto overscroll-x-contain -mx-4 px-4 md:mx-0 md:px-0 no-print" tabIndex={-1}>
       <svg width={width} height={TOP + CHART_H + AXIS_H} role="group" aria-label="월별 수령액 막대 차트. 막대를 누르면 그 달의 내역을 보여줘요." className="block select-none">
         <defs>
           <pattern id="hatch" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
