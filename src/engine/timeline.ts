@@ -7,8 +7,6 @@ import type { Excluded, Input, Item, MonthRow, Result, Scenario } from "./types"
 
 export type EngineData = { benefits: Benefit[]; regions: RegionsFile; leaveRules: LeaveRules; reference: Reference };
 
-const REFORM_FROM = "2027-07-01";
-
 type Ym = { y: number; m: number }; // m: 1~12
 
 function ymOf(iso: string): Ym {
@@ -188,13 +186,21 @@ export function computeTimeline(input: Input, data: EngineData, opts: { scenario
   for (const b of data.benefits) {
     if (!regionMatches(b, input)) continue;
     if (!inRange(input.birthDate, b.birthDateRange)) continue;
+    let mayChange: string | undefined;
+    if (b.supersededFrom && input.birthDate >= b.supersededFrom) {
+      if (opts.scenario === "with-proposals") {
+        excluded.push({ benefit: b, reason: "정부안이 통과되면 아이맞이지원금·아동기본수당으로 바뀌어요." });
+        continue;
+      }
+      pendingReform = true;
+      mayChange = "2027년 7월 개편 정부안이 국회를 통과하면 새 제도로 바뀔 수 있어요.";
+    }
 
     if (b.status === "ended") {
       ended.push({ benefit: b, reason: b.summary });
       continue;
     }
     if (b.status === "proposed" && opts.scenario === "current") {
-      if (input.birthDate >= REFORM_FROM && b.birthDateRange?.from === REFORM_FROM) pendingReform = true;
       excluded.push({ benefit: b, reason: "정부안이라 '정부안 포함'을 켜야 계산에 들어가요." });
       continue;
     }
@@ -207,7 +213,7 @@ export function computeTimeline(input: Input, data: EngineData, opts: { scenario
     }
 
     const auto = !!b.apply.auto || (!!b.apply.autoFromBirth && input.birthDate >= b.apply.autoFromBirth);
-    const base = { benefitId: b.id, name: b.name, category: b.category, status: b.status, level: b.level, tags: b.tags, auto };
+    const base = { benefitId: b.id, name: b.name, category: b.category, status: b.status, level: b.level, tags: b.tags, auto, mayChange };
 
     if (s.type === "lumpSum") {
       const targets = s.perChild ? children : [{ index: 0, order: input.birthOrder }];

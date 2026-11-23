@@ -130,10 +130,15 @@ describe("지역·출생일별 타임라인", () => {
     expect(at(on, 24, "child-basic-allowance-home-bonus")).toHaveLength(0);
     expect(sumOf(on, "parent-pay")).toBe(0);
 
+    // 정부안을 끄면 개편안은 빠지고, 현행 제도를 "바뀔 수 있음" 표시와 함께 계산한다 (사용자 결정 2026-11-23)
     const off = computeTimeline(i, data, { scenario: "current" });
     expect(sumOf(off, "ai-welcome-grant")).toBe(0);
     expect(sumOf(off, "child-basic-allowance-cash")).toBe(0);
     expect(off.pendingReform).toBe(true);
+    const pp = at(off, 0, "parent-pay")[0]!;
+    expect(pp.amount).toBe(1000000);
+    expect(pp.mayChange).toBeDefined();
+    expect(at(off, 1, "first-meeting-voucher")[0]!.amount).toBe(2000000);
   });
 
   it("T12 2027-01-25 출생 → 아동수당·부모급여·첫만남은 신청 없이 지급", () => {

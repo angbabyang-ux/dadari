@@ -51,6 +51,7 @@ export type Item = {
   auto: boolean; // 신청 없이 지급
   deferred?: string; // 거주기간 때문에 미뤄진 경우 설명
   conditional?: string; // 입력이 부족해 조건부로 넣은 경우
+  mayChange?: string; // 정부안이 통과되면 바뀔 수 있는 현행 제도
 };
 
 export type MonthRow = {
@@ -77,6 +78,6 @@ export type Result = {
   ended: Excluded[]; // 종료된 제도
   info: Benefit[]; // 금액을 계산하지 않는 혜택 카드
   leave: LeaveResult;
-  pendingReform: boolean; // 2027-07 이후 출생인데 정부안을 끈 상태
+  pendingReform: boolean; // 2027-07 이후 출생인데 정부안을 끈 상태 (현행 제도로 계산, "바뀔 수 있음" 표시)
   afterSchool: Item[]; // 입학 이후로 넘어가 계산 범위 밖인 분할 지급분
 };

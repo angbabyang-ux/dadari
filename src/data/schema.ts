@@ -105,6 +105,8 @@ export const Benefit = z.object({
   summary: z.string().min(1),
   birthDateRange: DateRange.optional(),
   calendarRange: DateRange.optional(),
+  // 이 날짜 이후 출생아는 정부안 개편 대상: '정부안 포함'이면 빠지고, '확정만'이면 "바뀔 수 있음" 표시와 함께 계산
+  supersededFrom: isoDate.optional(),
   eligibility: z.array(EligibilityRule),
   schedule: ScheduleRule,
   apply: z.object({
