@@ -1,0 +1,1782 @@
+[
+  {
+    "id": "gyeonggi-suwon-birth-grant",
+    "name": "수원시 출산지원금",
+    "level": "sigungu",
+    "region": {
+      "sido": "경기도",
+      "sigungu": "수원시"
+    },
+    "category": "cash",
+    "tags": [],
+    "status": "confirmed",
+    "summary": "수원시가 출생아마다 주는 출산지원금이에요.",
+    "eligibility": [
+      {
+        "type": "residence",
+        "days": 180,
+        "ref": "birth",
+        "deferIfShort": true
+      }
+    ],
+    "schedule": {
+      "type": "lumpSum",
+      "amountsByOrder": [
+        500000,
+        1000000,
+        2000000,
+        5000000,
+        10000000
+      ],
+      "firstOffsetMonths": 1,
+      "perChild": true
+    },
+    "apply": {
+      "where": "수원시 읍·면·동 행정복지센터 · 정부24",
+      "url": "https://www.gov.kr/"
+    },
+    "sourceUrl": [
+      "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EC%88%98%EC%9B%90%EC%8B%9C",
+      "https://www.suwon.go.kr/sw-www/deptHome/dep_welfare/welfare14/welfare14-01/welfare14-01-10.jsp"
+    ],
+    "lastVerified": "2026-11-23",
+    "notes": "경기도청 표(첫째 없음·둘째 50만 원)와 달라요. 2026년 9월 자료와 다른 출처가 같은 값이라 이 값을 썼어요."
+  },
+  {
+    "id": "gyeonggi-goyang-birth-grant",
+    "name": "고양시 출산지원금",
+    "level": "sigungu",
+    "region": {
+      "sido": "경기도",
+      "sigungu": "고양시"
+    },
+    "category": "cash",
+    "tags": [],
+    "status": "needs-check",
+    "summary": "고양시가 출생아마다 주는 출산지원금이에요.",
+    "eligibility": [
+      {
+        "type": "residence",
+        "days": 365,
+        "ref": "birth",
+        "deferIfShort": true
+      }
+    ],
+    "schedule": {
+      "type": "lumpSum",
+      "amountsByOrder": [
+        1000000,
+        2000000,
+        3000000,
+        5000000,
+        10000000
+      ],
+      "firstOffsetMonths": 1,
+      "perChild": true
+    },
+    "apply": {
+      "where": "고양시 읍·면·동 행정복지센터 · 정부24",
+      "url": "https://www.gov.kr/"
+    },
+    "sourceUrl": [
+      "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EA%B3%A0%EC%96%91%EC%8B%9C",
+      "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
+    ],
+    "lastVerified": "2026-11-23",
+    "notes": "경기도청 표는 넷째 이상 300만 원이라고 해요. 넷째 이상은 나눠 받는데 일정은 확인하지 못했어요."
+  },
+  {
+    "id": "gyeonggi-yongin-birth-grant",
+    "name": "용인시 출산지원금",
+    "level": "sigungu",
+    "region": {
+      "sido": "경기도",
+      "sigungu": "용인시"
+    },
+    "category": "cash",
+    "tags": [],
+    "status": "confirmed",
+    "summary": "용인시가 출생아마다 주는 출산지원금이에요.",
+    "eligibility": [
+      {
+        "type": "residence",
+        "days": 180,
+        "ref": "birth",
+        "deferIfShort": true
+      }
+    ],
+    "schedule": {
+      "type": "lumpSum",
+      "amountsByOrder": [
+        300000,
+        500000,
+        1000000,
+        2000000,
+        3000000
+      ],
+      "firstOffsetMonths": 1,
+      "perChild": true
+    },
+    "apply": {
+      "where": "용인시 읍·면·동 행정복지센터 · 정부24",
+      "url": "https://www.gov.kr/"
+    },
+    "sourceUrl": [
+      "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EC%9A%A9%EC%9D%B8%EC%8B%9C",
+      "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
+    ],
+    "lastVerified": "2026-11-23"
+  },
+  {
+    "id": "gyeonggi-seongnam-birth-grant",
+    "name": "성남시 출산지원금",
+    "level": "sigungu",
+    "region": {
+      "sido": "경기도",
+      "sigungu": "성남시"
+    },
+    "category": "cash",
+    "tags": [],
+    "status": "confirmed",
+    "summary": "성남시가 출생아마다 주는 출산지원금이에요.",
+    "eligibility": [
+      {
+        "type": "residence",
+        "days": 180,
+        "ref": "birth",
+        "deferIfShort": true
+      }
+    ],
+    "schedule": {
+      "type": "lumpSum",
+      "amountsByOrder": [
+        300000,
+        500000,
+        1000000,
+        2000000,
+        3000000
+      ],
+      "firstOffsetMonths": 1,
+      "perChild": true
+    },
+    "apply": {
+      "where": "성남시 읍·면·동 행정복지센터 · 정부24",
+      "url": "https://www.gov.kr/"
+    },
+    "sourceUrl": [
+      "https://www.yugacrew.com/gyeonggi/seongnam/support-money/pregnancy",
+      "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
+    ],
+    "lastVerified": "2026-11-23",
+    "notes": "다른 출처에 100/200/300만 원이라는 값도 있었어요."
+  },
+  {
+    "id": "gyeonggi-bucheon-birth-grant",
+    "name": "부천시 출산지원금",
+    "level": "sigungu",
+    "region": {
+      "sido": "경기도",
+      "sigungu": "부천시"
+    },
+    "category": "cash",
+    "tags": [],
+    "status": "needs-check",
+    "summary": "부천시가 출생아마다 주는 출산지원금이에요.",
+    "eligibility": [
+      {
+        "type": "residence",
+        "days": 365,
+        "ref": "birth",
+        "deferIfShort": true
+      }
+    ],
+    "schedule": {
+      "type": "lumpSum",
+      "amountsByOrder": [
+        1000000,
+        1000000,
+        2000000,
+        7000000
+      ],
+      "firstOffsetMonths": 1,
+      "perChild": true,
+      "installmentsByOrder": [
+        null,
+        null,
+        null,
+        [
+          700000,
+          700000,
+          700000,
+          700000,
+          700000,
+          700000,
+          700000,
+          700000,
+          700000,
+          700000
+        ]
+      ],
+      "intervalMonths": 12
+    },
+    "apply": {
+      "where": "부천시 읍·면·동 행정복지센터 · 정부24",
+      "url": "https://www.gov.kr/"
+    },
+    "sourceUrl": [
+      "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EB%B6%80%EC%B2%9C%EC%8B%9C",
+      "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
+    ],
+    "lastVerified": "2026-11-23",
+    "notes": "2026년 이후 출생아 기준이에요. 경기도청 표는 넷째부터만 700만 원(10회 분할)이라고 해요.",
+    "assumption": "넷째 이상 700만 원을 1년 간격 10회로 나눴어요."
+  },
+  {
+    "id": "gyeonggi-hwaseong-birth-grant",
+    "name": "화성시 출산지원금",
+    "level": "sigungu",
+    "region": {
+      "sido": "경기도",
+      "sigungu": "화성시"
+    },
+    "category": "cash",
+    "tags": [],
+    "status": "needs-check",
+    "summary": "화성시가 출생아마다 주는 출산지원금이에요.",
+    "eligibility": [
+      {
+        "type": "residence",
+        "days": 180,
+        "ref": "birth",
+        "deferIfShort": true
+      }
+    ],
+    "schedule": {
+      "type": "lumpSum",
+      "amountsByOrder": [
+        1000000,
+        2000000,
+        2000000,
+        3000000,
+        3000000
+      ],
+      "firstOffsetMonths": 1,
+      "perChild": true
+    },
+    "apply": {
+      "where": "화성시 읍·면·동 행정복지센터 · 정부24",
+      "url": "https://www.gov.kr/"
+    },
+    "sourceUrl": [
+      "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
+    ],
+    "lastVerified": "2026-11-23",
+    "notes": "경기도청 표 값이에요. 2026년 자료에서는 확인하지 못했어요. 출생 후 1년 안에 신청해야 해요."
+  },
+  {
+    "id": "gyeonggi-ansan-birth-grant",
+    "name": "안산시 출산지원금",
+    "level": "sigungu",
+    "region": {
+      "sido": "경기도",
+      "sigungu": "안산시"
+    },
+    "category": "cash",
+    "tags": [],
+    "status": "confirmed",
+    "summary": "안산시가 출생아마다 주는 출산지원금이에요.",
+    "eligibility": [
+      {
+        "type": "residence",
+        "days": 365,
+        "ref": "birth",
+        "deferIfShort": true
+      }
+    ],
+    "schedule": {
+      "type": "lumpSum",
+      "amountsByOrder": [
+        1000000,
+        3000000,
+        5000000
+      ],
+      "firstOffsetMonths": 1,
+      "perChild": true
+    },
+    "apply": {
+      "where": "안산시 읍·면·동 행정복지센터 · 정부24",
+      "url": "https://www.gov.kr/"
+    },
+    "sourceUrl": [
+      "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EC%95%88%EC%82%B0%EC%8B%9C",
+      "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
+    ],
+    "lastVerified": "2026-11-23"
+  },
+  {
+    "id": "gyeonggi-namyangju-birth-grant",
+    "name": "남양주시 출산지원금",
+    "level": "sigungu",
+    "region": {
+      "sido": "경기도",
+      "sigungu": "남양주시"
+    },
+    "category": "cash",
+    "tags": [],
+    "status": "needs-check",
+    "summary": "남양주시가 출생아마다 주는 출산지원금이에요.",
+    "eligibility": [],
+    "schedule": {
+      "type": "lumpSum",
+      "amountsByOrder": [
+        1000000
+      ],
+      "firstOffsetMonths": 1,
+      "perChild": true
+    },
+    "apply": {
+      "where": "남양주시 읍·면·동 행정복지센터 · 정부24",
+      "url": "https://www.gov.kr/"
+    },
+    "sourceUrl": [
+      "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
+    ],
+    "lastVerified": "2026-11-23",
+    "notes": "경기도청 표 값이에요. 2026년 자료에서는 확인하지 못했어요."
+  },
+  {
+    "id": "gyeonggi-anyang-birth-grant",
+    "name": "안양시 출산지원금",
+    "level": "sigungu",
+    "region": {
+      "sido": "경기도",
+      "sigungu": "안양시"
+    },
+    "category": "cash",
+    "tags": [],
+    "status": "needs-check",
+    "summary": "안양시가 출생아마다 주는 출산지원금이에요.",
+    "eligibility": [
+      {
+        "type": "residence",
+        "days": 365,
+        "ref": "birth",
+        "deferIfShort": true
+      }
+    ],
+    "schedule": {
+      "type": "lumpSum",
+      "amountsByOrder": [
+        2000000,
+        4000000,
+        10000000
+      ],
+      "firstOffsetMonths": 1,
+      "perChild": true
+    },
+    "apply": {
+      "where": "안양시 읍·면·동 행정복지센터 · 정부24",
+      "url": "https://www.gov.kr/"
+    },
+    "sourceUrl": [
+      "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
+    ],
+    "lastVerified": "2026-11-23",
+    "notes": "경기도청 표 값이에요. 2·4회로 나눠 준다는데 일정은 확인하지 못해 한 번에 받는 것으로 넣었어요."
+  },
+  {
+    "id": "gyeonggi-pyeongtaek-birth-grant",
+    "name": "평택시 출산지원금",
+    "level": "sigungu",
+    "region": {
+      "sido": "경기도",
+      "sigungu": "평택시"
+    },
+    "category": "cash",
+    "tags": [],
+    "status": "needs-check",
+    "summary": "평택시가 출생아마다 주는 출산지원금이에요.",
+    "eligibility": [
+      {
+        "type": "residence",
+        "days": 365,
+        "ref": "birth",
+        "deferIfShort": true
+      }
+    ],
+    "schedule": {
+      "type": "lumpSum",
+      "amountsByOrder": [
+        500000,
+        1200000,
+        3000000,
+        5000000
+      ],
+      "firstOffsetMonths": 1,
+      "perChild": true
+    },
+    "apply": {
+      "where": "평택시 읍·면·동 행정복지센터 · 정부24",
+      "url": "https://www.gov.kr/"
+    },
+    "sourceUrl": [
+      "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
+    ],
+    "lastVerified": "2026-11-23",
+    "notes": "경기도청 표 값이에요. 2026년 자료에서는 확인하지 못했어요."
+  },
+  {
+    "id": "gyeonggi-siheung-birth-grant",
+    "name": "시흥시 출산지원금",
+    "level": "sigungu",
+    "region": {
+      "sido": "경기도",
+      "sigungu": "시흥시"
+    },
+    "category": "cash",
+    "tags": [],
+    "status": "needs-check",
+    "summary": "시흥시가 출생아마다 주는 출산지원금이에요.",
+    "eligibility": [
+      {
+        "type": "residence",
+        "days": 180,
+        "ref": "birth",
+        "deferIfShort": true
+      }
+    ],
+    "schedule": {
+      "type": "lumpSum",
+      "amountsByOrder": [
+        500000,
+        1000000,
+        2000000,
+        2000000
+      ],
+      "firstOffsetMonths": 1,
+      "perChild": true,
+      "installmentsByOrder": [
+        null,
+        null,
+        null,
+        [
+          500000,
+          500000,
+          500000,
+          500000
+        ]
+      ],
+      "intervalMonths": 12
+    },
+    "apply": {
+      "where": "시흥시 읍·면·동 행정복지센터 · 정부24",
+      "url": "https://www.gov.kr/"
+    },
+    "sourceUrl": [
+      "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EC%8B%9C%ED%9D%A5%EC%8B%9C",
+      "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
+    ],
+    "lastVerified": "2026-11-23",
+    "notes": "2026년 출생아 기준 값이에요. 경기도청 표(둘째 50·셋째 100·넷째 800만 원)와 다르고, 90/240/840만 원이라는 자료도 있어요."
+  },
+  {
+    "id": "gyeonggi-uijeongbu-birth-grant",
+    "name": "의정부시 출산지원금",
+    "level": "sigungu",
+    "region": {
+      "sido": "경기도",
+      "sigungu": "의정부시"
+    },
+    "category": "cash",
+    "tags": [],
+    "status": "needs-check",
+    "summary": "의정부시가 출생아마다 주는 출산지원금이에요.",
+    "eligibility": [],
+    "schedule": {
+      "type": "lumpSum",
+      "amountsByOrder": [
+        300000,
+        1000000
+      ],
+      "firstOffsetMonths": 1,
+      "perChild": true
+    },
+    "apply": {
+      "where": "의정부시 읍·면·동 행정복지센터 · 정부24",
+      "url": "https://www.gov.kr/"
+    },
+    "sourceUrl": [
+      "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EC%9D%98%EC%A0%95%EB%B6%80%EC%8B%9C",
+      "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
+    ],
+    "lastVerified": "2026-11-23",
+    "notes": "경기도청 표는 첫째 지원이 없다고 해요."
+  },
+  {
+    "id": "gyeonggi-gimpo-birth-grant",
+    "name": "김포시 출산지원금",
+    "level": "sigungu",
+    "region": {
+      "sido": "경기도",
+      "sigungu": "김포시"
+    },
+    "category": "cash",
+    "tags": [],
+    "status": "confirmed",
+    "summary": "김포시가 출생아마다 주는 출산지원금이에요.",
+    "eligibility": [
+      {
+        "type": "residence",
+        "days": 180,
+        "ref": "birth",
+        "deferIfShort": true
+      }
+    ],
+    "schedule": {
+      "type": "lumpSum",
+      "amountsByOrder": [
+        null,
+        1000000
+      ],
+      "firstOffsetMonths": 1,
+      "perChild": true
+    },
+    "apply": {
+      "where": "김포시 읍·면·동 행정복지센터 · 정부24",
+      "url": "https://www.gov.kr/"
+    },
+    "sourceUrl": [
+      "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EA%B9%80%ED%8F%AC%EC%8B%9C",
+      "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
+    ],
+    "lastVerified": "2026-11-23",
+    "notes": "임신축하금 50만 원이 따로 있어요."
+  },
+  {
+    "id": "gyeonggi-gwangju-birth-grant",
+    "name": "광주시 출산지원금",
+    "level": "sigungu",
+    "region": {
+      "sido": "경기도",
+      "sigungu": "광주시"
+    },
+    "category": "local-currency",
+    "tags": [],
+    "status": "confirmed",
+    "summary": "광주시가 출생아마다 주는 출산지원금이에요.",
+    "eligibility": [
+      {
+        "type": "residence",
+        "days": 180,
+        "ref": "birth",
+        "deferIfShort": true
+      }
+    ],
+    "schedule": {
+      "type": "lumpSum",
+      "amountsByOrder": [
+        1000000
+      ],
+      "firstOffsetMonths": 1,
+      "perChild": true
+    },
+    "apply": {
+      "where": "광주시 읍·면·동 행정복지센터 · 정부24",
+      "url": "https://www.gov.kr/"
+    },
+    "sourceUrl": [
+      "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EA%B4%91%EC%A3%BC%EC%8B%9C",
+      "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
+    ],
+    "lastVerified": "2026-11-23",
+    "notes": "경기지역화폐로 받아요. 출생 후 1년 안에 신청해야 해요."
+  },
+  {
+    "id": "gyeonggi-gwangmyeong-birth-grant",
+    "name": "광명시 출산지원금",
+    "level": "sigungu",
+    "region": {
+      "sido": "경기도",
+      "sigungu": "광명시"
+    },
+    "category": "cash",
+    "tags": [],
+    "status": "confirmed",
+    "summary": "광명시가 출생아마다 주는 출산지원금이에요.",
+    "eligibility": [
+      {
+        "type": "residence",
+        "days": 365,
+        "ref": "birth",
+        "deferIfShort": true
+      }
+    ],
+    "schedule": {
+      "type": "lumpSum",
+      "amountsByOrder": [
+        700000
+      ],
+      "firstOffsetMonths": 1,
+      "perChild": true
+    },
+    "apply": {
+      "where": "광명시 읍·면·동 행정복지센터 · 정부24",
+      "url": "https://www.gov.kr/"
+    },
+    "sourceUrl": [
+      "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EA%B4%91%EB%AA%85%EC%8B%9C",
+      "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
+    ],
+    "lastVerified": "2026-11-23"
+  },
+  {
+    "id": "gyeonggi-gunpo-birth-grant",
+    "name": "군포시 출산지원금",
+    "level": "sigungu",
+    "region": {
+      "sido": "경기도",
+      "sigungu": "군포시"
+    },
+    "category": "cash",
+    "tags": [],
+    "status": "confirmed",
+    "summary": "군포시가 출생아마다 주는 출산지원금이에요.",
+    "eligibility": [
+      {
+        "type": "residence",
+        "days": 180,
+        "ref": "birth",
+        "deferIfShort": true
+      }
+    ],
+    "schedule": {
+      "type": "lumpSum",
+      "amountsByOrder": [
+        1000000,
+        3000000,
+        5000000,
+        7000000
+      ],
+      "firstOffsetMonths": 1,
+      "perChild": true
+    },
+    "apply": {
+      "where": "군포시 읍·면·동 행정복지센터 · 정부24",
+      "url": "https://www.gov.kr/"
+    },
+    "sourceUrl": [
+      "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EA%B5%B0%ED%8F%AC%EC%8B%9C",
+      "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
+    ],
+    "lastVerified": "2026-11-23"
+  },
+  {
+    "id": "gyeonggi-hanam-birth-grant",
+    "name": "하남시 출산지원금",
+    "level": "sigungu",
+    "region": {
+      "sido": "경기도",
+      "sigungu": "하남시"
+    },
+    "category": "cash",
+    "tags": [],
+    "status": "confirmed",
+    "summary": "하남시가 출생아마다 주는 출산지원금이에요.",
+    "eligibility": [
+      {
+        "type": "residence",
+        "days": 180,
+        "ref": "birth",
+        "deferIfShort": true
+      }
+    ],
+    "schedule": {
+      "type": "lumpSum",
+      "amountsByOrder": [
+        500000,
+        1000000,
+        2000000,
+        10000000,
+        20000000
+      ],
+      "firstOffsetMonths": 1,
+      "perChild": true,
+      "installmentsByOrder": [
+        null,
+        null,
+        null,
+        [
+          2500000,
+          2500000,
+          2500000,
+          2500000
+        ],
+        [
+          5000000,
+          5000000,
+          5000000,
+          5000000
+        ]
+      ],
+      "intervalMonths": 12
+    },
+    "apply": {
+      "where": "하남시 읍·면·동 행정복지센터 · 정부24",
+      "url": "https://www.gov.kr/"
+    },
+    "sourceUrl": [
+      "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%ED%95%98%EB%82%A8%EC%8B%9C",
+      "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
+    ],
+    "lastVerified": "2026-11-23",
+    "notes": "넷째 이상은 4년 동안 똑같이 나눠 받아요."
+  },
+  {
+    "id": "gyeonggi-osan-birth-grant",
+    "name": "오산시 출산지원금",
+    "level": "sigungu",
+    "region": {
+      "sido": "경기도",
+      "sigungu": "오산시"
+    },
+    "category": "cash",
+    "tags": [],
+    "status": "confirmed",
+    "summary": "오산시가 출생아마다 주는 출산지원금이에요.",
+    "eligibility": [
+      {
+        "type": "residence",
+        "days": 180,
+        "ref": "birth",
+        "deferIfShort": true
+      }
+    ],
+    "schedule": {
+      "type": "lumpSum",
+      "amountsByOrder": [
+        200000,
+        500000,
+        3000000,
+        6000000
+      ],
+      "firstOffsetMonths": 1,
+      "perChild": true,
+      "installmentsByOrder": [
+        null,
+        null,
+        [
+          1000000,
+          1000000,
+          1000000
+        ],
+        [
+          2000000,
+          2000000,
+          2000000
+        ]
+      ],
+      "intervalMonths": 12
+    },
+    "apply": {
+      "where": "오산시 읍·면·동 행정복지센터 · 정부24",
+      "url": "https://www.gov.kr/"
+    },
+    "sourceUrl": [
+      "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EC%98%A4%EC%82%B0%EC%8B%9C",
+      "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
+    ],
+    "lastVerified": "2026-11-23",
+    "assumption": "넷째 이상도 셋째처럼 3년에 나눠 받는다고 가정했어요."
+  },
+  {
+    "id": "gyeonggi-yangju-birth-grant",
+    "name": "양주시 출산지원금",
+    "level": "sigungu",
+    "region": {
+      "sido": "경기도",
+      "sigungu": "양주시"
+    },
+    "category": "cash",
+    "tags": [],
+    "status": "confirmed",
+    "summary": "양주시가 출생아마다 주는 출산지원금이에요.",
+    "eligibility": [
+      {
+        "type": "residence",
+        "days": 90,
+        "ref": "birth",
+        "deferIfShort": true
+      }
+    ],
+    "schedule": {
+      "type": "lumpSum",
+      "amountsByOrder": [
+        null,
+        null,
+        null,
+        2000000,
+        7000000
+      ],
+      "firstOffsetMonths": 1,
+      "perChild": true,
+      "installmentsByOrder": [
+        null,
+        null,
+        null,
+        [
+          1000000,
+          1000000
+        ],
+        [
+          1750000,
+          1750000,
+          1750000,
+          1750000
+        ]
+      ],
+      "intervalMonths": 12
+    },
+    "apply": {
+      "where": "양주시 읍·면·동 행정복지센터 · 정부24",
+      "url": "https://www.gov.kr/"
+    },
+    "sourceUrl": [
+      "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EC%96%91%EC%A3%BC%EC%8B%9C",
+      "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
+    ],
+    "lastVerified": "2026-11-23",
+    "assumption": "분할 간격을 1년으로 가정했어요."
+  },
+  {
+    "id": "gyeonggi-icheon-birth-grant",
+    "name": "이천시 출산지원금",
+    "level": "sigungu",
+    "region": {
+      "sido": "경기도",
+      "sigungu": "이천시"
+    },
+    "category": "cash",
+    "tags": [],
+    "status": "needs-check",
+    "summary": "이천시가 출생아마다 주는 출산지원금이에요.",
+    "eligibility": [
+      {
+        "type": "residence",
+        "days": 180,
+        "ref": "birth",
+        "deferIfShort": true
+      }
+    ],
+    "schedule": {
+      "type": "lumpSum",
+      "amountsByOrder": [
+        1000000,
+        2000000,
+        3000000,
+        5000000
+      ],
+      "firstOffsetMonths": 1,
+      "perChild": true
+    },
+    "apply": {
+      "where": "이천시 읍·면·동 행정복지센터 · 정부24",
+      "url": "https://www.gov.kr/"
+    },
+    "sourceUrl": [
+      "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
+    ],
+    "lastVerified": "2026-11-23",
+    "notes": "경기도청 표 값이에요. 2026년 자료에서는 확인하지 못했어요."
+  },
+  {
+    "id": "gyeonggi-guri-birth-grant",
+    "name": "구리시 출산지원금",
+    "level": "sigungu",
+    "region": {
+      "sido": "경기도",
+      "sigungu": "구리시"
+    },
+    "category": "cash",
+    "tags": [],
+    "status": "confirmed",
+    "summary": "구리시가 출생아마다 주는 출산지원금이에요.",
+    "eligibility": [],
+    "schedule": {
+      "type": "lumpSum",
+      "amountsByOrder": [
+        500000,
+        1000000,
+        2000000,
+        3000000
+      ],
+      "firstOffsetMonths": 1,
+      "perChild": true
+    },
+    "apply": {
+      "where": "구리시 읍·면·동 행정복지센터 · 정부24",
+      "url": "https://www.gov.kr/"
+    },
+    "sourceUrl": [
+      "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EA%B5%AC%EB%A6%AC%EC%8B%9C",
+      "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
+    ],
+    "lastVerified": "2026-11-23"
+  },
+  {
+    "id": "gyeonggi-anseong-birth-grant",
+    "name": "안성시 출산지원금",
+    "level": "sigungu",
+    "region": {
+      "sido": "경기도",
+      "sigungu": "안성시"
+    },
+    "category": "cash",
+    "tags": [],
+    "status": "needs-check",
+    "summary": "안성시가 출생아마다 주는 출산지원금이에요.",
+    "eligibility": [
+      {
+        "type": "residence",
+        "days": 180,
+        "ref": "birth",
+        "deferIfShort": true
+      }
+    ],
+    "schedule": {
+      "type": "lumpSum",
+      "amountsByOrder": [
+        null,
+        1000000
+      ],
+      "firstOffsetMonths": 1,
+      "perChild": true
+    },
+    "apply": {
+      "where": "안성시 읍·면·동 행정복지센터 · 정부24",
+      "url": "https://www.gov.kr/"
+    },
+    "sourceUrl": [
+      "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
+    ],
+    "lastVerified": "2026-11-23",
+    "notes": "경기도청 표 값이에요. 2026년 자료에서는 확인하지 못했어요."
+  },
+  {
+    "id": "gyeonggi-pocheon-birth-grant",
+    "name": "포천시 출산지원금",
+    "level": "sigungu",
+    "region": {
+      "sido": "경기도",
+      "sigungu": "포천시"
+    },
+    "category": "cash",
+    "tags": [],
+    "status": "confirmed",
+    "summary": "포천시가 출생아마다 주는 출산지원금이에요.",
+    "eligibility": [
+      {
+        "type": "residence",
+        "days": 365,
+        "ref": "birth",
+        "deferIfShort": true
+      }
+    ],
+    "schedule": {
+      "type": "lumpSum",
+      "amountsByOrder": [
+        1000000,
+        3000000,
+        5000000,
+        10000000
+      ],
+      "firstOffsetMonths": 1,
+      "perChild": true,
+      "installmentsByOrder": [
+        null,
+        null,
+        [
+          2500000,
+          2500000
+        ],
+        [
+          2500000,
+          2500000,
+          2500000,
+          2500000
+        ]
+      ],
+      "intervalMonths": 12
+    },
+    "apply": {
+      "where": "포천시 읍·면·동 행정복지센터 · 정부24",
+      "url": "https://www.gov.kr/"
+    },
+    "sourceUrl": [
+      "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%ED%8F%AC%EC%B2%9C%EC%8B%9C",
+      "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
+    ],
+    "lastVerified": "2026-11-23"
+  },
+  {
+    "id": "gyeonggi-uiwang-birth-grant",
+    "name": "의왕시 출산지원금",
+    "level": "sigungu",
+    "region": {
+      "sido": "경기도",
+      "sigungu": "의왕시"
+    },
+    "category": "cash",
+    "tags": [],
+    "status": "needs-check",
+    "summary": "의왕시가 출생아마다 주는 출산지원금이에요.",
+    "eligibility": [
+      {
+        "type": "residence",
+        "days": 180,
+        "ref": "birth",
+        "deferIfShort": true
+      }
+    ],
+    "schedule": {
+      "type": "lumpSum",
+      "amountsByOrder": [
+        1000000,
+        2000000,
+        3000000,
+        5000000
+      ],
+      "firstOffsetMonths": 1,
+      "perChild": true
+    },
+    "apply": {
+      "where": "의왕시 읍·면·동 행정복지센터 · 정부24",
+      "url": "https://www.gov.kr/"
+    },
+    "sourceUrl": [
+      "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680",
+      "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EC%9D%98%EC%99%95%EC%8B%9C"
+    ],
+    "lastVerified": "2026-11-23",
+    "notes": "경기도청 표 값이에요. 2026년 자료에는 금액이 적혀 있지 않았어요. 출생 후 1년 안에 신청해야 해요."
+  },
+  {
+    "id": "gyeonggi-yangpyeong-birth-grant",
+    "name": "양평군 출산지원금",
+    "level": "sigungu",
+    "region": {
+      "sido": "경기도",
+      "sigungu": "양평군"
+    },
+    "category": "cash",
+    "tags": [],
+    "status": "needs-check",
+    "summary": "양평군가 출생아마다 주는 출산지원금이에요.",
+    "eligibility": [
+      {
+        "type": "residence",
+        "days": 180,
+        "ref": "birth",
+        "deferIfShort": true
+      }
+    ],
+    "schedule": {
+      "type": "lumpSum",
+      "amountsByOrder": [
+        5000000,
+        5000000,
+        10000000,
+        20000000
+      ],
+      "firstOffsetMonths": 1,
+      "perChild": true
+    },
+    "apply": {
+      "where": "양평군 읍·면·동 행정복지센터 · 정부24",
+      "url": "https://www.gov.kr/"
+    },
+    "sourceUrl": [
+      "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
+    ],
+    "lastVerified": "2026-11-23",
+    "notes": "경기도청 표 값이에요. 4~5회로 나눠 준다는데 일정은 확인하지 못해 한 번에 받는 것으로 넣었어요."
+  },
+  {
+    "id": "gyeonggi-yeoju-birth-grant",
+    "name": "여주시 출산지원금",
+    "level": "sigungu",
+    "region": {
+      "sido": "경기도",
+      "sigungu": "여주시"
+    },
+    "category": "cash",
+    "tags": [],
+    "status": "confirmed",
+    "summary": "여주시가 출생아마다 주는 출산지원금이에요.",
+    "eligibility": [
+      {
+        "type": "residence",
+        "days": 365,
+        "ref": "birth",
+        "deferIfShort": true
+      }
+    ],
+    "schedule": {
+      "type": "lumpSum",
+      "amountsByOrder": [
+        1000000,
+        5000000,
+        10000000
+      ],
+      "firstOffsetMonths": 1,
+      "perChild": true,
+      "installmentsByOrder": [
+        null,
+        [
+          1000000,
+          1000000,
+          1000000,
+          1000000,
+          1000000
+        ],
+        [
+          2000000,
+          2000000,
+          2000000,
+          2000000,
+          2000000
+        ]
+      ],
+      "intervalMonths": 12
+    },
+    "apply": {
+      "where": "여주시 읍·면·동 행정복지센터 · 정부24",
+      "url": "https://www.gov.kr/"
+    },
+    "sourceUrl": [
+      "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EC%97%AC%EC%A3%BC%EC%8B%9C",
+      "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
+    ],
+    "lastVerified": "2026-11-23",
+    "notes": "첫째는 180일, 둘째 이상은 1년 거주가 필요해요."
+  },
+  {
+    "id": "gyeonggi-dongducheon-birth-grant",
+    "name": "동두천시 출산지원금",
+    "level": "sigungu",
+    "region": {
+      "sido": "경기도",
+      "sigungu": "동두천시"
+    },
+    "category": "cash",
+    "tags": [],
+    "status": "confirmed",
+    "summary": "동두천시가 출생아마다 주는 출산지원금이에요.",
+    "eligibility": [
+      {
+        "type": "residence",
+        "days": 365,
+        "ref": "birth",
+        "deferIfShort": true
+      }
+    ],
+    "schedule": {
+      "type": "lumpSum",
+      "amountsByOrder": [
+        1000000,
+        1500000,
+        2500000,
+        5000000
+      ],
+      "firstOffsetMonths": 1,
+      "perChild": true,
+      "installmentsByOrder": [
+        null,
+        null,
+        null,
+        [
+          2000000,
+          3000000
+        ]
+      ],
+      "intervalMonths": 12
+    },
+    "apply": {
+      "where": "동두천시 읍·면·동 행정복지센터 · 정부24",
+      "url": "https://www.gov.kr/"
+    },
+    "sourceUrl": [
+      "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EB%8F%99%EB%91%90%EC%B2%9C%EC%8B%9C",
+      "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
+    ],
+    "lastVerified": "2026-11-23"
+  },
+  {
+    "id": "gyeonggi-gapyeong-birth-grant",
+    "name": "가평군 출산지원금",
+    "level": "sigungu",
+    "region": {
+      "sido": "경기도",
+      "sigungu": "가평군"
+    },
+    "category": "cash",
+    "tags": [],
+    "status": "confirmed",
+    "summary": "가평군가 출생아마다 주는 출산지원금이에요.",
+    "eligibility": [
+      {
+        "type": "residence",
+        "days": 180,
+        "ref": "birth",
+        "deferIfShort": true
+      }
+    ],
+    "schedule": {
+      "type": "lumpSum",
+      "amountsByOrder": [
+        1000000,
+        4000000,
+        10000000,
+        20000000
+      ],
+      "firstOffsetMonths": 1,
+      "perChild": true,
+      "installmentsByOrder": [
+        null,
+        [
+          2000000,
+          2000000
+        ],
+        [
+          2000000,
+          2000000,
+          2000000,
+          2000000,
+          2000000
+        ],
+        [
+          2000000,
+          2000000,
+          2000000,
+          2000000,
+          2000000,
+          2000000,
+          2000000,
+          2000000,
+          2000000,
+          2000000
+        ]
+      ],
+      "intervalMonths": 12
+    },
+    "apply": {
+      "where": "가평군 읍·면·동 행정복지센터 · 정부24",
+      "url": "https://www.gov.kr/"
+    },
+    "sourceUrl": [
+      "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EA%B0%80%ED%8F%89%EA%B5%B0",
+      "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
+    ],
+    "lastVerified": "2026-11-23",
+    "notes": "첫째는 현금 50만 원 + 지역화폐 50만 원, 둘째 이상은 절반을 지역화폐로 받아요. 나머지 회차는 매년 생일이 있는 달에 받아요. 입학 뒤 회차는 이 계산에서 빠져요."
+  },
+  {
+    "id": "gyeonggi-gwacheon-birth-grant",
+    "name": "과천시 출산지원금",
+    "level": "sigungu",
+    "region": {
+      "sido": "경기도",
+      "sigungu": "과천시"
+    },
+    "category": "cash",
+    "tags": [],
+    "status": "confirmed",
+    "summary": "과천시가 출생아마다 주는 출산지원금이에요.",
+    "eligibility": [
+      {
+        "type": "residence",
+        "days": 180,
+        "ref": "birth",
+        "deferIfShort": true
+      }
+    ],
+    "schedule": {
+      "type": "lumpSum",
+      "amountsByOrder": [
+        1000000,
+        1500000,
+        3000000,
+        5000000
+      ],
+      "firstOffsetMonths": 1,
+      "perChild": true,
+      "installmentsByOrder": [
+        null,
+        null,
+        [
+          2000000,
+          1000000
+        ],
+        [
+          2000000,
+          1000000,
+          1000000,
+          1000000
+        ]
+      ],
+      "intervalMonths": 12
+    },
+    "apply": {
+      "where": "과천시 읍·면·동 행정복지센터 · 정부24",
+      "url": "https://www.gov.kr/"
+    },
+    "sourceUrl": [
+      "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EA%B3%BC%EC%B2%9C%EC%8B%9C",
+      "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
+    ],
+    "lastVerified": "2026-11-23"
+  },
+  {
+    "id": "gyeonggi-yeoncheon-birth-grant",
+    "name": "연천군 출산지원금",
+    "level": "sigungu",
+    "region": {
+      "sido": "경기도",
+      "sigungu": "연천군"
+    },
+    "category": "cash",
+    "tags": [],
+    "status": "needs-check",
+    "summary": "연천군가 출생아마다 주는 출산지원금이에요.",
+    "eligibility": [
+      {
+        "type": "residence",
+        "days": 180,
+        "ref": "birth",
+        "deferIfShort": true
+      }
+    ],
+    "schedule": {
+      "type": "lumpSum",
+      "amountsByOrder": [
+        1000000,
+        2000000,
+        5000000,
+        10000000
+      ],
+      "firstOffsetMonths": 1,
+      "perChild": true
+    },
+    "apply": {
+      "where": "연천군 읍·면·동 행정복지센터 · 정부24",
+      "url": "https://www.gov.kr/"
+    },
+    "sourceUrl": [
+      "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
+    ],
+    "lastVerified": "2026-11-23",
+    "notes": "경기도청 표 값이에요. 2·5회로 나눠 준다는데 일정은 확인하지 못해 한 번에 받는 것으로 넣었어요."
+  },
+  {
+    "id": "gyeonggi-paju-birth-grant",
+    "name": "파주시 출산지원금",
+    "level": "sigungu",
+    "region": {
+      "sido": "경기도",
+      "sigungu": "파주시"
+    },
+    "category": "cash",
+    "tags": [],
+    "status": "needs-check",
+    "summary": "파주시 출산지원금은 출처마다 금액이 크게 달라 합계에 넣지 않았어요.",
+    "eligibility": [],
+    "schedule": {
+      "type": "info",
+      "amountText": "10/30/100만 원(경기도청 표) 또는 100/200/300만 원(다른 출처)"
+    },
+    "apply": {
+      "where": "파주시 읍·면·동 행정복지센터",
+      "url": "https://www.paju.go.kr/"
+    },
+    "sourceUrl": [
+      "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680",
+      "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%ED%8C%8C%EC%A3%BC%EC%8B%9C"
+    ],
+    "lastVerified": "2026-11-23"
+  },
+  {
+    "id": "gyeonggi-paju-dad-leave",
+    "name": "파주시 아빠 육아휴직 장려금",
+    "level": "sigungu",
+    "region": {
+      "sido": "경기도",
+      "sigungu": "파주시"
+    },
+    "category": "cash",
+    "tags": [
+      "parental-leave"
+    ],
+    "status": "needs-check",
+    "summary": "아빠가 육아휴직을 하면 휴직한 달마다 30만 원씩 최대 3개월 받아요.",
+    "eligibility": [
+      {
+        "type": "employment",
+        "parent": "father",
+        "anyOf": [
+          "insured"
+        ]
+      }
+    ],
+    "schedule": {
+      "type": "perLeaveMonth",
+      "parent": "father",
+      "amount": 300000,
+      "maxMonths": 3,
+      "excludeSixPlusSix": false
+    },
+    "apply": {
+      "where": "파주시청",
+      "url": "https://www.paju.go.kr/"
+    },
+    "notes": "거주 요건과 6+6 중복 여부를 확인하지 못했어요.",
+    "sourceUrl": [
+      "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%ED%8C%8C%EC%A3%BC%EC%8B%9C"
+    ],
+    "lastVerified": "2026-11-23"
+  },
+  {
+    "id": "gyeonggi-yeoju-dad-leave",
+    "name": "여주시 아빠 육아휴직 장려금",
+    "level": "sigungu",
+    "region": {
+      "sido": "경기도",
+      "sigungu": "여주시"
+    },
+    "category": "cash",
+    "tags": [
+      "parental-leave"
+    ],
+    "status": "needs-check",
+    "summary": "아빠가 육아휴직을 하면 휴직한 달마다 30만 원씩 최대 5개월 받아요.",
+    "eligibility": [
+      {
+        "type": "employment",
+        "parent": "father",
+        "anyOf": [
+          "insured"
+        ]
+      }
+    ],
+    "schedule": {
+      "type": "perLeaveMonth",
+      "parent": "father",
+      "amount": 300000,
+      "maxMonths": 5,
+      "excludeSixPlusSix": false
+    },
+    "apply": {
+      "where": "여주시청",
+      "url": "https://www.yeoju.go.kr/"
+    },
+    "notes": "거주 요건과 6+6 중복 여부를 확인하지 못했어요.",
+    "sourceUrl": [
+      "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EC%97%AC%EC%A3%BC%EC%8B%9C"
+    ],
+    "lastVerified": "2026-11-23"
+  },
+  {
+    "id": "gyeonggi-postpartum",
+    "name": "경기도 산후조리비",
+    "level": "sido",
+    "region": {
+      "sido": "경기도"
+    },
+    "category": "local-currency",
+    "tags": [
+      "health"
+    ],
+    "status": "ended",
+    "summary": "출생아 1명당 50만 원을 지역화폐로 주던 제도예요. 2026년 9월 30일 접수분까지만 지급하고 끝났어요.",
+    "calendarRange": {
+      "to": "2026-09-30"
+    },
+    "eligibility": [],
+    "schedule": {
+      "type": "lumpSum",
+      "amountsByOrder": [
+        500000
+      ],
+      "firstOffsetMonths": 1,
+      "perChild": true
+    },
+    "apply": {
+      "where": "경기도 · 시군 보건소",
+      "url": "https://www.gg.go.kr/"
+    },
+    "notes": "2027년 재개 여부는 정해지지 않았어요. 재개되면 갱신할게요. 일부 자료에는 아직 남아 있어 확인이 필요해요.",
+    "sourceUrl": [
+      "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
+    ],
+    "lastVerified": "2026-11-23"
+  },
+  {
+    "id": "gyeonggi-uiwang-postpartum",
+    "name": "의왕시 산후조리비",
+    "level": "sigungu",
+    "region": {
+      "sido": "경기도",
+      "sigungu": "의왕시"
+    },
+    "category": "cash",
+    "tags": [
+      "health"
+    ],
+    "status": "confirmed",
+    "summary": "산모 1명당 50만 원을 현금으로 줘요.",
+    "eligibility": [
+      {
+        "type": "residence",
+        "days": 180,
+        "ref": "birth",
+        "deferIfShort": true
+      }
+    ],
+    "schedule": {
+      "type": "lumpSum",
+      "amountsByOrder": [
+        500000
+      ],
+      "firstOffsetMonths": 1,
+      "perChild": false
+    },
+    "apply": {
+      "where": "의왕시 보건소",
+      "url": "https://www.uiwang.go.kr/"
+    },
+    "notes": "부모 중 1명이 6개월 이상 의왕시에 살아야 해요.",
+    "sourceUrl": [
+      "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EC%9D%98%EC%99%95%EC%8B%9C"
+    ],
+    "lastVerified": "2026-11-23"
+  },
+  {
+    "id": "gyeonggi-namyangju-postpartum",
+    "name": "남양주시 산후조리비",
+    "level": "sigungu",
+    "region": {
+      "sido": "경기도",
+      "sigungu": "남양주시"
+    },
+    "category": "local-currency",
+    "tags": [
+      "health"
+    ],
+    "status": "needs-check",
+    "summary": "출생아 1명당 50만 원을 지역화폐로 줘요.",
+    "eligibility": [],
+    "schedule": {
+      "type": "lumpSum",
+      "amountsByOrder": [
+        500000
+      ],
+      "firstOffsetMonths": 1,
+      "perChild": true
+    },
+    "apply": {
+      "where": "남양주시 보건소",
+      "url": "https://www.nyj.go.kr/"
+    },
+    "notes": "경기도 산후조리비와 따로인지 확인이 필요해요.",
+    "sourceUrl": [
+      "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EB%82%A8%EC%96%91%EC%A3%BC%EC%8B%9C"
+    ],
+    "lastVerified": "2026-11-23"
+  },
+  {
+    "id": "gyeonggi-hanam-postpartum",
+    "name": "하남시 산후조리비",
+    "level": "sigungu",
+    "region": {
+      "sido": "경기도",
+      "sigungu": "하남시"
+    },
+    "category": "cash",
+    "tags": [
+      "health"
+    ],
+    "status": "needs-check",
+    "summary": "출생아 1명당 50만 원을 현금으로 줘요.",
+    "eligibility": [],
+    "schedule": {
+      "type": "lumpSum",
+      "amountsByOrder": [
+        500000
+      ],
+      "firstOffsetMonths": 1,
+      "perChild": true
+    },
+    "apply": {
+      "where": "하남시 보건소",
+      "url": "https://www.hanam.go.kr/"
+    },
+    "sourceUrl": [
+      "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%ED%95%98%EB%82%A8%EC%8B%9C"
+    ],
+    "lastVerified": "2026-11-23"
+  },
+  {
+    "id": "gyeonggi-siheung-postpartum",
+    "name": "시흥시 산후조리비",
+    "level": "sigungu",
+    "region": {
+      "sido": "경기도",
+      "sigungu": "시흥시"
+    },
+    "category": "cash",
+    "tags": [
+      "health"
+    ],
+    "status": "needs-check",
+    "summary": "출생아 1명당 50만 원을 줘요(쌍태아 100만 원).",
+    "eligibility": [],
+    "schedule": {
+      "type": "lumpSum",
+      "amountsByOrder": [
+        500000
+      ],
+      "firstOffsetMonths": 1,
+      "perChild": true
+    },
+    "apply": {
+      "where": "시흥시 보건소",
+      "url": "https://www.siheung.go.kr/"
+    },
+    "notes": "2025년 출생아 기준 금액이에요. 2026년 금액과 지급 형태는 확인하지 못했어요.",
+    "sourceUrl": [
+      "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EC%8B%9C%ED%9D%A5%EC%8B%9C"
+    ],
+    "lastVerified": "2026-11-23"
+  },
+  {
+    "id": "gyeonggi-seongnam-postpartum",
+    "name": "성남시 산후조리비",
+    "level": "sigungu",
+    "region": {
+      "sido": "경기도",
+      "sigungu": "성남시"
+    },
+    "category": "cash",
+    "tags": [
+      "health"
+    ],
+    "status": "needs-check",
+    "summary": "기준 중위소득 80% 이하 가구에 최대 50만 원을 줘요.",
+    "eligibility": [
+      {
+        "type": "incomePct",
+        "max": 80
+      }
+    ],
+    "schedule": {
+      "type": "info",
+      "amountText": "최대 50만 원"
+    },
+    "apply": {
+      "where": "성남시 보건소",
+      "url": "https://www.seongnam.go.kr/"
+    },
+    "sourceUrl": [
+      "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
+    ],
+    "lastVerified": "2026-11-23"
+  },
+  {
+    "id": "gyeonggi-yeoju-postpartum",
+    "name": "여주시 산후조리비",
+    "level": "sigungu",
+    "region": {
+      "sido": "경기도",
+      "sigungu": "여주시"
+    },
+    "category": "cash",
+    "tags": [
+      "health"
+    ],
+    "status": "needs-check",
+    "summary": "출생아 1명당 최대 100만 원을 지원해요.",
+    "eligibility": [],
+    "schedule": {
+      "type": "info",
+      "amountText": "출생아 1명당 최대 100만 원"
+    },
+    "apply": {
+      "where": "여주시 보건소",
+      "url": "https://www.yeoju.go.kr/"
+    },
+    "sourceUrl": [
+      "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EC%97%AC%EC%A3%BC%EC%8B%9C"
+    ],
+    "lastVerified": "2026-11-23"
+  },
+  {
+    "id": "gyeonggi-pyeongtaek-postpartum-plan",
+    "name": "평택시 산후조리비 (추진 중)",
+    "level": "sigungu",
+    "region": {
+      "sido": "경기도",
+      "sigungu": "평택시"
+    },
+    "category": "cash",
+    "tags": [
+      "health"
+    ],
+    "status": "proposed",
+    "summary": "평택시가 2027년부터 출생아 1명당 50만 원 산후조리비를 추진하고 있어요.",
+    "birthDateRange": {
+      "from": "2027-01-01"
+    },
+    "eligibility": [],
+    "schedule": {
+      "type": "info",
+      "amountText": "출생아 1명당 50만 원 (추진 중)"
+    },
+    "apply": {
+      "where": "확정 후 안내",
+      "url": "https://www.gg.go.kr/"
+    },
+    "sourceUrl": [
+      "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
+    ],
+    "lastVerified": "2026-11-23"
+  },
+  {
+    "id": "gyeonggi-gwangju-postpartum-plan",
+    "name": "광주시 산후조리비 (추진 중)",
+    "level": "sigungu",
+    "region": {
+      "sido": "경기도",
+      "sigungu": "광주시"
+    },
+    "category": "cash",
+    "tags": [
+      "health"
+    ],
+    "status": "proposed",
+    "summary": "광주시가 2027년부터 출생아 1명당 50만 원 산후조리비를 추진하고 있어요.",
+    "birthDateRange": {
+      "from": "2027-01-01"
+    },
+    "eligibility": [],
+    "schedule": {
+      "type": "info",
+      "amountText": "출생아 1명당 50만 원 (추진 중)"
+    },
+    "apply": {
+      "where": "확정 후 안내",
+      "url": "https://www.gg.go.kr/"
+    },
+    "sourceUrl": [
+      "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
+    ],
+    "lastVerified": "2026-11-23"
+  }
+]
