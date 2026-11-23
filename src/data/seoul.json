@@ -1,0 +1,133 @@
+[
+  {
+    "id": "seoul-postpartum-care",
+    "name": "서울형 산후조리경비",
+    "level": "sido",
+    "region": { "sido": "서울특별시" },
+    "category": "voucher",
+    "tags": ["health"],
+    "status": "confirmed",
+    "summary": "산모 본인 명의 협약카드에 바우처로 받아요. 서울 안에서 산후도우미·의약품·산후운동 등에 쓸 수 있어요.",
+    "birthDateRange": { "from": "2026-01-01" },
+    "eligibility": [{ "type": "residence", "days": 90, "ref": "apply", "deferIfShort": true }],
+    "schedule": { "type": "lumpSum", "amountsByOrder": [1000000, 1200000, 1500000], "firstOffsetMonths": 1, "perChild": true },
+    "apply": {
+      "where": "탄생육아 몽땅정보통",
+      "url": "https://umppa.seoul.go.kr/",
+      "deadline": "출산 후 180일 이내 신청, 출산 1년이 되는 달 말일까지 사용"
+    },
+    "notes": "2026-07-01부터 신청일 기준 서울 3개월(90일) 이상 거주 요건이 생겼어요. 다태아는 순위별로 합산해요(쌍둥이 첫 출산 = 100만 + 120만 원).",
+    "sourceUrl": [
+      "https://news.seoul.go.kr/welfare/archives/577980",
+      "https://mediahub.seoul.go.kr/archives/2017499"
+    ],
+    "lastVerified": "2026-11-23"
+  },
+  {
+    "id": "seoul-pregnancy-transport",
+    "name": "서울 임산부 교통비",
+    "level": "sido",
+    "region": { "sido": "서울특별시" },
+    "category": "voucher",
+    "tags": ["health"],
+    "status": "confirmed",
+    "summary": "임신 중에 신청하면 신용·체크카드 바우처로 받아요. 자녀 수에 따라 70만~100만 원이에요.",
+    "eligibility": [
+      { "type": "expectedOnly" },
+      { "type": "residence", "days": 90, "ref": "apply", "deferIfShort": false }
+    ],
+    "schedule": { "type": "lumpSum", "amountsByOrder": [700000, 800000, 1000000], "firstOffsetMonths": 0, "perChild": false },
+    "apply": {
+      "where": "탄생육아 몽땅정보통 · 동주민센터",
+      "url": "https://umppa.seoul.go.kr/",
+      "deadline": "임신 확인 시점부터 출산 후 6개월까지"
+    },
+    "notes": "신청 전에 안내 동영상 1편 이상을 들어야 해요.",
+    "assumption": "임신 중에 받는 돈이라 달력에는 출생월에 표시했어요.",
+    "sourceUrl": [
+      "https://mediahub.seoul.go.kr/archives/2017499",
+      "https://www.dobong.go.kr/Contents.asp?code=10009827"
+    ],
+    "lastVerified": "2026-11-23"
+  },
+  {
+    "id": "seoul-housing-birth",
+    "name": "서울 무주택 출산가구 주거비",
+    "level": "sido",
+    "region": { "sido": "서울특별시" },
+    "category": "cash",
+    "tags": ["housing"],
+    "status": "confirmed",
+    "summary": "실제로 낸 월세나 전세대출 이자를 월 최대 30만 원, 2년간 최대 720만 원까지 6개월마다 나중에 돌려받아요.",
+    "eligibility": [
+      { "type": "incomePct", "max": 180 },
+      { "type": "homeless", "maxJeonse": 500000000, "maxMonthlyEquiv": 2290000 }
+    ],
+    "schedule": {
+      "type": "lumpSum",
+      "amountsByOrder": [7200000],
+      "firstOffsetMonths": 7,
+      "split": { "count": 4, "intervalMonths": 6 },
+      "perChild": false
+    },
+    "apply": {
+      "where": "탄생육아 몽땅정보통",
+      "url": "https://umppa.seoul.go.kr/",
+      "deadline": "출산 후 1년 이내. 상·하반기 연 2회 심사 (2026년 하반기 접수는 12월 31일까지)"
+    },
+    "notes": "공공임대주택 입주자나 서울시 임차보증금 이자 지원 등 다른 주거 지원을 받는 가구는 제외돼요. 다태아·추가 출산 시 1~2년 연장(최장 4년)은 계산에 넣지 않았어요.",
+    "assumption": "실제 주거비 지출이 월 30만 원 이상이라고 보고, 첫 지급을 출생 7개월째로 두었어요.",
+    "sourceUrl": [
+      "https://mediahub.seoul.go.kr/archives/2018691",
+      "https://www.newsis.com/view/NISX20260707_0003698743"
+    ],
+    "lastVerified": "2026-11-23"
+  },
+  {
+    "id": "seoul-multichild-idolbom",
+    "name": "서울 다자녀 아이돌봄 본인부담금 지원",
+    "level": "sido",
+    "region": { "sido": "서울특별시" },
+    "category": "service",
+    "tags": ["childcare", "multi-child"],
+    "status": "needs-check",
+    "summary": "다자녀 가구가 아이돌봄서비스를 쓸 때 본인부담금의 대부분을 1가구 100만 원 범위에서 지원해요.",
+    "eligibility": [{ "type": "birthOrder", "min": 2 }],
+    "schedule": { "type": "info", "amountText": "1가구 100만 원 범위" },
+    "apply": { "where": "탄생육아 몽땅정보통", "url": "https://umppa.seoul.go.kr/" },
+    "notes": "지원 비율과 다자녀 기준을 공식 공고로 확인하지 못했어요.",
+    "sourceUrl": ["https://umppa.seoul.go.kr/"],
+    "lastVerified": "2026-11-23"
+  },
+  {
+    "id": "seoul-self-employed-paternity",
+    "name": "서울 1인 자영업자 배우자 출산휴가급여",
+    "level": "sido",
+    "region": { "sido": "서울특별시" },
+    "category": "cash",
+    "tags": ["parental-leave"],
+    "status": "needs-check",
+    "summary": "고용보험이 없는 1인 자영업자·프리랜서 아빠가 출생 후 120일 안에 쉬면 하루 8만 원씩 받아요.",
+    "eligibility": [{ "type": "employment", "parent": "father", "anyOf": ["uninsured-self"] }],
+    "schedule": { "type": "info", "amountText": "하루 8만 원, 최대 15일 (120만 원)" },
+    "apply": { "where": "탄생육아 몽땅정보통", "url": "https://umppa.seoul.go.kr/", "deadline": "출생 후 120일 이내 휴가" },
+    "notes": "최대 금액이 출처마다 120만 원과 90만 원으로 달라 합계에는 넣지 않았어요.",
+    "sourceUrl": ["https://umppa.seoul.go.kr/"],
+    "lastVerified": "2026-11-23"
+  },
+  {
+    "id": "seoul-grandparent-care",
+    "name": "서울형 아이돌봄비 (손주돌봄수당)",
+    "level": "sido",
+    "region": { "sido": "서울특별시" },
+    "category": "cash",
+    "tags": ["childcare"],
+    "status": "needs-check",
+    "summary": "조부모나 친인척이 아이를 돌볼 때 양육자에게 주는 돌봄수당이에요.",
+    "eligibility": [],
+    "schedule": { "type": "info", "amountText": "금액·소득기준·대상 연령 확인 필요" },
+    "apply": { "where": "탄생육아 몽땅정보통", "url": "https://umppa.seoul.go.kr/" },
+    "sourceUrl": ["https://mediahub.seoul.go.kr/archives/2018509"],
+    "lastVerified": "2026-11-23"
+  }
+]
