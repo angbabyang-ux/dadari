@@ -1,0 +1,3 @@
+/* 한글 웹폰트. 첫 화면을 그린 뒤에 불러와 첫 표시를 막지 않는다 */
+@import "@fontsource-variable/hahmlet/wght.css";
+@import "wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.css";

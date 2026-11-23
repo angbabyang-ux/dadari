@@ -23,10 +23,11 @@ export function Wizard({ draft }: { draft: Draft }) {
     <div className="mx-auto max-w-6xl px-4 md:px-8">
       <div className="grid md:grid-cols-12 gap-x-8">
         <div className="md:col-span-4 pt-8 md:pt-14">
-          <h1 className="font-serif text-[28px] md:text-[40px] leading-[1.25] font-semibold tracking-tight">
+          {/* 웹폰트가 늦게 도착해 줄 수가 바뀌어도 아래 입력란이 밀리지 않게 높이를 잡아 둔다 */}
+          <h1 className="font-serif text-[28px] md:text-[40px] leading-[1.25] font-semibold tracking-tight min-h-[3.75em] md:min-h-0">
             아이가 태어난 달부터 입학 전까지, 매달 받는 돈을 달력으로 봐요.
           </h1>
-          <p className="mt-3 text-ink-2">
+          <p className="mt-3 text-ink-2 min-h-[4.8em] md:min-h-0">
             국가·시도·시군구 지원과 육아휴직 급여를 한 번에 계산해요. 입력한 내용은 이 브라우저 밖으로 나가지 않아요.
           </p>
           <ol className="mt-6 hidden md:block rule-t" aria-label="입력 단계">
@@ -106,12 +107,14 @@ function StepChild({ draft, update }: StepProps) {
       </Field>
       <Segmented
         legend="몇째 아이인가요?"
+        cols={3}
         value={draft.birthOrder}
         onChange={(v) => update({ birthOrder: v })}
         options={[1, 2, 3, 4, 5].map((n) => ({ value: n, label: ["첫째", "둘째", "셋째", "넷째", "다섯째 이상"][n - 1]! }))}
       />
       <Segmented
         legend="한 번에 몇 명이 태어나나요?"
+        cols={3}
         hint="쌍둥이라면 아이마다 출생순위를 따로 셈해요. 첫 출산 쌍둥이는 첫째와 둘째예요."
         value={draft.multiples}
         onChange={(v) => update({ multiples: v })}

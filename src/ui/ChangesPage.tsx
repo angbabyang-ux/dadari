@@ -76,7 +76,7 @@ export function ChangesPage() {
       <section className="pt-12">
         <div className="flex flex-wrap items-baseline gap-4 pb-2 rule-b border-ink">
           <h2 className="font-serif text-xl font-semibold flex-1">하루 차이, 첫 2년 동안 받는 돈</h2>
-          <div className="seg" role="radiogroup" aria-label="출생순위">
+          <div className="seg flex flex-wrap" role="radiogroup" aria-label="출생순위">
             {[1, 2, 3].map((o) => (
               <label key={o}>
                 <input type="radio" name="order" checked={order === o} onChange={() => setOrder(o)} />

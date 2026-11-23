@@ -19,19 +19,22 @@ export function Segmented<T extends string | number>({
   value,
   options,
   onChange,
+  cols,
 }: {
   legend: string;
   hint?: ReactNode;
   value: T;
   options: { value: T; label: string }[];
   onChange: (v: T) => void;
+  cols?: 2 | 3 | 4; // 휴대폰에서 칸 수를 고정해 글꼴이 바뀌어도 줄 수가 같게
 }) {
   const name = useId();
+  const grid = cols ? { 2: "grid grid-cols-2 sm:flex sm:flex-wrap", 3: "grid grid-cols-3 sm:flex sm:flex-wrap", 4: "grid grid-cols-4 sm:flex sm:flex-wrap" }[cols] : "flex flex-wrap";
   return (
     <fieldset className="py-4 rule-b">
       <legend className="font-semibold mb-1 float-left w-full">{legend}</legend>
       {hint && <p className="text-sm text-ink-2 mb-2 clear-both">{hint}</p>}
-      <div className="seg clear-both pt-1">
+      <div className={`seg clear-both pt-1 ${grid}`}>
         {options.map((o) => (
           <label key={String(o.value)}>
             <input type="radio" name={name} checked={value === o.value} onChange={() => onChange(o.value)} />

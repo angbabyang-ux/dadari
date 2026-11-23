@@ -1,6 +1,4 @@
-/* 전역 스타일 진입점. 폰트·Tailwind·디자인 토큰·기본 요소 스타일 */
-@import "@fontsource-variable/hahmlet/wght.css";
-@import "wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.css";
+/* 전역 스타일 진입점. Tailwind·디자인 토큰·기본 요소 스타일 (웹폰트는 fonts.css에서 나중에 불러옴) */
 @import "tailwindcss";
 
 :root {
@@ -111,11 +109,13 @@ body {
 .field:focus-visible { border-color: var(--focus); }
 
 /* 세그먼트 선택 (라디오 그룹) */
-.seg { display: flex; flex-wrap: wrap; gap: 6px; }
+.seg { gap: 6px; } /* 배치(flex/grid)는 Tailwind 클래스로 정한다 */
 .seg label {
   position: relative;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  white-space: nowrap;
   min-height: 44px;
   padding: 0 14px;
   border: 1px solid var(--rule);

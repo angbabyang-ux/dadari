@@ -41,8 +41,9 @@ export function ComparePage({ input, params }: { input: Input; params: URLSearch
           ← 결과로 돌아가기
         </a>
       </p>
-      <h1 className="font-serif text-2xl md:text-3xl font-semibold pt-3 pb-3 rule-b">다른 동네라면 얼마나 달라질까요?</h1>
-      <p className="text-sm text-ink-2 pt-3">아이·가구·휴직 조건은 그대로 두고 사는 곳만 바꿔서 계산했어요.</p>
+      {/* 웹폰트 적용으로 줄 수가 바뀌어도 아래가 밀리지 않게 두 줄 높이를 잡아 둔다 */}
+      <h1 className="font-serif text-2xl md:text-3xl font-semibold pt-3 pb-3 rule-b min-h-[5.5rem] md:min-h-0 flex items-end">다른 동네라면 얼마나 달라질까요?</h1>
+      <p className="text-sm text-ink-2 pt-3 min-h-[3.75rem] md:min-h-0">아이·가구·휴직 조건은 그대로 두고 사는 곳만 바꿔서 계산했어요.</p>
 
       <div className="py-4 rule-b">
         <label htmlFor="cmp" className="font-semibold block mb-1">
