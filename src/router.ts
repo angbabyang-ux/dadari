@@ -29,10 +29,24 @@ function subscribe(l: () => void) {
 }
 const getSnapshot = () => window.location.pathname + window.location.search;
 
-export function useLocation(): { route: Route; params: URLSearchParams } {
-  const snap = useSyncExternalStore(subscribe, getSnapshot, getSnapshot);
-  const url = new URL(snap, window.location.origin);
-  return { route: routeOf(url.pathname), params: url.searchParams };
+// 빌드 시 정적 HTML을 그릴 때 쓰는 주소 (브라우저에서는 쓰지 않음)
+let serverUrl = "/";
+export function setServerUrl(url: string) {
+  serverUrl = url;
+}
+const getServerSnapshot = () => serverUrl;
+
+/** 지역 랜딩 경로(/r/<지역id>/)면 지역 id를 돌려준다 */
+function regionOf(pathname: string): string | undefined {
+  const p = pathname.startsWith(BASE) ? pathname.slice(BASE.length) : pathname;
+  const m = p.match(/^\/r\/([a-z0-9-]+)\/?$/);
+  return m?.[1];
+}
+
+export function useLocation(): { route: Route; params: URLSearchParams; regionId?: string } {
+  const snap = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+  const url = new URL(snap, "http://localhost");
+  return { route: routeOf(url.pathname), params: url.searchParams, regionId: regionOf(url.pathname) };
 }
 
 export function navigate(route: Route, query?: string) {

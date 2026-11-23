@@ -1,5 +1,6 @@
 // 앱 뼈대: 머리글·라우팅·바닥글
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { regions } from "../data";
 import { hrefFor, navigate, useLocation, type Route } from "../router";
 import { draftFromParams, isComplete } from "../state/url";
 import { ChangesPage } from "./ChangesPage";
@@ -16,9 +17,18 @@ const NAV: { route: Route; label: string }[] = [
 ];
 
 export function App() {
-  const { route, params } = useLocation();
+  const { route, params, regionId } = useLocation();
   const query = params.toString();
-  const draft = useMemo(() => draftFromParams(new URLSearchParams(query)), [query]);
+  const draft = useMemo(() => {
+    const p = new URLSearchParams(query);
+    // 지역 랜딩(/r/seoul-gangseo/)으로 들어오면 사는 곳을 미리 채운다
+    const region = regionId && !p.has("sd") ? regions.sigungu.find((r) => r.id === regionId) : undefined;
+    if (region) {
+      p.set("sd", regions.sidoList.find((s) => s.name === region.sido)!.id);
+      p.set("sg", region.id);
+    }
+    return draftFromParams(p);
+  }, [query, regionId]);
   const complete = isComplete(draft);
 
   let page;
@@ -89,14 +99,15 @@ function EmptyState() {
 }
 
 function ThemeToggle() {
-  const read = () => {
+  // 미리 그린 HTML과 맞추기 위해 처음엔 "auto"로 그리고, 붙은 뒤에 저장값을 읽는다
+  const [theme, setTheme] = useState("auto");
+  useEffect(() => {
     try {
-      return localStorage.getItem("theme") ?? "auto";
+      setTheme(localStorage.getItem("theme") ?? "auto");
     } catch {
-      return "auto";
+      /* 저장소를 못 쓰면 자동 모드 */
     }
-  };
-  const [theme, setTheme] = useState(read);
+  }, []);
   const next = theme === "auto" ? "dark" : theme === "dark" ? "light" : "auto";
   const label = { auto: "화면 모드 자동", dark: "어두운 화면", light: "밝은 화면" }[theme];
   return (
