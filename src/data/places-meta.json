@@ -24,6 +24,18 @@
    "url": "https://www.data.go.kr/data/15012890/standard.do",
    "org": "공공데이터포털",
    "license": "공공데이터포털 이용정책"
+  },
+  "icare": {
+   "name": "서울시 우리동네키움포털 서울형 키즈카페 시설 안내",
+   "url": "https://umppa.seoul.go.kr/icare/user/kidsCafe/BD_selectKidsCafeList.do",
+   "org": "서울특별시",
+   "license": "공식 누리집 안내"
+  },
+  "parking": {
+   "name": "전국주차장정보표준데이터",
+   "url": "https://www.data.go.kr/data/15012896/standard.do",
+   "org": "공공데이터포털",
+   "license": "공공데이터포털 이용정책"
   }
  },
  "extra": [

@@ -7,14 +7,12 @@ import { kakaoMapHref, naverMapHref, reportHref } from "../../places/links";
 export const SETTING_LABEL: Record<Place["setting"], string> = { indoor: "실내", outdoor: "야외", mixed: "실내외" };
 export const CATEGORY_LABEL: Record<Place["category"], string> = { kidscafe: "키즈카페", library: "도서관", museum: "박물관·미술관", park: "공원" };
 
-const NEED = <span className="badge badge-check">확인 필요</span>;
-
 function feeText(p: Place) {
-  if (p.fee.free === true) return "무료";
-  return p.fee.text ?? "요금 확인 필요";
+  if (p.fee.free === true) return p.fee.text && p.fee.text !== "무료" && !p.fee.text.startsWith("무료 (") ? p.fee.text : "무료";
+  return p.fee.text ?? "안내 없음";
 }
 function agesText(p: Place) {
-  return p.ages ? p.ages.map((a) => AGE_LABEL[a]).join(" · ") : "추천 연령 확인 필요";
+  return p.ages ? p.ages.map((a) => AGE_LABEL[a]).join(" · ") : "안내 없음";
 }
 
 export function PlaceCard({ p, regionLabel }: { p: Place; regionLabel?: string }) {
@@ -70,73 +68,82 @@ export function PlaceCard({ p, regionLabel }: { p: Place; regionLabel?: string }
   );
 }
 
-function yes(v: boolean | null, t: string, f: string) {
-  return v === true ? t : v === false ? f : NEED;
-}
-
 function Details({ p }: { p: Place }) {
-  const rows: [string, React.ReactNode][] = [
-    ["운영 시간", p.hours ?? NEED],
-    ["쉬는 날", p.closedDays ?? NEED],
-    [
-      "예약",
-      p.reservation ? (
-        <>
-          {p.reservation.need === "yes" ? "예약해요. " : "예약 없이 가요. "}
-          {p.reservation.note}
-        </>
-      ) : (
-        NEED
-      ),
-    ],
-    ["수유실", yes(p.amenities.nursingRoom, "있어요.", "없어요.")],
-    ["기저귀 교환대", yes(p.amenities.diaperTable, "있어요.", "없어요.")],
-    ["유모차", yes(p.amenities.strollerAccess, "들어갈 수 있어요.", "들어가기 어려워요.")],
-    ["주차", yes(p.amenities.parking, "주차장이 있어요.", "주차장이 없어요.")],
-  ];
-  if (p.agesText) rows.splice(2, 0, ["이용 연령", p.agesText]);
-  if (p.phone) rows.push(["전화", <a href={`tel:${p.phone.replace(/[^0-9]/g, "")}`} className="inline-block py-1 num">{p.phone}</a>]);
+  // 확인된 정보만 줄로 보여 주고, 끝까지 모르는 항목은 아래 한 줄로 모은다
+  const rows: [string, React.ReactNode][] = [];
+  const unknown: string[] = [];
+  const add = (k: string, v: React.ReactNode | null | undefined) => (v ? rows.push([k, v]) : unknown.push(k));
+  add("운영 시간", p.hours);
+  add("쉬는 날", p.closedDays);
+  if (p.agesText) rows.push(["이용 연령", p.agesText]);
+  if (p.reservation) rows.push(["예약", <>{p.reservation.need === "yes" ? "예약해요. " : "예약 없이 가요. "}{p.reservation.note}</>]);
+  const am = (v: boolean | null, t: string, f: string) => (v === true ? t : v === false ? f : null);
+  add("수유실", am(p.amenities.nursingRoom, "있어요.", "없어요."));
+  add("기저귀 교환대", am(p.amenities.diaperTable, "있어요.", "없어요."));
+  add("유모차", am(p.amenities.strollerAccess, "들어갈 수 있어요.", "들어가기 어려워요."));
+  const own = p.parkingNote ?? am(p.amenities.parking, "주차장이 있어요.", "주차장이 없어요.");
+  const lot = p.nearbyParking;
+  if (own || lot)
+    rows.push([
+      "주차",
+      <>
+        {own && <span className="block">{own}</span>}
+        {lot && (
+          <span className={`block num ${own ? "text-ink-3 mt-1" : ""}`}>
+            가까운 공영주차장 {lot.name} · 약 {lot.m}m{lot.spaces ? ` · ${lot.spaces}면` : ""}{lot.fee ? ` · ${lot.fee}` : ""}
+          </span>
+        )}
+      </>,
+    ]);
+  else unknown.push("주차");
+  if (p.manager) rows.push(["관리", p.manager]);
+  if (p.phone) rows.push(["전화", <a href={`tel:${p.phone.replace(/[^0-9]/g, "")}`} className="inline-block py-1 num text-accent no-underline">{p.phone}</a>]);
+  if (p.homepage) rows.push(["홈페이지", <a href={p.homepage} target="_blank" rel="noreferrer" className="inline-block py-1 break-all text-accent no-underline">{p.category === "kidscafe" ? "우리동네키움포털 시설 안내·예약" : new URL(p.homepage).hostname.replace(/^www\./, "")}</a>]);
   return (
     <div className="mt-1 rounded-sm bg-band px-4 py-3 text-sm">
       <dl className="grid grid-cols-[6.5rem_1fr] gap-x-3 gap-y-2">
         {rows.map(([k, v]) => (
           <div key={k} className="contents">
-            <dt className="text-ink-2">{k}</dt>
+            <dt className="text-ink-3">{k}</dt>
             <dd>{v}</dd>
           </div>
         ))}
-        <dt className="text-ink-2">홈페이지</dt>
-        <dd>
-          {p.homepage ? (
-            <a href={p.homepage} target="_blank" rel="noreferrer" className="inline-block py-1 break-all">
-              {new URL(p.homepage).hostname.replace(/^www\./, "")}
-            </a>
-          ) : (
-            NEED
-          )}
-        </dd>
-        <dt className="text-ink-2">지도 앱</dt>
+        <dt className="text-ink-3">지도 앱</dt>
         <dd className="flex gap-4">
-          <a href={kakaoMapHref(p)} target="_blank" rel="noreferrer" className="inline-block py-1">
+          <a href={kakaoMapHref(p)} target="_blank" rel="noreferrer" className="inline-block py-1 text-accent no-underline">
             카카오맵
           </a>
-          <a href={naverMapHref(p)} target="_blank" rel="noreferrer" className="inline-block py-1">
+          <a href={naverMapHref(p)} target="_blank" rel="noreferrer" className="inline-block py-1 text-accent no-underline">
             네이버 지도
           </a>
         </dd>
       </dl>
-      <div className="mt-3 pt-3 rule-t text-ink-2 flex flex-wrap gap-x-4 gap-y-1 items-center">
+      {unknown.length > 0 && (
+        <p className="mt-3 text-ink-2">
+          {unknown.join("·")} 정보는 공공데이터와 공식 안내에 없어요. {p.phone ? <>가기 전에 <span className="num">{p.phone}</span>로 물어보세요.</> : "가기 전에 시설에 물어보세요."}
+        </p>
+      )}
+      <div className="mt-3 pt-3 border-t border-rule text-ink-3 flex flex-wrap gap-x-4 gap-y-1 items-center">
         <span className="num">확인일은 공공데이터 기준일이에요.</span>
         <a href={p.sourceUrl} target="_blank" rel="noreferrer" className="inline-block py-1">
           출처 · {new URL(p.sourceUrl).hostname.replace(/^www\./, "")}
         </a>
+        {p.detailSource && (
+          <a href={p.detailSource} target="_blank" rel="noreferrer" className="inline-block py-1">
+            운영 정보 · 우리동네키움포털
+          </a>
+        )}
+        {lot && (
+          <a href="https://www.data.go.kr/data/15012896/standard.do" target="_blank" rel="noreferrer" className="inline-block py-1">
+            주차장 · 전국주차장정보표준데이터
+          </a>
+        )}
         {p.reservation?.sourceUrl && (
           <a href={p.reservation.sourceUrl} target="_blank" rel="noreferrer" className="inline-block py-1">
             예약 안내 · {new URL(p.reservation.sourceUrl).hostname}
           </a>
         )}
       </div>
-      <p className="mt-2 text-ink-2">가기 전에 운영 여부를 시설에 확인해 주세요.</p>
     </div>
   );
 }

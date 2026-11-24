@@ -46,12 +46,21 @@ describe("아이랑 가볼만한 곳 데이터", () => {
       }
   });
 
+  it("보강 정보는 공식 출처에서만 오고, 공영주차장은 300m 안이다", () => {
+    for (const f of files)
+      for (const p of load(f)) {
+        if (p.detailSource) expect(p.detailSource).toBe(meta.sources.icare.url);
+        if (p.homepage && p.category === "kidscafe") expect(p.homepage).toMatch(/^https:\/\/umppa\.seoul\.go\.kr\/icare\/user\/kidsCafe\/BD_selectKidsCafeView\.do\?q_fcltyId=/);
+        if (p.nearbyParking) expect(p.nearbyParking.m).toBeLessThanOrEqual(300);
+      }
+  });
+
   it("id가 전체에서 겹치지 않는다", () => {
     const ids = files.flatMap((f) => load(f).map((p: { id: string }) => p.id));
     expect(new Set(ids).size).toBe(ids.length);
   });
 
   it("블로그 등 비공식 출처를 쓰지 않는다", () => {
-    for (const s of [...Object.values(meta.sources).map((x) => x.url), ...meta.extra]) expect(s).toMatch(/^https:\/\/(data\.seoul\.go\.kr|www\.data\.go\.kr|mediahub\.seoul\.go\.kr)\//);
+    for (const s of [...Object.values(meta.sources).map((x) => x.url), ...meta.extra]) expect(s).toMatch(/^https:\/\/(data\.seoul\.go\.kr|www\.data\.go\.kr|mediahub\.seoul\.go\.kr|umppa\.seoul\.go\.kr)\//);
   });
 });

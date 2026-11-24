@@ -292,7 +292,7 @@
      "strollerAccess": null,
      "parking": null
     },
-    "homepage": null,
+    "homepage": "https://umppa.seoul.go.kr/icare/user/kidsCafe/BD_selectKidsCafeView.do?q_fcltyId=DB260801&q_fcltyStle=",
     "id": "kc-db260801",
     "name": "서울형 키즈카페 도봉구 둘리쌍문근린공원점(호이호이 비밀의 숲)",
     "address": "서울특별시 도봉구 시루봉로 31 (쌍문동)",
@@ -306,7 +306,7 @@
     "agesText": "3세 ~ 8세",
     "fee": {
      "free": true,
-     "text": "무료"
+     "text": "아동 2,000원, 보호자 1,000원, 놀이돌봄 2,000원 추가"
     },
     "category": "kidscafe",
     "hours": "운영 요일 화요일 ~ 일요일",
@@ -320,7 +320,9 @@
     "phone": "02-990-0220",
     "source": "kidscafe",
     "sourceUrl": "https://data.seoul.go.kr/dataList/OA-21716/S/1/datasetView.do",
-    "lastVerified": "2026-10-30"
+    "lastVerified": "2026-10-30",
+    "parkingNote": "주차공간은 근처 둘리뮤지엄공영주차장(유료)를 이용해 주시고 가급적 대중교통을 이용해주시길 바랍니다. (*주차장 30분당 500원 요금 발생)",
+    "detailSource": "https://umppa.seoul.go.kr/icare/user/kidsCafe/BD_selectKidsCafeList.do"
    },
    {
     "sido": "seoul",
@@ -331,7 +333,7 @@
      "strollerAccess": null,
      "parking": null
     },
-    "homepage": null,
+    "homepage": "https://umppa.seoul.go.kr/icare/user/kidsCafe/BD_selectKidsCafeView.do?q_fcltyId=GJ260101&q_fcltyStle=",
     "id": "kc-gj260101",
     "name": "서울형 키즈카페 시립 아리수나라점",
     "address": "서울특별시 광진구 능동로 216 서울아리수본부 (능동)",
@@ -349,7 +351,7 @@
      "text": "무료"
     },
     "category": "kidscafe",
-    "hours": "운영 요일 화~일",
+    "hours": "회차별 이용 09:30~10:50 · 11:00~12:20 · 13:00~14:20 · 14:30~15:50 · 16:00~17:40 (요일마다 다를 수 있어요)",
     "closedDays": "매주 월요일, 1월 1일, 설날 및 추석 연휴",
     "reservation": {
      "need": "yes",
@@ -360,7 +362,14 @@
     "phone": "02-3146-5946",
     "source": "kidscafe",
     "sourceUrl": "https://data.seoul.go.kr/dataList/OA-21716/S/1/datasetView.do",
-    "lastVerified": "2026-02-19"
+    "lastVerified": "2026-02-19",
+    "detailSource": "https://umppa.seoul.go.kr/icare/user/kidsCafe/BD_selectKidsCafeList.do",
+    "nearbyParking": {
+     "name": "능동 공영주차장",
+     "m": 261,
+     "spaces": 77,
+     "fee": "기본 5분 200원"
+    }
    },
    {
     "sido": "seoul",
@@ -371,7 +380,7 @@
      "strollerAccess": null,
      "parking": null
     },
-    "homepage": null,
+    "homepage": "https://umppa.seoul.go.kr/icare/user/kidsCafe/BD_selectKidsCafeView.do?q_fcltyId=JR260301&q_fcltyStle=",
     "id": "kc-jr260301",
     "name": "서울형 키즈카페 중랑구 중화2동점(중랑실내놀이터 중랑역점)",
     "address": "서울특별시 중랑구 중랑역로3길 28 2층 (중화동)",
@@ -385,10 +394,10 @@
     "agesText": "2세 ~ 6세",
     "fee": {
      "free": true,
-     "text": "무료"
+     "text": "이용료 (2027년 3월 31일까지 이용료 무료)"
     },
     "category": "kidscafe",
-    "hours": "운영 요일 화요일 ~ 일요일",
+    "hours": "회차별 이용 09:40~11:30 · 10:00~12:00 · 12:10~14:00 · 13:20~15:20 · 14:10~16:00 · 16:00~18:00 외 (요일마다 다를 수 있어요)",
     "closedDays": "월요일, 법정공휴일(어린이날 제외), 근로자의 날, 그 밖에 센터장이 지정한 날, 월요일이 공휴일인 경우 그 다음날을 휴관일로 지정",
     "reservation": {
      "need": "yes",
@@ -399,7 +408,14 @@
     "phone": "02-436-3681",
     "source": "kidscafe",
     "sourceUrl": "https://data.seoul.go.kr/dataList/OA-21716/S/1/datasetView.do",
-    "lastVerified": "2026-09-22"
+    "lastVerified": "2026-09-22",
+    "detailSource": "https://umppa.seoul.go.kr/icare/user/kidsCafe/BD_selectKidsCafeList.do",
+    "nearbyParking": {
+     "name": "중랑역 제1, 2",
+     "m": 75,
+     "spaces": 217,
+     "fee": "기본 5분 100원"
+    }
    },
    {
     "sido": "seoul",
@@ -410,7 +426,7 @@
      "strollerAccess": null,
      "parking": null
     },
-    "homepage": null,
+    "homepage": "https://umppa.seoul.go.kr/icare/user/kidsCafe/BD_selectKidsCafeView.do?q_fcltyId=NW240901&q_fcltyStle=",
     "id": "kc-nw240901",
     "name": "서울형키즈카페 시립 옴팡점",
     "address": "서울특별시 노원구 동일로174길 27 서울생활사박물관 옴팡",
@@ -439,7 +455,14 @@
     "phone": "02-3399-2900",
     "source": "kidscafe",
     "sourceUrl": "https://data.seoul.go.kr/dataList/OA-21716/S/1/datasetView.do",
-    "lastVerified": "2026-07-15"
+    "lastVerified": "2026-07-15",
+    "detailSource": "https://umppa.seoul.go.kr/icare/user/kidsCafe/BD_selectKidsCafeList.do",
+    "nearbyParking": {
+     "name": "(구)북부지법주변주차장",
+     "m": 1,
+     "spaces": 11,
+     "fee": "유료"
+    }
    },
    {
     "sido": "seoul",
@@ -450,7 +473,7 @@
      "strollerAccess": null,
      "parking": null
     },
-    "homepage": null,
+    "homepage": "https://umppa.seoul.go.kr/icare/user/kidsCafe/BD_selectKidsCafeView.do?q_fcltyId=SP260101&q_fcltyStle=",
     "id": "kc-sp260101",
     "name": "서울형키즈카페 시립 한성백제박물관점 (서울백제어린이박물관)",
     "address": "서울특별시 송파구 올림픽로 424 서울백제어린이박물관 (방이동, 올림픽공원내 북2문 인근)",
@@ -478,7 +501,8 @@
     "phone": "02-2152-5890",
     "source": "kidscafe",
     "sourceUrl": "https://data.seoul.go.kr/dataList/OA-21716/S/1/datasetView.do",
-    "lastVerified": "2026-10-27"
+    "lastVerified": "2026-10-27",
+    "detailSource": "https://umppa.seoul.go.kr/icare/user/kidsCafe/BD_selectKidsCafeList.do"
    },
    {
     "sido": "seoul",
@@ -550,7 +574,13 @@
     "phone": "031-481-2671",
     "source": "library",
     "sourceUrl": "https://www.data.go.kr/data/15013109/standard.do",
-    "lastVerified": "2026-06-19"
+    "lastVerified": "2026-06-19",
+    "nearbyParking": {
+     "name": "이동 주택가주차장",
+     "m": 296,
+     "spaces": 10,
+     "fee": "무료"
+    }
    },
    {
     "sido": "gyeonggi",
@@ -655,7 +685,13 @@
     "phone": "031-390-8680",
     "source": "library",
     "sourceUrl": "https://www.data.go.kr/data/15013109/standard.do",
-    "lastVerified": "2025-11-25"
+    "lastVerified": "2025-11-25",
+    "nearbyParking": {
+     "name": "동백길공영주차장",
+     "m": 209,
+     "spaces": 31,
+     "fee": "유료"
+    }
    },
    {
     "sido": "gyeonggi",
@@ -690,7 +726,13 @@
     "phone": "031-353-8162",
     "source": "library",
     "sourceUrl": "https://www.data.go.kr/data/15013109/standard.do",
-    "lastVerified": "2026-02-01"
+    "lastVerified": "2026-02-01",
+    "nearbyParking": {
+     "name": "행정리",
+     "m": 253,
+     "spaces": 27,
+     "fee": "무료"
+    }
    },
    {
     "sido": "gyeonggi",
@@ -725,7 +767,13 @@
     "phone": "031-644-4380",
     "source": "library",
     "sourceUrl": "https://www.data.go.kr/data/15013109/standard.do",
-    "lastVerified": "2026-05-26"
+    "lastVerified": "2026-05-26",
+    "nearbyParking": {
+     "name": "서희동상오거리 노상주차장",
+     "m": 90,
+     "spaces": 24,
+     "fee": "무료"
+    }
    }
   ]
  }

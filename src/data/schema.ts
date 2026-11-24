@@ -224,6 +224,10 @@ export const Place = z.object({
   homepage: z.string().url().nullable(),
   summary: z.string().min(5),
   phone: z.string().nullable().optional(),
+  manager: z.string().nullable().optional(), // 공원 관리기관
+  parkingNote: z.string().optional(), // 시설 공식 페이지의 주차 안내 문구 그대로
+  detailSource: z.string().url().optional(), // 운영 정보를 읽어 온 공식 페이지 목록 주소
+  nearbyParking: z.object({ name: z.string(), m: z.number().int().nonnegative().max(300), spaces: z.number().int().positive().nullable(), fee: z.string().nullable() }).optional(),
   source: z.enum(["kidscafe", "library", "museum", "park"]),
   sourceUrl: z.string().url().startsWith("https://"),
   lastVerified: isoDate,

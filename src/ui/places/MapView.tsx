@@ -24,7 +24,7 @@ export default function MapView({ places, onPick }: { places: Place[]; onPick: (
       const name = document.createElement("strong");
       name.textContent = p.name;
       const meta = document.createElement("div");
-      meta.textContent = `${SETTING_LABEL[p.setting]} · ${p.fee.free === true ? "무료" : p.fee.text ?? "요금 확인 필요"}`;
+      meta.textContent = `${SETTING_LABEL[p.setting]} · ${p.fee.free === true ? "무료" : p.fee.text ?? "요금 안내 없음"}`;
       const btn = document.createElement("button");
       btn.type = "button";
       btn.textContent = "목록에서 보기";

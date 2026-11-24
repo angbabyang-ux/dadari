@@ -113,6 +113,7 @@ function fromKidscafe(x) {
   const cap = clean(x.indvdl_psncpa);
   return base(r, {
     id: `kc-${clean(x.fclty_id).toLowerCase()}`,
+    fid: clean(x.fclty_id),
     name: clean(x.fclty_nm),
     address: clean(`${clean(x.bass_adres)} ${clean(x.detail_adres)}`),
     lat,
@@ -242,9 +243,11 @@ function fromPark(x) {
     category: "park",
     hours: null,
     closedDays: null,
-    reservation: { need: "no", note: "늘 열려 있는 도시공원이에요." },
+    reservation: { need: "no", note: "입장 예약이 필요 없는 도시공원이에요. 운영 시간은 공원마다 달라요." },
     amenities: { nursingRoom: null, diaperTable: null, strollerAccess: null, parking: has(conv, /주차/) },
     summary: `${clean(x.PARK_SE) || "도시공원"}이에요${area ? ` (면적 ${Math.round(area).toLocaleString("ko-KR")}㎡)` : ""}.${play ? ` 놀이시설: ${play}.` : ""}`,
+    phone: clean(x.PHONE_NUMBER) || null,
+    manager: clean(x.INSTITUTION_NM) || null,
     play: !!play,
     big: BIG_PARK.has(clean(x.PARK_SE)),
     size: area,
@@ -274,7 +277,125 @@ export function pick(list) {
   return out;
 }
 
-const STRIP = ["kids", "size", "public", "play", "big"];
+/* ───── 보강: 공식 페이지·주변 공공데이터로 빈칸 채우기 ───── */
+export const EXTRA_SOURCES = {
+  icare: { name: "서울시 우리동네키움포털 서울형 키즈카페 시설 안내", url: "https://umppa.seoul.go.kr/icare/user/kidsCafe/BD_selectKidsCafeList.do", org: "서울특별시", license: "공식 누리집 안내" },
+  parking: { name: "전국주차장정보표준데이터", url: "https://www.data.go.kr/data/15012896/standard.do", org: "공공데이터포털", license: "공공데이터포털 이용정책" },
+};
+const icareUrl = (fid) => `https://umppa.seoul.go.kr/icare/user/kidsCafe/BD_selectKidsCafeView.do?q_fcltyId=${encodeURIComponent(fid)}&q_fcltyStle=`;
+
+/** 두 좌표 사이 거리(m) */
+export function distM(a, b) {
+  const R = 6371000, toR = (d) => (d * Math.PI) / 180;
+  const dLat = toR(b.lat - a.lat), dLng = toR(b.lng - a.lng);
+  const h = Math.sin(dLat / 2) ** 2 + Math.cos(toR(a.lat)) * Math.cos(toR(b.lat)) * Math.sin(dLng / 2) ** 2;
+  return Math.round(2 * R * Math.asin(Math.sqrt(h)));
+}
+
+/** 키움포털 시설 페이지에서 이용료·운영 회차·주차·휴관일을 읽는다 (못 읽으면 그 항목은 비워 둔다) */
+export function parseIcare(html) {
+  const t = html.replace(/<script[\s\S]*?<\/script>/g, " ").replace(/<style[\s\S]*?<\/style>/g, " ");
+  const plain = t.replace(/<[^>]+>/g, "|").replace(/&nbsp;|&#160;/g, " ").replace(/&#39;/g, "'").replace(/&quot;/g, '"').replace(/&amp;/g, "&").replace(/\s+/g, " ").replace(/(\|\s*)+/g, "|");
+  const after = (key, len = 900) => {
+    const i = plain.indexOf(key);
+    return i < 0 ? "" : plain.slice(i + key.length, i + key.length + len);
+  };
+  const segs = (s) => s.split("|").map((x) => x.replace(/^[\s\-○★※*]+/, "").replace(/[\s★※*:]+$/, "").trim()).filter(Boolean);
+  // 이용료: '이용료' 제목 뒤 첫 '원'이 든 문장
+  let fee = null;
+  const feeSeg = segs(after("|이용료|", 600)).find((x) => /\d[\d,]*\s*원|무료/.test(x));
+  if (feeSeg) fee = feeSeg.replace(/^\((개인|단체)\)\s*/, "").replace(/^개인\s*/, "").slice(0, 90);
+  // 운영 회차: '운영시간' 제목 뒤 시간 범위들
+  const block = after("|운영시간|", 1600);
+  // "1회차|10:00 ~ 12:00"처럼 회차 번호가 붙은 시간만 쓴다 (점심·정비 시간이 섞이지 않게)
+  const hhmm2 = (x) => x.padStart(5, "0");
+  const times = [...new Set([...block.matchAll(/\d+\s*회차\s*\|?\s*(\d{1,2}:\d{2})\s*[~-]\s*(\d{1,2}:\d{2})/g)].map((m) => `${hhmm2(m[1])}~${hhmm2(m[2])}`))].sort();
+  const hours = times.length ? `회차별 이용 ${times.slice(0, 6).join(" · ")}${times.length > 6 ? " 외" : ""} (요일마다 다를 수 있어요)` : null;
+  // 주차: '주차'로 시작하는 문장 하나만 (제목만 있으면 바로 다음 문장)
+  let parking = null;
+  const all = segs(plain);
+  const k = all.findIndex((x) => /^주차/.test(x) && !/^주차(장)?\s*(이용)?\s*안내$/.test(x) && x.length > 6);
+  const h = all.findIndex((x) => /^주차(장)?\s*(이용)?\s*안내\s*$/.test(x));
+  const HEAD = /^(이용료|온라인|예약|이용정원|이용연령|입장료|자세한|※|공지)/;
+  let pick2 = null;
+  if (k >= 0 && (h < 0 || k < h)) pick2 = all[k];
+  else if (h >= 0) {
+    // 제목 다음 조각들을 문장 하나 길이까지 잇는다 ("길 건너편|경향교회 지하주차장|(2시간 무료 제공)")
+    const parts = [];
+    for (const x of all.slice(h + 1, h + 6)) {
+      if (HEAD.test(x) || parts.join(" ").length > 90) break;
+      parts.push(x);
+    }
+    pick2 = parts.join(" ") || null;
+  }
+  if (pick2 && !HEAD.test(pick2)) parking = pick2.split(/(?<=[.다요])\s+(?=\d+\.|[가-힣])/)[0].slice(0, 120);
+  // 휴관일
+  const closed = segs(after("|휴관일|", 120))[0] ?? null;
+  return { fee, hours, parking, closed: closed && closed.length < 60 ? closed : null };
+}
+
+async function enrichKidscafes(list) {
+  const kids = list.filter((p) => p.category === "kidscafe" && p.fid);
+  let ok = 0;
+  for (let i = 0; i < kids.length; i += 4) {
+    await Promise.all(
+      kids.slice(i, i + 4).map(async (p) => {
+        const u = icareUrl(p.fid);
+        try {
+          const res = await fetch(u, { headers: UA });
+          if (!res.ok) return;
+          const info = parseIcare(await res.text());
+          p.homepage = u;
+          if (info.fee) p.fee = { free: p.fee.free, text: info.fee };
+          if (info.hours) p.hours = info.hours;
+          if (info.closed) p.closedDays = info.closed;
+          if (info.parking) {
+            // 분명할 때만 있다/없다로 적고, 애매하면 안내 문구만 보여 준다
+            const no = /(주차|시설|공간)\s*(장|시설|공간)?\s*(이|가|은)?\s*없|주차\s*(가|는)?\s*불가|주차 불가|이용 금지/.test(info.parking);
+            const yes = /무료|가능|이용\s*가능|주차장 이용|대까지/.test(info.parking) && !no && !/공영주차장|인근|맞은편|근처/.test(info.parking);
+            p.amenities.parking = no ? false : yes ? true : null;
+            p.parkingNote = info.parking;
+          }
+          p.detailSource = EXTRA_SOURCES.icare.url;
+          ok++;
+        } catch {
+          /* 이 시설은 보강 없이 둔다 */
+        }
+      }),
+    );
+  }
+  return ok;
+}
+
+/** 300m 안 가장 가까운 공영주차장 (공중화장실 표준데이터는 기저귀 교환대 칸이 모두 비어 있어 쓰지 않는다) */
+function enrichNearby(list, lots) {
+  const near = (arr, p, max) => {
+    let best = null;
+    for (const x of arr) {
+      if (Math.abs(x.lat - p.lat) > 0.004 || Math.abs(x.lng - p.lng) > 0.005) continue;
+      const d = distM(p, x);
+      if (d <= max && (!best || d < best.d)) best = { ...x, d };
+    }
+    return best;
+  };
+  for (const p of list) {
+    const l = near(lots, p, 300);
+    if (l) p.nearbyParking = { name: l.name, m: l.d, spaces: l.spaces, fee: l.fee };
+  }
+}
+
+function parkingRows(rows) {
+  return rows
+    .map((x) => {
+      const basic = clean(x.BASIC_TIME), basicFee = clean(x.BASIC_CHARGE);
+      const kind = clean(x.PARKINGCHRGE_INFO);
+      const fee = kind === "무료" ? "무료" : basic && basicFee && basicFee !== "0" ? `기본 ${basic}분 ${Number(basicFee).toLocaleString("ko-KR")}원` : kind || null;
+      return { name: clean(x.PRKPLCE_NM), spaces: Number(x.PRKCMPRT) || null, fee, lat: Number(x.LATITUDE), lng: Number(x.LONGITUDE) };
+    })
+    .filter((x) => x.name && validLatLng(x.lat, x.lng));
+}
+
+const STRIP = ["kids", "size", "public", "play", "big", "fid"];
 function finalize(p) {
   const o = { ...p };
   for (const k of STRIP) delete o[k];
@@ -283,16 +404,24 @@ function finalize(p) {
 
 async function main() {
   console.log("내려받는 중…");
-  const [kids, libs, muses, parks] = await Promise.all([seoulSheet("OA-21716"), standard("15013109"), standard("15017323"), standard("15012890")]);
-  console.log(`키즈카페 ${kids.length} · 도서관 ${libs.length} · 박물관 ${muses.length} · 공원 ${parks.length}`);
+  const [kids, libs, muses, parks, lotsRaw] = await Promise.all([seoulSheet("OA-21716"), standard("15013109"), standard("15017323"), standard("15012890"), standard("15012896")]);
+  const lots = parkingRows(lotsRaw);
+  console.log(`키즈카페 ${kids.length} · 도서관 ${libs.length} · 박물관 ${muses.length} · 공원 ${parks.length} · 주차장 ${lots.length}`);
   const all = [...kids.map(fromKidscafe), ...libs.map(fromLibrary), ...muses.map(fromMuseum), ...parks.map(fromPark)].filter(Boolean);
   mkdirSync(OUT, { recursive: true });
   for (const f of readdirSync(OUT)) if (f.endsWith(".json")) rmSync(join(OUT, f));
   const short = [];
   const counts = {};
   const byRegion = {};
+  // 지역마다 고른 뒤, 고른 곳만 보강한다 (키움포털 페이지 요청을 줄이기 위해)
+  const raw = {};
+  for (const r of regions) raw[r.id] = pick(all.filter((p) => p.sigungu === r.id));
+  const chosenAll = Object.values(raw).flat();
+  const enriched = await enrichKidscafes(chosenAll);
+  enrichNearby(chosenAll, lots);
+  console.log(`키즈카페 공식 페이지 보강 ${enriched}/${chosenAll.filter((p) => p.category === "kidscafe").length} · 공영주차장 근처 ${chosenAll.filter((p) => p.nearbyParking).length}`);
   for (const r of regions) {
-    const chosen = pick(all.filter((p) => p.sigungu === r.id)).map(finalize);
+    const chosen = raw[r.id].map(finalize);
     if (chosen.length < 10) short.push(`${r.sigungu} ${chosen.length}곳`);
     byRegion[r.id] = chosen;
     counts[r.id] = { total: chosen.length, indoor: chosen.filter((p) => p.setting !== "outdoor").length, free: chosen.filter((p) => p.fee.free === true).length };
@@ -310,12 +439,12 @@ async function main() {
     picks[sido] = cands.slice(0, 6);
   }
   // 출처(데이터 페이지가 첫 화면 묶음에서 씀)와 색인(아이랑 가볼만한 곳 화면 묶음에서만 씀)을 나눠 저장한다
-  writeFileSync("src/data/places-meta.json", `${JSON.stringify({ fetchedAt: new Date().toISOString().slice(0, 10), sources: SOURCES, extra: [KIDS_RESERVE_SRC, KIDS_OUTDOOR_SRC] }, null, 1)}\n`);
+  writeFileSync("src/data/places-meta.json", `${JSON.stringify({ fetchedAt: new Date().toISOString().slice(0, 10), sources: { ...SOURCES, ...EXTRA_SOURCES }, extra: [KIDS_RESERVE_SRC, KIDS_OUTDOOR_SRC] }, null, 1)}\n`);
   writeFileSync("src/data/places-index.json", `${JSON.stringify({ counts, picks }, null, 1)}\n`);
   console.log(`지역 ${regions.length}곳 저장. 10곳 미만: ${short.length ? short.join(", ") : "없음"}`);
 }
 
-if (import.meta.url === `file://${process.argv[1].replace(/\\/g, "/").replace(/^\/?/, "/")}` || process.argv[1]?.endsWith("fetch-places.mjs")) {
+if (process.argv[1]?.endsWith("fetch-places.mjs")) {
   main().catch((e) => {
     console.error("수집 실패 — 기존 파일을 그대로 둬요:", e.message);
     process.exit(1);
