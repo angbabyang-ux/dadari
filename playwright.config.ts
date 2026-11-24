@@ -5,7 +5,7 @@ export default defineConfig({
   timeout: 30000,
   use: { baseURL: "http://localhost:4174/dadari/", locale: "ko-KR" },
   webServer: {
-    command: "npx vite build && npx vite preview --port 4174 --strictPort",
+    command: "npm run build && npx vite preview --port 4174 --strictPort",
     url: "http://localhost:4174/dadari/",
     reuseExistingServer: false,
     timeout: 120000,
