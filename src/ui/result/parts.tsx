@@ -1,21 +1,21 @@
 // 결과 화면 공통 조각: 상태 배지, 근거 보기, 카운트업 숫자
-import { useEffect, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import type { Benefit } from "../../data/schema";
 import { formatWon } from "../../engine/money";
-import { STATUS_LABEL } from "./aggregate";
 
+// 강조색은 총액·증가분·'지금' 표시에만 쓴다. 배지는 잉크색과 테두리 모양으로 구분한다
 export function StatusBadge({ status }: { status: Benefit["status"] }) {
   if (status === "confirmed") return <span className="badge text-ink-2">확정</span>;
   if (status === "proposed") return <span className="badge badge-proposed text-ink">정부안</span>;
   if (status === "ended") return <span className="badge text-ink-2 line-through">종료</span>;
-  return <span className="badge text-accent">{STATUS_LABEL[status]}</span>;
+  return <span className="badge text-ink border-dashed">확인 필요</span>;
 }
 
 export function Evidence({ benefit, formula }: { benefit: Benefit; formula?: string }) {
   return (
-    <details className="mt-2 text-sm group">
-      <summary className="cursor-pointer text-ink-2 underline underline-offset-4 decoration-rule w-fit">근거 보기</summary>
-      <div className="mt-2 pl-3 border-l-2 border-rule space-y-1">
+    <details className="text-sm group">
+      <summary className="cursor-pointer text-ink-2 underline underline-offset-4 decoration-rule w-fit inline-flex items-center min-h-11">근거 보기</summary>
+      <div className="mb-2 pl-3 border-l-2 border-rule space-y-1">
         {formula && <p className="num">계산 · {formula}</p>}
         {benefit.notes && <p>{benefit.notes}</p>}
         {benefit.assumption && <p className="text-ink-2">가정 · {benefit.assumption}</p>}
@@ -23,7 +23,7 @@ export function Evidence({ benefit, formula }: { benefit: Benefit; formula?: str
         <ul className="space-y-0.5">
           {benefit.sourceUrl.map((u) => (
             <li key={u} className="truncate">
-              <a href={u} target="_blank" rel="noreferrer">
+              <a href={u} target="_blank" rel="noreferrer" className="inline-block py-1">
                 {new URL(u).hostname.replace(/^www\./, "")}
               </a>
             </li>
@@ -34,24 +34,26 @@ export function Evidence({ benefit, formula }: { benefit: Benefit; formula?: str
   );
 }
 
-/** 결과 숫자가 자리 잡을 때 짧게 올라가는 숫자. 움직임 줄이기 설정을 존중한다 */
+/** 결과 숫자가 바뀔 때 직전 값에서 새 값으로 짧게 올라가는 숫자. 움직임 줄이기 설정이면 바로 바뀐다 */
 export function CountUp({ value, className }: { value: number; className?: string }) {
   const [shown, setShown] = useState(value);
-  useEffect(() => {
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce) {
+  const prev = useRef(0); // 처음 나타날 때도 0에서 올라간다
+  useLayoutEffect(() => {
+    const from = prev.current;
+    prev.current = value;
+    const reduce = typeof window.matchMedia === "function" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce || from === value) {
       setShown(value);
       return;
     }
+    setShown(from); // 그리기 전에 출발값으로 맞춰 깜빡임을 없앤다
     const start = performance.now();
-    const from = 0;
     let raf = 0;
     const tick = (t: number) => {
-      const k = Math.min(1, (t - start) / 600);
+      const k = Math.min(1, (t - start) / 500);
       const eased = 1 - Math.pow(1 - k, 3);
-      setShown(Math.round((from + (value - from) * eased) / 10000) * 10000);
+      setShown(k < 1 ? Math.round((from + (value - from) * eased) / 10000) * 10000 : value);
       if (k < 1) raf = requestAnimationFrame(tick);
-      else setShown(value);
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);

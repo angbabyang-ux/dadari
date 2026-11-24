@@ -148,7 +148,7 @@ body {
 .chip {
   display: inline-flex;
   align-items: center;
-  min-height: 36px;
+  min-height: 44px;
   padding: 0 12px;
   border: 1px solid var(--rule);
   border-radius: 999px;
@@ -176,6 +176,13 @@ body {
 a { color: inherit; text-underline-offset: 3px; }
 
 .sheet-in { animation: sheet-in 180ms ease-out; }
+/* 육아휴직 층이 막대 아래쪽 기준으로 자란다 */
+.grow-up { transform-box: fill-box; transform-origin: 50% 100%; animation: grow-up 420ms ease-out both; }
+@keyframes grow-up { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+/* "이렇게 써요" 펼침: 높이를 0fr → 1fr로 부드럽게 */
+.unfold { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 220ms ease-out; }
+.unfold[data-open="true"] { grid-template-rows: 1fr; }
+.unfold > div { overflow: hidden; }
 @keyframes sheet-in { from { transform: translateY(24px); opacity: 0; } to { transform: none; opacity: 1; } }
 
 @media (prefers-reduced-motion: reduce) {

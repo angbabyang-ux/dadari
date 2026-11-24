@@ -58,7 +58,7 @@ export function App() {
                       href={hrefFor(n.route, q)}
                       onClick={(e) => (e.preventDefault(), navigate(n.route, q))}
                       aria-current={route === n.route ? "page" : undefined}
-                      className={`no-underline py-4 ${route === n.route ? "font-semibold border-b-2 border-accent" : "text-ink-2"}`}
+                      className={`no-underline py-4 ${route === n.route ? "font-semibold border-b-2 border-ink" : "text-ink-2"}`}
                     >
                       {n.label}
                     </a>
