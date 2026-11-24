@@ -96,7 +96,7 @@ export function ChangesPage() {
               <p className="font-semibold">
                 {c.title} {c.draft && <span className="badge badge-proposed font-normal">정부안</span>}
               </p>
-              <p className="font-serif text-3xl font-bold num mt-1">{formatWon(c.total)}</p>
+              <p className="font-serif text-3xl font-semibold num mt-1">{formatWon(c.total)}</p>
               <p className="text-sm text-ink-2">{c.note}</p>
               <svg viewBox={`0 0 ${24 * 14} 120`} width="100%" height="120" preserveAspectRatio="none" role="img" aria-label={`${c.title} 첫 24개월 월별 금액: ${c.rows.map(formatWon).join(", ")}`} className="mt-3">
                 <defs>

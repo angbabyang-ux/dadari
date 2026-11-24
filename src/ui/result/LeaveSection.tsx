@@ -178,7 +178,7 @@ export function LeaveCard({ applied, result, input, scenario }: { applied: Input
                     </th>
                     <td className="py-3 text-right hidden sm:table-cell">{formatWon(r.pay)}</td>
                     <td className="py-3 text-right hidden sm:table-cell">{r.local ? formatWon(r.local) : "—"}</td>
-                    <td className={`py-3 pr-1 text-right ${isBest(r) ? "font-bold" : ""}`}>{formatWon(r.total)}</td>
+                    <td className={`py-3 pr-1 text-right ${isBest(r) ? "font-semibold" : ""}`}>{formatWon(r.total)}</td>
                   </tr>
                 ))}
               </tbody>

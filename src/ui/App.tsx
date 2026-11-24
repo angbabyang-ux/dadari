@@ -48,12 +48,12 @@ export function App() {
         본문으로 건너뛰기
       </a>
       <header className="rule-b no-print">
-        <div className="mx-auto max-w-6xl px-4 md:px-8 flex items-center gap-4 h-14">
-          <a href={hrefFor("home", complete ? query : undefined)} onClick={(e) => (e.preventDefault(), navigate("home", complete ? query : undefined))} className="font-serif text-xl font-bold no-underline">
+        <div className="mx-auto max-w-6xl px-4 md:px-8 flex flex-wrap md:flex-nowrap items-center gap-x-4 md:h-14">
+          <a href={hrefFor("home", complete ? query : undefined)} onClick={(e) => (e.preventDefault(), navigate("home", complete ? query : undefined))} className="font-serif text-xl font-semibold no-underline flex items-center h-12 md:h-auto flex-1 md:flex-none">
             다달이
           </a>
-          <nav aria-label="주 메뉴" className="flex-1 overflow-x-auto">
-            <ul className="flex gap-4 text-sm whitespace-nowrap">
+          <nav aria-label="주 메뉴" className="order-last md:order-none w-full md:w-auto md:flex-1 overflow-x-auto">
+            <ul className="flex justify-between md:justify-start md:gap-4 text-sm whitespace-nowrap">
               {NAV.map((n) => {
                 const q = (n.route === "compare" || n.route === "home") && complete ? query : undefined;
                 const active = route === n.route || (n.route === "home" && route === "result");
@@ -63,7 +63,7 @@ export function App() {
                       href={hrefFor(n.route, q)}
                       onClick={(e) => (e.preventDefault(), navigate(n.route, q))}
                       aria-current={active ? "page" : undefined}
-                      className={`no-underline py-4 ${active ? "font-semibold border-b-2 border-ink" : "text-ink-2"}`}
+                      className={`no-underline inline-flex items-center min-h-11 md:min-h-14 ${active ? "font-semibold border-b-2 border-ink" : "text-ink-2"}`}
                     >
                       {n.label}
                     </a>

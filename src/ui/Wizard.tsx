@@ -24,7 +24,7 @@ export function Wizard({ draft }: { draft: Draft }) {
       <div className="grid md:grid-cols-12 gap-x-8">
         <div className="md:col-span-4 pt-8 md:pt-14">
           {/* 웹폰트가 늦게 도착해 줄 수가 바뀌어도 아래 입력란이 밀리지 않게 높이를 잡아 둔다 */}
-          <h1 className="font-serif text-[28px] md:text-[40px] leading-[1.25] font-semibold tracking-tight min-h-[3.75em] md:min-h-0">
+          <h1 className="font-serif text-[28px] md:text-[40px] leading-[1.25] font-semibold md:tracking-tight min-h-[3.75em] md:min-h-0">
             아이가 태어난 달부터 입학 전까지, 매달 받는 돈을 달력으로 봐요.
           </h1>
           <p className="mt-3 text-ink-2 min-h-[4.8em] md:min-h-0">
@@ -33,7 +33,7 @@ export function Wizard({ draft }: { draft: Draft }) {
           <ol className="mt-6 hidden md:block rule-t" aria-label="입력 단계">
             {STEPS.map((s, i) => (
               <li key={s} className="rule-b py-2 flex gap-3 items-baseline">
-                <span className={`num text-sm ${i === step ? "text-accent font-bold" : "text-ink-2"}`}>{String(i + 1).padStart(2, "0")}</span>
+                <span className={`num text-sm ${i === step ? "text-accent font-semibold" : "text-ink-2"}`}>{String(i + 1).padStart(2, "0")}</span>
                 <span className={i === step ? "font-semibold" : "text-ink-2"} aria-current={i === step ? "step" : undefined}>
                   {s}
                 </span>

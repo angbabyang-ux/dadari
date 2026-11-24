@@ -71,7 +71,7 @@ export function ComparePage({ input, params }: { input: Input; params: URLSearch
         ].map(([n, t]) => (
           <div key={String(n)}>
             <p className="text-sm text-ink-2">{n}</p>
-            <p className={`font-serif font-bold text-[28px] md:text-[44px] leading-tight num ${t === Math.max(ta, tb) && ta !== tb ? "text-accent" : ""}`}>{formatWon(Number(t))}</p>
+            <p className={`font-serif font-semibold text-[28px] md:text-[44px] leading-tight num ${t === Math.max(ta, tb) && ta !== tb ? "text-accent" : ""}`}>{formatWon(Number(t))}</p>
             <div className="h-2 mt-2 bg-paper-2" aria-hidden>
               <div className="h-2 bg-ink" style={{ width: `${(Number(t) / max) * 100}%` }} />
             </div>

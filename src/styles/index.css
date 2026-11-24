@@ -143,7 +143,8 @@ body {
   text-decoration: none;
 }
 .btn-primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
-.btn:disabled { opacity: 0.4; cursor: not-allowed; }
+/* 비활성: 강조색을 흐리게 하지 않고 중립색으로 (강조색은 누를 수 있는 주 행동에만) */
+.btn:disabled, .btn-primary:disabled { background: transparent; border-color: var(--rule); color: var(--ink-2); cursor: not-allowed; }
 
 .chip {
   display: inline-flex;

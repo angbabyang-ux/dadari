@@ -241,7 +241,7 @@ function SummaryStrip({ summary: s, delta }: { summary: ReturnType<typeof summar
     <section aria-label="요약" className="grid md:grid-cols-12 gap-x-8 pt-6">
       <div className="md:col-span-5 pb-4 md:pb-0">
         <p className="text-sm text-ink-2">입학 전까지 모두</p>
-        <p className="font-serif font-bold text-accent text-[40px] md:text-[56px] leading-none mt-1 h-[1em] contain-box">
+        <p className="font-serif font-semibold text-accent text-[40px] md:text-[56px] leading-none mt-1 h-[1em] contain-box">
           <CountUp value={s.total} />
         </p>
         <p className="mt-2 min-h-7 font-semibold text-accent text-lg num" aria-live="polite" data-testid="leave-delta">
