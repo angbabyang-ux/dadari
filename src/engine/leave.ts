@@ -15,14 +15,15 @@ export function monthlyLeavePay(wage: number, rate: number, cap: number, floor: 
   return Math.max(floor, Math.min(cap, Math.round(wage * rate)));
 }
 
-export function computeLeave(input: Input, rules: LeaveRules): LeaveResult {
+/** opts.disableSixPlusSix: "6+6이 없었다면" 금액을 구할 때만 쓴다 (화면의 6+6 추가분 표시용) */
+export function computeLeave(input: Input, rules: LeaveRules, opts: { disableSixPlusSix?: boolean } = {}): LeaveResult {
   const warnings: string[] = [];
   const { mother, father } = input;
   const insured = (p: Input["mother"]) => p.employment === "insured" && !!p.leave && p.leave.months > 0;
 
   // 6+6: 한부모가 아니고, 두 부모 모두 자녀 생후 18개월 이내에 시작한 휴직이 있을 것
   const within = (p: Input["mother"]) => insured(p) && p.leave!.startMonth < rules.sixPlusSix.withinChildMonths;
-  const sixPlusSix = !input.singleParent && within(mother) && within(father);
+  const sixPlusSix = !opts.disableSixPlusSix && !input.singleParent && within(mother) && within(father);
 
   // 기본 12개월. 부모 각각 3개월 이상 쓰면 각자 18개월. 한부모는 조건 없이 18개월
   const eachUsesMin =
