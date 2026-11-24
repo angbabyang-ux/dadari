@@ -135,3 +135,34 @@
 - [x] 스위치 켜고 끌 때 총액 차이 = 엔진 계산 단위 테스트
 - [x] e2e: 결과 → 스위치 켜기 → 증가분 확인 → 첫만남이용권 펼치기 → 사용처 확인
 - [x] npm test · npm run build · 375/1440 스크린샷 · AI 티 점검
+
+## 아이랑 갈 곳 (2026-11-24, 승인 대기)
+### P1 기반
+- [ ] `Place` zod 스키마 (id, name, sido, sigungu, address, lat, lng, setting, ages, fee, category, hours, closedDays, reservation, amenities, homepage, summary, sourceUrl, lastVerified)
+- [ ] `regions.json`에 TourAPI 시·군·구 코드 필드 추가 (지역 데이터 재사용)
+- [ ] `scripts/fetch-places.mjs` (TourAPI · 서울 키즈카페 · 경기데이터드림), 키는 환경변수로만
+- [ ] 주 1회 갱신 워크플로 (Secrets, 변경 시 커밋 → 배포)
+- [ ] 각 데이터 이용 허락 조건 확인 → context-notes, `/data` 출처 표기
+### P2 데이터
+- [ ] 서울 25개 구 수집 (지역당 10곳 이상, 가능하면 20곳)
+- [ ] 경기 31개 시·군 수집
+- [ ] 공식 홈페이지로 확인한 편의시설만 반영, 나머지 "확인 필요"
+- [ ] 지역별 개수 표, 10곳 미만 지역 보고
+### P3 화면
+- [ ] 내비게이션 "지원금 계산" · "아이랑 갈 곳"
+- [ ] `/places`, `/places/:sido`, `/places/:sido/:sigungu` 라우트 (뒤로가기·URL 공유)
+- [ ] 시·도 화면: 추천 목록 + 가나다순 지역 칩(장소 수)
+- [ ] 장소 카드 + 펼침 상세 + "확인 필요" 표시 + 제보 링크
+- [ ] 필터 칩 7종 (URL 저장) + 필터 로직 단위 테스트
+### P4 지도·실내·연결·검색
+- [ ] 목록/지도 전환, Leaflet·OSM 지연 로딩 (첫 번들 제외 확인)
+- [ ] `/places/indoor` (시·도·시군구 필터, 무료 공공시설 먼저)
+- [ ] 지원금 결과 ↔ 장소 목록 상호 링크
+- [ ] 장소 페이지 프리렌더, 지역별 제목·설명, sitemap.xml
+### P5 검증
+- [ ] zod 검증·sourceUrl·lastVerified 테스트
+- [ ] e2e: 아이랑 갈 곳 → 서울 → 강서구 → 실내만 → 카드 펼치기 → 지원금 계산 링크
+- [ ] e2e: `/places/indoor` 직접 진입
+- [ ] 기존 테스트 통과, npm test · npm run build
+- [ ] Lighthouse 4개 항목 95+
+- [ ] 375/1440 스크린샷, 같은 사이트처럼 보이는지 점검
