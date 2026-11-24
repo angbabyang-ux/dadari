@@ -50,6 +50,22 @@ describe("정책 데이터", () => {
     }
   });
 
+  it("'이렇게 써요'는 사용 기한을 하나로 정하거나, 기한 없음·확인 필요를 밝힌다", () => {
+    for (const b of benefits) {
+      const u = b.usage;
+      if (!u) continue;
+      const rules = [u.expiresAfterDays, u.expiresAfterMonths, u.expiresOn, u.noExpiry || undefined].filter((x) => x !== undefined);
+      expect(rules.length, b.id).toBeLessThanOrEqual(1);
+      if (rules.length === 0) expect(u.unverified?.some((x) => x.includes("사용 기한")), b.id).toBe(true);
+    }
+  });
+
+  it("첫만남이용권·부모급여·아동수당·서울형 산후조리경비에 '이렇게 써요'가 있다", () => {
+    for (const id of ["first-meeting-voucher", "parent-pay", "child-allowance", "seoul-postpartum-care"]) {
+      expect(benefits.find((b) => b.id === id)?.usage, id).toBeDefined();
+    }
+  });
+
   it("분할 금액의 합은 순위별 총액과 같다", () => {
     for (const b of benefits) {
       if (b.schedule.type !== "lumpSum" || !b.schedule.installmentsByOrder) continue;

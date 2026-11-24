@@ -40,7 +40,26 @@
       "https://www.suwon.go.kr/sw-www/deptHome/dep_welfare/welfare14/welfare14-01/welfare14-01-10.jsp"
     ],
     "lastVerified": "2026-11-23",
-    "notes": "경기도청 표(첫째 없음·둘째 50만 원)와 달라요. 2026년 9월 자료와 다른 출처가 같은 값이라 이 값을 썼어요."
+    "notes": "경기도청 표(첫째 없음·둘째 50만 원)와 달라요. 2026년 9월 자료와 다른 출처가 같은 값이라 이 값을 썼어요.",
+    "usage": {
+      "receive": "신청한 보호자 계좌로 현금이 들어와요.",
+      "allowed": [
+        "현금이라 쓰는 곳에 제한이 없어요."
+      ],
+      "notAllowed": [],
+      "noExpiry": true,
+      "tips": [
+        "신청해야 받아요. 거주기간 조건과 신청 기한을 먼저 확인해요."
+      ],
+      "unverified": [
+        "받는 방법"
+      ],
+      "sourceUrl": [
+        "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EC%88%98%EC%9B%90%EC%8B%9C",
+        "https://www.suwon.go.kr/sw-www/deptHome/dep_welfare/welfare14/welfare14-01/welfare14-01-10.jsp"
+      ],
+      "lastVerified": "2026-11-24"
+    }
   },
   {
     "id": "gyeonggi-goyang-birth-grant",
@@ -83,7 +102,26 @@
       "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
     ],
     "lastVerified": "2026-11-23",
-    "notes": "경기도청 표는 넷째 이상 300만 원이라고 해요. 넷째 이상은 나눠 받는데 일정은 확인하지 못했어요."
+    "notes": "경기도청 표는 넷째 이상 300만 원이라고 해요. 넷째 이상은 나눠 받는데 일정은 확인하지 못했어요.",
+    "usage": {
+      "receive": "신청한 보호자 계좌로 현금이 들어와요.",
+      "allowed": [
+        "현금이라 쓰는 곳에 제한이 없어요."
+      ],
+      "notAllowed": [],
+      "noExpiry": true,
+      "tips": [
+        "신청해야 받아요. 거주기간 조건과 신청 기한을 먼저 확인해요."
+      ],
+      "unverified": [
+        "받는 방법"
+      ],
+      "sourceUrl": [
+        "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EA%B3%A0%EC%96%91%EC%8B%9C",
+        "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
+      ],
+      "lastVerified": "2026-11-24"
+    }
   },
   {
     "id": "gyeonggi-yongin-birth-grant",
@@ -125,7 +163,26 @@
       "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EC%9A%A9%EC%9D%B8%EC%8B%9C",
       "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
     ],
-    "lastVerified": "2026-11-23"
+    "lastVerified": "2026-11-23",
+    "usage": {
+      "receive": "신청한 보호자 계좌로 현금이 들어와요.",
+      "allowed": [
+        "현금이라 쓰는 곳에 제한이 없어요."
+      ],
+      "notAllowed": [],
+      "noExpiry": true,
+      "tips": [
+        "신청해야 받아요. 거주기간 조건과 신청 기한을 먼저 확인해요."
+      ],
+      "unverified": [
+        "받는 방법"
+      ],
+      "sourceUrl": [
+        "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EC%9A%A9%EC%9D%B8%EC%8B%9C",
+        "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
+      ],
+      "lastVerified": "2026-11-24"
+    }
   },
   {
     "id": "gyeonggi-seongnam-birth-grant",
@@ -168,7 +225,26 @@
       "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
     ],
     "lastVerified": "2026-11-23",
-    "notes": "다른 출처에 100/200/300만 원이라는 값도 있었어요."
+    "notes": "다른 출처에 100/200/300만 원이라는 값도 있었어요.",
+    "usage": {
+      "receive": "신청한 보호자 계좌로 현금이 들어와요.",
+      "allowed": [
+        "현금이라 쓰는 곳에 제한이 없어요."
+      ],
+      "notAllowed": [],
+      "noExpiry": true,
+      "tips": [
+        "신청해야 받아요. 거주기간 조건과 신청 기한을 먼저 확인해요."
+      ],
+      "unverified": [
+        "받는 방법"
+      ],
+      "sourceUrl": [
+        "https://www.yugacrew.com/gyeonggi/seongnam/support-money/pregnancy",
+        "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
+      ],
+      "lastVerified": "2026-11-24"
+    }
   },
   {
     "id": "gyeonggi-bucheon-birth-grant",
@@ -229,7 +305,27 @@
     ],
     "lastVerified": "2026-11-23",
     "notes": "2026년 이후 출생아 기준이에요. 경기도청 표는 넷째부터만 700만 원(10회 분할)이라고 해요.",
-    "assumption": "넷째 이상 700만 원을 1년 간격 10회로 나눴어요."
+    "assumption": "넷째 이상 700만 원을 1년 간격 10회로 나눴어요.",
+    "usage": {
+      "receive": "신청한 보호자 계좌로 현금이 들어와요.",
+      "allowed": [
+        "현금이라 쓰는 곳에 제한이 없어요."
+      ],
+      "notAllowed": [],
+      "noExpiry": true,
+      "tips": [
+        "신청해야 받아요. 거주기간 조건과 신청 기한을 먼저 확인해요.",
+        "나눠 받는 돈은 회차마다 그때 거주 요건을 다시 볼 수 있어요."
+      ],
+      "unverified": [
+        "받는 방법"
+      ],
+      "sourceUrl": [
+        "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EB%B6%80%EC%B2%9C%EC%8B%9C",
+        "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
+      ],
+      "lastVerified": "2026-11-24"
+    }
   },
   {
     "id": "gyeonggi-hwaseong-birth-grant",
@@ -271,7 +367,25 @@
       "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
     ],
     "lastVerified": "2026-11-23",
-    "notes": "경기도청 표 값이에요. 2026년 자료에서는 확인하지 못했어요. 출생 후 1년 안에 신청해야 해요."
+    "notes": "경기도청 표 값이에요. 2026년 자료에서는 확인하지 못했어요. 출생 후 1년 안에 신청해야 해요.",
+    "usage": {
+      "receive": "신청한 보호자 계좌로 현금이 들어와요.",
+      "allowed": [
+        "현금이라 쓰는 곳에 제한이 없어요."
+      ],
+      "notAllowed": [],
+      "noExpiry": true,
+      "tips": [
+        "신청해야 받아요. 거주기간 조건과 신청 기한을 먼저 확인해요."
+      ],
+      "unverified": [
+        "받는 방법"
+      ],
+      "sourceUrl": [
+        "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
+      ],
+      "lastVerified": "2026-11-24"
+    }
   },
   {
     "id": "gyeonggi-ansan-birth-grant",
@@ -311,7 +425,26 @@
       "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EC%95%88%EC%82%B0%EC%8B%9C",
       "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
     ],
-    "lastVerified": "2026-11-23"
+    "lastVerified": "2026-11-23",
+    "usage": {
+      "receive": "신청한 보호자 계좌로 현금이 들어와요.",
+      "allowed": [
+        "현금이라 쓰는 곳에 제한이 없어요."
+      ],
+      "notAllowed": [],
+      "noExpiry": true,
+      "tips": [
+        "신청해야 받아요. 거주기간 조건과 신청 기한을 먼저 확인해요."
+      ],
+      "unverified": [
+        "받는 방법"
+      ],
+      "sourceUrl": [
+        "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EC%95%88%EC%82%B0%EC%8B%9C",
+        "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
+      ],
+      "lastVerified": "2026-11-24"
+    }
   },
   {
     "id": "gyeonggi-namyangju-birth-grant",
@@ -342,7 +475,25 @@
       "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
     ],
     "lastVerified": "2026-11-23",
-    "notes": "경기도청 표 값이에요. 2026년 자료에서는 확인하지 못했어요."
+    "notes": "경기도청 표 값이에요. 2026년 자료에서는 확인하지 못했어요.",
+    "usage": {
+      "receive": "신청한 보호자 계좌로 현금이 들어와요.",
+      "allowed": [
+        "현금이라 쓰는 곳에 제한이 없어요."
+      ],
+      "notAllowed": [],
+      "noExpiry": true,
+      "tips": [
+        "신청해야 받아요. 거주기간 조건과 신청 기한을 먼저 확인해요."
+      ],
+      "unverified": [
+        "받는 방법"
+      ],
+      "sourceUrl": [
+        "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
+      ],
+      "lastVerified": "2026-11-24"
+    }
   },
   {
     "id": "gyeonggi-anyang-birth-grant",
@@ -382,7 +533,25 @@
       "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
     ],
     "lastVerified": "2026-11-23",
-    "notes": "경기도청 표 값이에요. 2·4회로 나눠 준다는데 일정은 확인하지 못해 한 번에 받는 것으로 넣었어요."
+    "notes": "경기도청 표 값이에요. 2·4회로 나눠 준다는데 일정은 확인하지 못해 한 번에 받는 것으로 넣었어요.",
+    "usage": {
+      "receive": "신청한 보호자 계좌로 현금이 들어와요.",
+      "allowed": [
+        "현금이라 쓰는 곳에 제한이 없어요."
+      ],
+      "notAllowed": [],
+      "noExpiry": true,
+      "tips": [
+        "신청해야 받아요. 거주기간 조건과 신청 기한을 먼저 확인해요."
+      ],
+      "unverified": [
+        "받는 방법"
+      ],
+      "sourceUrl": [
+        "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
+      ],
+      "lastVerified": "2026-11-24"
+    }
   },
   {
     "id": "gyeonggi-pyeongtaek-birth-grant",
@@ -423,7 +592,25 @@
       "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
     ],
     "lastVerified": "2026-11-23",
-    "notes": "경기도청 표 값이에요. 2026년 자료에서는 확인하지 못했어요."
+    "notes": "경기도청 표 값이에요. 2026년 자료에서는 확인하지 못했어요.",
+    "usage": {
+      "receive": "신청한 보호자 계좌로 현금이 들어와요.",
+      "allowed": [
+        "현금이라 쓰는 곳에 제한이 없어요."
+      ],
+      "notAllowed": [],
+      "noExpiry": true,
+      "tips": [
+        "신청해야 받아요. 거주기간 조건과 신청 기한을 먼저 확인해요."
+      ],
+      "unverified": [
+        "받는 방법"
+      ],
+      "sourceUrl": [
+        "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
+      ],
+      "lastVerified": "2026-11-24"
+    }
   },
   {
     "id": "gyeonggi-siheung-birth-grant",
@@ -477,7 +664,27 @@
       "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
     ],
     "lastVerified": "2026-11-23",
-    "notes": "2026년 출생아 기준 값이에요. 경기도청 표(둘째 50·셋째 100·넷째 800만 원)와 다르고, 90/240/840만 원이라는 자료도 있어요."
+    "notes": "2026년 출생아 기준 값이에요. 경기도청 표(둘째 50·셋째 100·넷째 800만 원)와 다르고, 90/240/840만 원이라는 자료도 있어요.",
+    "usage": {
+      "receive": "신청한 보호자 계좌로 현금이 들어와요.",
+      "allowed": [
+        "현금이라 쓰는 곳에 제한이 없어요."
+      ],
+      "notAllowed": [],
+      "noExpiry": true,
+      "tips": [
+        "신청해야 받아요. 거주기간 조건과 신청 기한을 먼저 확인해요.",
+        "나눠 받는 돈은 회차마다 그때 거주 요건을 다시 볼 수 있어요."
+      ],
+      "unverified": [
+        "받는 방법"
+      ],
+      "sourceUrl": [
+        "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EC%8B%9C%ED%9D%A5%EC%8B%9C",
+        "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
+      ],
+      "lastVerified": "2026-11-24"
+    }
   },
   {
     "id": "gyeonggi-uijeongbu-birth-grant",
@@ -510,7 +717,26 @@
       "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
     ],
     "lastVerified": "2026-11-23",
-    "notes": "경기도청 표는 첫째 지원이 없다고 해요."
+    "notes": "경기도청 표는 첫째 지원이 없다고 해요.",
+    "usage": {
+      "receive": "신청한 보호자 계좌로 현금이 들어와요.",
+      "allowed": [
+        "현금이라 쓰는 곳에 제한이 없어요."
+      ],
+      "notAllowed": [],
+      "noExpiry": true,
+      "tips": [
+        "신청해야 받아요. 거주기간 조건과 신청 기한을 먼저 확인해요."
+      ],
+      "unverified": [
+        "받는 방법"
+      ],
+      "sourceUrl": [
+        "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EC%9D%98%EC%A0%95%EB%B6%80%EC%8B%9C",
+        "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
+      ],
+      "lastVerified": "2026-11-24"
+    }
   },
   {
     "id": "gyeonggi-gimpo-birth-grant",
@@ -550,7 +776,26 @@
       "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
     ],
     "lastVerified": "2026-11-23",
-    "notes": "임신축하금 50만 원이 따로 있어요."
+    "notes": "임신축하금 50만 원이 따로 있어요.",
+    "usage": {
+      "receive": "신청한 보호자 계좌로 현금이 들어와요.",
+      "allowed": [
+        "현금이라 쓰는 곳에 제한이 없어요."
+      ],
+      "notAllowed": [],
+      "noExpiry": true,
+      "tips": [
+        "신청해야 받아요. 거주기간 조건과 신청 기한을 먼저 확인해요."
+      ],
+      "unverified": [
+        "받는 방법"
+      ],
+      "sourceUrl": [
+        "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EA%B9%80%ED%8F%AC%EC%8B%9C",
+        "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
+      ],
+      "lastVerified": "2026-11-24"
+    }
   },
   {
     "id": "gyeonggi-gwangju-birth-grant",
@@ -589,7 +834,32 @@
       "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
     ],
     "lastVerified": "2026-11-23",
-    "notes": "경기지역화폐로 받아요. 출생 후 1년 안에 신청해야 해요."
+    "notes": "경기지역화폐로 받아요. 출생 후 1년 안에 신청해야 해요.",
+    "usage": {
+      "receive": "경기지역화폐(카드 또는 모바일)로 들어와요.",
+      "allowed": [
+        "그 시·군 안의 지역화폐 가맹점 (연매출 기준 이하 소상공인 가게)"
+      ],
+      "notAllowed": [
+        "유흥·사행업소",
+        "대형마트·백화점 본점, 프랜차이즈 직영점",
+        "온라인 쇼핑몰"
+      ],
+      "tips": [
+        "가맹점이 되는 연매출 기준은 시·군마다 달라요.",
+        "결제 전 가게에 지역화폐를 받는지 물어봐요."
+      ],
+      "unverified": [
+        "사용 기한"
+      ],
+      "sourceUrl": [
+        "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EA%B4%91%EC%A3%BC%EC%8B%9C",
+        "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680",
+        "https://www.kyeongin.com/article/1732157",
+        "https://www.kpinews.kr/newsView/1065566540443690"
+      ],
+      "lastVerified": "2026-11-24"
+    }
   },
   {
     "id": "gyeonggi-gwangmyeong-birth-grant",
@@ -627,7 +897,26 @@
       "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EA%B4%91%EB%AA%85%EC%8B%9C",
       "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
     ],
-    "lastVerified": "2026-11-23"
+    "lastVerified": "2026-11-23",
+    "usage": {
+      "receive": "신청한 보호자 계좌로 현금이 들어와요.",
+      "allowed": [
+        "현금이라 쓰는 곳에 제한이 없어요."
+      ],
+      "notAllowed": [],
+      "noExpiry": true,
+      "tips": [
+        "신청해야 받아요. 거주기간 조건과 신청 기한을 먼저 확인해요."
+      ],
+      "unverified": [
+        "받는 방법"
+      ],
+      "sourceUrl": [
+        "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EA%B4%91%EB%AA%85%EC%8B%9C",
+        "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
+      ],
+      "lastVerified": "2026-11-24"
+    }
   },
   {
     "id": "gyeonggi-gunpo-birth-grant",
@@ -668,7 +957,26 @@
       "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EA%B5%B0%ED%8F%AC%EC%8B%9C",
       "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
     ],
-    "lastVerified": "2026-11-23"
+    "lastVerified": "2026-11-23",
+    "usage": {
+      "receive": "신청한 보호자 계좌로 현금이 들어와요.",
+      "allowed": [
+        "현금이라 쓰는 곳에 제한이 없어요."
+      ],
+      "notAllowed": [],
+      "noExpiry": true,
+      "tips": [
+        "신청해야 받아요. 거주기간 조건과 신청 기한을 먼저 확인해요."
+      ],
+      "unverified": [
+        "받는 방법"
+      ],
+      "sourceUrl": [
+        "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EA%B5%B0%ED%8F%AC%EC%8B%9C",
+        "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
+      ],
+      "lastVerified": "2026-11-24"
+    }
   },
   {
     "id": "gyeonggi-hanam-birth-grant",
@@ -729,7 +1037,27 @@
       "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
     ],
     "lastVerified": "2026-11-23",
-    "notes": "넷째 이상은 4년 동안 똑같이 나눠 받아요."
+    "notes": "넷째 이상은 4년 동안 똑같이 나눠 받아요.",
+    "usage": {
+      "receive": "신청한 보호자 계좌로 현금이 들어와요.",
+      "allowed": [
+        "현금이라 쓰는 곳에 제한이 없어요."
+      ],
+      "notAllowed": [],
+      "noExpiry": true,
+      "tips": [
+        "신청해야 받아요. 거주기간 조건과 신청 기한을 먼저 확인해요.",
+        "나눠 받는 돈은 회차마다 그때 거주 요건을 다시 볼 수 있어요."
+      ],
+      "unverified": [
+        "받는 방법"
+      ],
+      "sourceUrl": [
+        "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%ED%95%98%EB%82%A8%EC%8B%9C",
+        "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
+      ],
+      "lastVerified": "2026-11-24"
+    }
   },
   {
     "id": "gyeonggi-osan-birth-grant",
@@ -786,7 +1114,27 @@
       "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
     ],
     "lastVerified": "2026-11-23",
-    "assumption": "넷째 이상도 셋째처럼 3년에 나눠 받는다고 가정했어요."
+    "assumption": "넷째 이상도 셋째처럼 3년에 나눠 받는다고 가정했어요.",
+    "usage": {
+      "receive": "신청한 보호자 계좌로 현금이 들어와요.",
+      "allowed": [
+        "현금이라 쓰는 곳에 제한이 없어요."
+      ],
+      "notAllowed": [],
+      "noExpiry": true,
+      "tips": [
+        "신청해야 받아요. 거주기간 조건과 신청 기한을 먼저 확인해요.",
+        "나눠 받는 돈은 회차마다 그때 거주 요건을 다시 볼 수 있어요."
+      ],
+      "unverified": [
+        "받는 방법"
+      ],
+      "sourceUrl": [
+        "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EC%98%A4%EC%82%B0%EC%8B%9C",
+        "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
+      ],
+      "lastVerified": "2026-11-24"
+    }
   },
   {
     "id": "gyeonggi-yangju-birth-grant",
@@ -845,7 +1193,27 @@
       "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
     ],
     "lastVerified": "2026-11-23",
-    "assumption": "분할 간격을 1년으로 가정했어요."
+    "assumption": "분할 간격을 1년으로 가정했어요.",
+    "usage": {
+      "receive": "신청한 보호자 계좌로 현금이 들어와요.",
+      "allowed": [
+        "현금이라 쓰는 곳에 제한이 없어요."
+      ],
+      "notAllowed": [],
+      "noExpiry": true,
+      "tips": [
+        "신청해야 받아요. 거주기간 조건과 신청 기한을 먼저 확인해요.",
+        "나눠 받는 돈은 회차마다 그때 거주 요건을 다시 볼 수 있어요."
+      ],
+      "unverified": [
+        "받는 방법"
+      ],
+      "sourceUrl": [
+        "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EC%96%91%EC%A3%BC%EC%8B%9C",
+        "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
+      ],
+      "lastVerified": "2026-11-24"
+    }
   },
   {
     "id": "gyeonggi-icheon-birth-grant",
@@ -886,7 +1254,25 @@
       "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
     ],
     "lastVerified": "2026-11-23",
-    "notes": "경기도청 표 값이에요. 2026년 자료에서는 확인하지 못했어요."
+    "notes": "경기도청 표 값이에요. 2026년 자료에서는 확인하지 못했어요.",
+    "usage": {
+      "receive": "신청한 보호자 계좌로 현금이 들어와요.",
+      "allowed": [
+        "현금이라 쓰는 곳에 제한이 없어요."
+      ],
+      "notAllowed": [],
+      "noExpiry": true,
+      "tips": [
+        "신청해야 받아요. 거주기간 조건과 신청 기한을 먼저 확인해요."
+      ],
+      "unverified": [
+        "받는 방법"
+      ],
+      "sourceUrl": [
+        "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
+      ],
+      "lastVerified": "2026-11-24"
+    }
   },
   {
     "id": "gyeonggi-guri-birth-grant",
@@ -920,7 +1306,26 @@
       "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EA%B5%AC%EB%A6%AC%EC%8B%9C",
       "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
     ],
-    "lastVerified": "2026-11-23"
+    "lastVerified": "2026-11-23",
+    "usage": {
+      "receive": "신청한 보호자 계좌로 현금이 들어와요.",
+      "allowed": [
+        "현금이라 쓰는 곳에 제한이 없어요."
+      ],
+      "notAllowed": [],
+      "noExpiry": true,
+      "tips": [
+        "신청해야 받아요. 거주기간 조건과 신청 기한을 먼저 확인해요."
+      ],
+      "unverified": [
+        "받는 방법"
+      ],
+      "sourceUrl": [
+        "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EA%B5%AC%EB%A6%AC%EC%8B%9C",
+        "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
+      ],
+      "lastVerified": "2026-11-24"
+    }
   },
   {
     "id": "gyeonggi-anseong-birth-grant",
@@ -959,7 +1364,25 @@
       "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
     ],
     "lastVerified": "2026-11-23",
-    "notes": "경기도청 표 값이에요. 2026년 자료에서는 확인하지 못했어요."
+    "notes": "경기도청 표 값이에요. 2026년 자료에서는 확인하지 못했어요.",
+    "usage": {
+      "receive": "신청한 보호자 계좌로 현금이 들어와요.",
+      "allowed": [
+        "현금이라 쓰는 곳에 제한이 없어요."
+      ],
+      "notAllowed": [],
+      "noExpiry": true,
+      "tips": [
+        "신청해야 받아요. 거주기간 조건과 신청 기한을 먼저 확인해요."
+      ],
+      "unverified": [
+        "받는 방법"
+      ],
+      "sourceUrl": [
+        "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
+      ],
+      "lastVerified": "2026-11-24"
+    }
   },
   {
     "id": "gyeonggi-pocheon-birth-grant",
@@ -1015,7 +1438,27 @@
       "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%ED%8F%AC%EC%B2%9C%EC%8B%9C",
       "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
     ],
-    "lastVerified": "2026-11-23"
+    "lastVerified": "2026-11-23",
+    "usage": {
+      "receive": "신청한 보호자 계좌로 현금이 들어와요.",
+      "allowed": [
+        "현금이라 쓰는 곳에 제한이 없어요."
+      ],
+      "notAllowed": [],
+      "noExpiry": true,
+      "tips": [
+        "신청해야 받아요. 거주기간 조건과 신청 기한을 먼저 확인해요.",
+        "나눠 받는 돈은 회차마다 그때 거주 요건을 다시 볼 수 있어요."
+      ],
+      "unverified": [
+        "받는 방법"
+      ],
+      "sourceUrl": [
+        "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%ED%8F%AC%EC%B2%9C%EC%8B%9C",
+        "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
+      ],
+      "lastVerified": "2026-11-24"
+    }
   },
   {
     "id": "gyeonggi-uiwang-birth-grant",
@@ -1057,7 +1500,26 @@
       "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EC%9D%98%EC%99%95%EC%8B%9C"
     ],
     "lastVerified": "2026-11-23",
-    "notes": "경기도청 표 값이에요. 2026년 자료에는 금액이 적혀 있지 않았어요. 출생 후 1년 안에 신청해야 해요."
+    "notes": "경기도청 표 값이에요. 2026년 자료에는 금액이 적혀 있지 않았어요. 출생 후 1년 안에 신청해야 해요.",
+    "usage": {
+      "receive": "신청한 보호자 계좌로 현금이 들어와요.",
+      "allowed": [
+        "현금이라 쓰는 곳에 제한이 없어요."
+      ],
+      "notAllowed": [],
+      "noExpiry": true,
+      "tips": [
+        "신청해야 받아요. 거주기간 조건과 신청 기한을 먼저 확인해요."
+      ],
+      "unverified": [
+        "받는 방법"
+      ],
+      "sourceUrl": [
+        "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680",
+        "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EC%9D%98%EC%99%95%EC%8B%9C"
+      ],
+      "lastVerified": "2026-11-24"
+    }
   },
   {
     "id": "gyeonggi-yangpyeong-birth-grant",
@@ -1098,7 +1560,25 @@
       "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
     ],
     "lastVerified": "2026-11-23",
-    "notes": "경기도청 표 값이에요. 4~5회로 나눠 준다는데 일정은 확인하지 못해 한 번에 받는 것으로 넣었어요."
+    "notes": "경기도청 표 값이에요. 4~5회로 나눠 준다는데 일정은 확인하지 못해 한 번에 받는 것으로 넣었어요.",
+    "usage": {
+      "receive": "신청한 보호자 계좌로 현금이 들어와요.",
+      "allowed": [
+        "현금이라 쓰는 곳에 제한이 없어요."
+      ],
+      "notAllowed": [],
+      "noExpiry": true,
+      "tips": [
+        "신청해야 받아요. 거주기간 조건과 신청 기한을 먼저 확인해요."
+      ],
+      "unverified": [
+        "받는 방법"
+      ],
+      "sourceUrl": [
+        "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
+      ],
+      "lastVerified": "2026-11-24"
+    }
   },
   {
     "id": "gyeonggi-yeoju-birth-grant",
@@ -1157,7 +1637,27 @@
       "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
     ],
     "lastVerified": "2026-11-23",
-    "notes": "첫째는 180일, 둘째 이상은 1년 거주가 필요해요."
+    "notes": "첫째는 180일, 둘째 이상은 1년 거주가 필요해요.",
+    "usage": {
+      "receive": "신청한 보호자 계좌로 현금이 들어와요.",
+      "allowed": [
+        "현금이라 쓰는 곳에 제한이 없어요."
+      ],
+      "notAllowed": [],
+      "noExpiry": true,
+      "tips": [
+        "신청해야 받아요. 거주기간 조건과 신청 기한을 먼저 확인해요.",
+        "나눠 받는 돈은 회차마다 그때 거주 요건을 다시 볼 수 있어요."
+      ],
+      "unverified": [
+        "받는 방법"
+      ],
+      "sourceUrl": [
+        "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EC%97%AC%EC%A3%BC%EC%8B%9C",
+        "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
+      ],
+      "lastVerified": "2026-11-24"
+    }
   },
   {
     "id": "gyeonggi-dongducheon-birth-grant",
@@ -1208,7 +1708,27 @@
       "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EB%8F%99%EB%91%90%EC%B2%9C%EC%8B%9C",
       "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
     ],
-    "lastVerified": "2026-11-23"
+    "lastVerified": "2026-11-23",
+    "usage": {
+      "receive": "신청한 보호자 계좌로 현금이 들어와요.",
+      "allowed": [
+        "현금이라 쓰는 곳에 제한이 없어요."
+      ],
+      "notAllowed": [],
+      "noExpiry": true,
+      "tips": [
+        "신청해야 받아요. 거주기간 조건과 신청 기한을 먼저 확인해요.",
+        "나눠 받는 돈은 회차마다 그때 거주 요건을 다시 볼 수 있어요."
+      ],
+      "unverified": [
+        "받는 방법"
+      ],
+      "sourceUrl": [
+        "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EB%8F%99%EB%91%90%EC%B2%9C%EC%8B%9C",
+        "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
+      ],
+      "lastVerified": "2026-11-24"
+    }
   },
   {
     "id": "gyeonggi-gapyeong-birth-grant",
@@ -1277,7 +1797,30 @@
       "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
     ],
     "lastVerified": "2026-11-23",
-    "notes": "첫째는 현금 50만 원 + 지역화폐 50만 원, 둘째 이상은 절반을 지역화폐로 받아요. 나머지 회차는 매년 생일이 있는 달에 받아요. 입학 뒤 회차는 이 계산에서 빠져요."
+    "notes": "첫째는 현금 50만 원 + 지역화폐 50만 원, 둘째 이상은 절반을 지역화폐로 받아요. 나머지 회차는 매년 생일이 있는 달에 받아요. 입학 뒤 회차는 이 계산에서 빠져요.",
+    "usage": {
+      "receive": "절반은 계좌 현금, 절반은 가평군 지역화폐로 받아요. 첫째는 현금 50만 원과 지역화폐 50만 원이에요.",
+      "allowed": [
+        "현금분은 쓰는 곳에 제한이 없어요.",
+        "지역화폐분은 가평군 지역화폐 가맹점에서 써요."
+      ],
+      "notAllowed": [
+        "지역화폐분은 유흥·사행업소, 대형마트·백화점 본점에서 못 써요."
+      ],
+      "tips": [
+        "둘째 이상은 매년 생일이 있는 달에 나머지 회차가 들어와요. 그때도 가평군에 살아야 해요."
+      ],
+      "unverified": [
+        "지역화폐 사용 기한"
+      ],
+      "sourceUrl": [
+        "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EA%B0%80%ED%8F%89%EA%B5%B0",
+        "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680",
+        "https://www.kyeongin.com/article/1732157",
+        "https://www.kpinews.kr/newsView/1065566540443690"
+      ],
+      "lastVerified": "2026-11-24"
+    }
   },
   {
     "id": "gyeonggi-gwacheon-birth-grant",
@@ -1333,7 +1876,27 @@
       "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EA%B3%BC%EC%B2%9C%EC%8B%9C",
       "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
     ],
-    "lastVerified": "2026-11-23"
+    "lastVerified": "2026-11-23",
+    "usage": {
+      "receive": "신청한 보호자 계좌로 현금이 들어와요.",
+      "allowed": [
+        "현금이라 쓰는 곳에 제한이 없어요."
+      ],
+      "notAllowed": [],
+      "noExpiry": true,
+      "tips": [
+        "신청해야 받아요. 거주기간 조건과 신청 기한을 먼저 확인해요.",
+        "나눠 받는 돈은 회차마다 그때 거주 요건을 다시 볼 수 있어요."
+      ],
+      "unverified": [
+        "받는 방법"
+      ],
+      "sourceUrl": [
+        "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EA%B3%BC%EC%B2%9C%EC%8B%9C",
+        "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
+      ],
+      "lastVerified": "2026-11-24"
+    }
   },
   {
     "id": "gyeonggi-yeoncheon-birth-grant",
@@ -1374,7 +1937,25 @@
       "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
     ],
     "lastVerified": "2026-11-23",
-    "notes": "경기도청 표 값이에요. 2·5회로 나눠 준다는데 일정은 확인하지 못해 한 번에 받는 것으로 넣었어요."
+    "notes": "경기도청 표 값이에요. 2·5회로 나눠 준다는데 일정은 확인하지 못해 한 번에 받는 것으로 넣었어요.",
+    "usage": {
+      "receive": "신청한 보호자 계좌로 현금이 들어와요.",
+      "allowed": [
+        "현금이라 쓰는 곳에 제한이 없어요."
+      ],
+      "notAllowed": [],
+      "noExpiry": true,
+      "tips": [
+        "신청해야 받아요. 거주기간 조건과 신청 기한을 먼저 확인해요."
+      ],
+      "unverified": [
+        "받는 방법"
+      ],
+      "sourceUrl": [
+        "https://www.gg.go.kr/contents/contents.do?ciIdx=1254&menuId=2680"
+      ],
+      "lastVerified": "2026-11-24"
+    }
   },
   {
     "id": "gyeonggi-paju-birth-grant",
@@ -1556,7 +2137,25 @@
     "sourceUrl": [
       "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EC%9D%98%EC%99%95%EC%8B%9C"
     ],
-    "lastVerified": "2026-11-23"
+    "lastVerified": "2026-11-23",
+    "usage": {
+      "receive": "신청한 보호자 계좌로 현금이 들어와요.",
+      "allowed": [
+        "현금이라 쓰는 곳에 제한이 없어요."
+      ],
+      "notAllowed": [],
+      "noExpiry": true,
+      "tips": [
+        "신청해야 받아요. 거주기간 조건과 신청 기한을 먼저 확인해요."
+      ],
+      "unverified": [
+        "받는 방법"
+      ],
+      "sourceUrl": [
+        "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EC%9D%98%EC%99%95%EC%8B%9C"
+      ],
+      "lastVerified": "2026-11-24"
+    }
   },
   {
     "id": "gyeonggi-namyangju-postpartum",
@@ -1589,7 +2188,31 @@
     "sourceUrl": [
       "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EB%82%A8%EC%96%91%EC%A3%BC%EC%8B%9C"
     ],
-    "lastVerified": "2026-11-23"
+    "lastVerified": "2026-11-23",
+    "usage": {
+      "receive": "경기지역화폐(카드 또는 모바일)로 들어와요.",
+      "allowed": [
+        "그 시·군 안의 지역화폐 가맹점 (연매출 기준 이하 소상공인 가게)"
+      ],
+      "notAllowed": [
+        "유흥·사행업소",
+        "대형마트·백화점 본점, 프랜차이즈 직영점",
+        "온라인 쇼핑몰"
+      ],
+      "tips": [
+        "가맹점이 되는 연매출 기준은 시·군마다 달라요.",
+        "결제 전 가게에 지역화폐를 받는지 물어봐요."
+      ],
+      "unverified": [
+        "사용 기한"
+      ],
+      "sourceUrl": [
+        "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EB%82%A8%EC%96%91%EC%A3%BC%EC%8B%9C",
+        "https://www.kyeongin.com/article/1732157",
+        "https://www.kpinews.kr/newsView/1065566540443690"
+      ],
+      "lastVerified": "2026-11-24"
+    }
   },
   {
     "id": "gyeonggi-hanam-postpartum",
@@ -1621,7 +2244,25 @@
     "sourceUrl": [
       "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%ED%95%98%EB%82%A8%EC%8B%9C"
     ],
-    "lastVerified": "2026-11-23"
+    "lastVerified": "2026-11-23",
+    "usage": {
+      "receive": "신청한 보호자 계좌로 현금이 들어와요.",
+      "allowed": [
+        "현금이라 쓰는 곳에 제한이 없어요."
+      ],
+      "notAllowed": [],
+      "noExpiry": true,
+      "tips": [
+        "신청해야 받아요. 거주기간 조건과 신청 기한을 먼저 확인해요."
+      ],
+      "unverified": [
+        "받는 방법"
+      ],
+      "sourceUrl": [
+        "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%ED%95%98%EB%82%A8%EC%8B%9C"
+      ],
+      "lastVerified": "2026-11-24"
+    }
   },
   {
     "id": "gyeonggi-siheung-postpartum",
@@ -1654,7 +2295,25 @@
     "sourceUrl": [
       "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EC%8B%9C%ED%9D%A5%EC%8B%9C"
     ],
-    "lastVerified": "2026-11-23"
+    "lastVerified": "2026-11-23",
+    "usage": {
+      "receive": "신청한 보호자 계좌로 현금이 들어와요.",
+      "allowed": [
+        "현금이라 쓰는 곳에 제한이 없어요."
+      ],
+      "notAllowed": [],
+      "noExpiry": true,
+      "tips": [
+        "신청해야 받아요. 거주기간 조건과 신청 기한을 먼저 확인해요."
+      ],
+      "unverified": [
+        "받는 방법"
+      ],
+      "sourceUrl": [
+        "https://www.ibabynews.com/birth-support/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EC%8B%9C%ED%9D%A5%EC%8B%9C"
+      ],
+      "lastVerified": "2026-11-24"
+    }
   },
   {
     "id": "gyeonggi-seongnam-postpartum",

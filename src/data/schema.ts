@@ -94,6 +94,23 @@ export const ScheduleRule = z.discriminatedUnion("type", [
   z.object({ type: z.literal("info"), amountText: z.string().optional() }),
 ]);
 
+/** "이렇게 써요": 받는 방법·사용처·사용 기한·놓치기 쉬운 점 */
+export const Usage = z.object({
+  receive: z.string().min(1), // 받는 방법 (계좌 입금, 국민행복카드 바우처 등)
+  allowed: z.array(z.string()), // 쓸 수 있는 곳
+  notAllowed: z.array(z.string()), // 쓸 수 없는 곳
+  // 사용 기한: 출생일 기준. 하나만 쓴다
+  expiresAfterDays: z.number().int().positive().optional(),
+  expiresAfterMonths: z.number().int().positive().optional(), // 출생일 + N개월의 전날 (예: 24 → 2년)
+  expiresEndOfMonth: z.boolean().optional(), // true면 출생일 + N개월이 속한 달의 말일
+  expiresOn: isoDate.optional(),
+  noExpiry: z.boolean().optional(), // 현금처럼 기한이 없음
+  tips: z.array(z.string()),
+  unverified: z.array(z.string()).optional(), // 공식 확인을 못 한 항목 이름 → 화면에 "확인 필요"
+  sourceUrl: z.array(z.url()).min(1),
+  lastVerified: isoDate,
+});
+
 export const Benefit = z.object({
   id: z.string().regex(/^[a-z0-9-]+$/),
   name: z.string().min(1),
@@ -119,6 +136,7 @@ export const Benefit = z.object({
   }),
   notes: z.string().optional(),
   assumption: z.string().optional(), // 출처가 정하지 않아 우리가 가정한 부분
+  usage: Usage.optional(),
   sourceUrl: z.array(z.url()).min(1),
   lastVerified: isoDate,
 });
@@ -171,6 +189,7 @@ export const Reference = z.object({
 export const BenefitsFile = z.array(Benefit);
 
 export type Benefit = z.infer<typeof Benefit>;
+export type Usage = z.infer<typeof Usage>;
 export type EligibilityRule = z.infer<typeof EligibilityRule>;
 export type ScheduleRule = z.infer<typeof ScheduleRule>;
 export type RegionRecord = z.infer<typeof RegionRecord>;
