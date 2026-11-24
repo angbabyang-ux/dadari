@@ -1,24 +1,27 @@
-// 달력 리본: 한 달에 막대 하나, 지급 형태별로 쌓는 가로 스크롤 SVG 차트
+// 달력 리본: 한 달에 막대 하나, 지급 형태별로 쌓고 맨 위에 육아휴직 층을 올리는 가로 스크롤 SVG 차트
 import { useEffect, useMemo, useRef, type ReactNode } from "react";
-import type { MonthRow } from "../../engine/types";
+import type { Item, MonthRow } from "../../engine/types";
 import { formatWon } from "../../engine/money";
+import { isLeaveItem } from "./leavePlan";
 
 const BAR = 14;
 const GAP = 5;
 const STEP = BAR + GAP;
 const CHART_H = 168;
-const TOP = 34;
+const TOP = 56; // 위쪽: 육아휴직 라벨 줄(0~24) + 큰 금액 라벨 줄
 const AXIS_H = 48;
 
-type Seg = { key: string; color: string; pattern?: string };
+type Seg = { key: string; match: (it: Item) => boolean; fill: string; leave?: boolean };
+// 아래에서 위로 쌓는 순서. 육아휴직은 항상 맨 위 층
 const SEGS: Seg[] = [
-  { key: "cash", color: "var(--cash)" },
-  { key: "leave-pay", color: "var(--leave)" },
-  { key: "voucher", color: "var(--voucher)" },
-  { key: "local-currency", color: "var(--voucher)", pattern: "url(#dots)" },
+  { key: "cash", match: (it) => !isLeaveItem(it) && it.category === "cash", fill: "var(--cash)" },
+  { key: "voucher", match: (it) => !isLeaveItem(it) && (it.category === "voucher" || it.category === "service"), fill: "var(--voucher)" },
+  { key: "local", match: (it) => !isLeaveItem(it) && it.category === "local-currency", fill: "url(#dots)" },
+  { key: "leave", match: isLeaveItem, fill: "url(#stripes)", leave: true },
 ];
 
 export type Milestone = { age: number; label: string };
+export type LeaveRun = { from: number; to: number; label: string }; // 생후 개월 구간(포함)
 
 function compactWon(won: number): string {
   if (won >= 10000) return `${Math.round(won / 10000).toLocaleString("ko-KR")}만`;
@@ -31,12 +34,16 @@ export function Ribbon({
   onSelect,
   currentMonth,
   milestones,
+  leaveRuns,
+  growKey,
 }: {
   rows: MonthRow[];
   selected?: number;
   onSelect: (age: number) => void;
   currentMonth: string;
   milestones: Milestone[];
+  leaveRuns: LeaveRun[];
+  growKey: string; // 바뀌면 육아휴직 층이 다시 자란다
 }) {
   const scroller = useRef<HTMLDivElement>(null);
   const cap = useMemo(() => {
@@ -62,16 +69,32 @@ export function Ribbon({
       <svg width={width} height={TOP + CHART_H + AXIS_H} role="group" aria-label="월별 수령액 막대 차트. 막대를 누르면 그 달의 내역을 보여줘요." className="block select-none">
         <defs>
           <pattern id="hatch" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-            <rect width="5" height="5" fill="var(--paper)" opacity="0.15" />
             <line x1="0" y1="0" x2="0" y2="5" stroke="var(--paper)" strokeWidth="2.2" />
           </pattern>
           <pattern id="dots" width="4" height="4" patternUnits="userSpaceOnUse">
             <rect width="4" height="4" fill="var(--voucher)" />
             <circle cx="2" cy="2" r="0.9" fill="var(--paper)" />
           </pattern>
+          <pattern id="stripes" width="4" height="4" patternUnits="userSpaceOnUse">
+            <rect width="4" height="4" fill="var(--leave)" />
+            <line x1="0" y1="0.5" x2="4" y2="0.5" stroke="var(--paper)" strokeWidth="1" />
+          </pattern>
         </defs>
 
-        {/* 기준선 */}
+        {/* 육아휴직 구간 라벨: 색과 별개로 글자로도 표시 */}
+        {leaveRuns.map((run) => {
+          const x0 = GAP + run.from * STEP;
+          const x1 = GAP + run.to * STEP + BAR;
+          return (
+            <g key={`${run.label}${run.from}`} pointerEvents="none">
+              <text x={x0} y={13} fontSize={11} fontWeight={600} fill="var(--ink)">
+                {run.label}
+              </text>
+              <path d={`M${x0} 24 V19 H${x1} V24`} fill="none" stroke="var(--ink)" strokeWidth={1} />
+            </g>
+          );
+        })}
+
         <line x1={0} x2={width} y1={TOP + CHART_H + 0.5} y2={TOP + CHART_H + 0.5} stroke="var(--rule)" />
 
         {rows.map((r, i) => {
@@ -80,23 +103,25 @@ export function Ribbon({
           const clipped = r.total > cap;
           const rects: ReactNode[] = [];
           for (const s of SEGS) {
-            const items = r.items.filter((it) => it.category === s.key || (s.key === "voucher" && it.category === "service"));
-            const confirmed = items.filter((it) => it.status === "confirmed").reduce((a, c) => a + c.amount, 0);
-            const draft = items.filter((it) => it.status !== "confirmed").reduce((a, c) => a + c.amount, 0);
-            for (const [v, isDraft] of [[confirmed, false], [draft, true]] as const) {
+            const items = r.items.filter(s.match);
+            for (const isDraft of [false, true]) {
+              const v = items.filter((it) => (it.status !== "confirmed") === isDraft).reduce((a, c) => a + c.amount, 0);
               if (v <= 0) continue;
               const y0 = y(acc);
               const y1 = y(acc + v);
               acc += v;
               const h = y1 - y0;
               if (h <= 0) continue;
-              rects.push(<rect key={`${s.key}${isDraft}`} x={x} y={TOP + CHART_H - y1} width={BAR} height={h} fill={s.pattern ?? s.color} />);
-              if (isDraft) rects.push(<rect key={`${s.key}h`} x={x} y={TOP + CHART_H - y1} width={BAR} height={h} fill="url(#hatch)" />);
+              const cls = s.leave ? "grow-up" : undefined;
+              const k = s.leave ? `${s.key}${isDraft}${growKey}` : `${s.key}${isDraft}`;
+              rects.push(<rect key={k} className={cls} x={x} y={TOP + CHART_H - y1} width={BAR} height={h} fill={s.fill} />);
+              if (isDraft) rects.push(<rect key={`${k}h`} className={cls} x={x} y={TOP + CHART_H - y1} width={BAR} height={h} fill="url(#hatch)" />);
             }
           }
           const hasLocal = r.items.some((it) => it.level !== "national" && it.amount > 0);
           const isSel = selected === i;
           const label = `${Number(r.month.slice(0, 4))}년 ${Number(r.month.slice(5))}월, 생후 ${r.ageMonths}개월, ${formatWon(r.total)}`;
+          const raise = i > 0 && rows[i - 1]!.total > cap && (i < 2 || rows[i - 2]!.total <= cap) ? 12 : 0;
           return (
             <g
               key={r.month}
@@ -113,13 +138,13 @@ export function Ribbon({
               }}
               className="cursor-pointer outline-none [&:focus-visible>.focus]:opacity-100"
             >
-              <rect x={x - GAP / 2} y={0} width={STEP} height={TOP + CHART_H + AXIS_H} fill="transparent" />
+              <rect x={x - GAP / 2} y={TOP - 30} width={STEP} height={CHART_H + AXIS_H + 30} fill="transparent" />
               <rect className="focus" x={x - 2} y={TOP - 4} width={BAR + 4} height={CHART_H + 8} fill="none" stroke="var(--focus)" strokeWidth={2} opacity={isSel ? 1 : 0} />
               {rects}
               {clipped && (
                 <>
                   <path d={`M${x - 1} ${TOP + 8} l${(BAR + 2) / 2} -4 l${(BAR + 2) / 2} 4`} stroke="var(--paper)" strokeWidth={3} fill="none" />
-                  <text x={i === 0 ? x - 2 : x + BAR / 2} y={TOP - 8 - (i > 0 && rows[i - 1]!.total > cap && (i < 2 || rows[i - 2]!.total <= cap) ? 12 : 0)} textAnchor={i === 0 ? "start" : "middle"} fontSize={10} fill="var(--ink)" className="num">
+                  <text x={i === 0 ? x - 2 : x + BAR / 2} y={TOP - 8 - raise} textAnchor={i === 0 ? "start" : "middle"} fontSize={10} fill="var(--ink)" className="num">
                     {compactWon(r.total)}
                   </text>
                 </>
@@ -137,7 +162,6 @@ export function Ribbon({
           );
         })}
 
-        {/* 연도·이정표 눈금 */}
         {rows.map((r, i) => {
           const x = GAP + i * STEP;
           const m = Number(r.month.slice(5));
