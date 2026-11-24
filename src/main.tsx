@@ -40,23 +40,3 @@ else if (path.startsWith("/places")) {
   root.textContent = "";
   createRoot(root).render(app);
 }
-
-// 브라우저가 첫 화면을 실제로 그린 다음 웹폰트를 불러온다 (그 전에는 시스템 글꼴로 보여줌)
-let fontsRequested = false;
-const loadFonts = () => {
-  if (fontsRequested) return;
-  fontsRequested = true;
-  void import("./styles/fonts.css");
-};
-try {
-  const po = new PerformanceObserver((list) => {
-    if (list.getEntries().some((e) => e.name === "first-contentful-paint")) {
-      po.disconnect();
-      setTimeout(loadFonts, 0);
-    }
-  });
-  po.observe({ type: "paint", buffered: true });
-} catch {
-  /* 지원하지 않는 브라우저는 아래 시간 제한으로 */
-}
-setTimeout(loadFonts, 1500);

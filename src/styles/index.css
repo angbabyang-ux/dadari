@@ -1,70 +1,90 @@
-/* 전역 스타일 진입점. Tailwind·디자인 토큰·기본 요소 스타일 (웹폰트는 fonts.css에서 나중에 불러옴) */
+/* 전역 스타일 진입점. Tailwind·디자인 토큰·기본 요소 스타일 */
 @import "tailwindcss";
 
+/* 값의 근거는 design.md (sendfeecompare.com 실측, Tailwind v4 gray/blue/green/red) */
 :root {
-  --paper: #f5f1ea;
-  --paper-2: #ece6dc;
-  --card: #fbf9f5;
-  --ink: #1c1b19;
-  --ink-2: #5e5a53;
-  --rule: #d8d0c3;
-  --accent: #c2410c;
+  --paper: #ffffff; /* 페이지 배경 */
+  --band: #f9fafb; /* 결과 영역 띠 (gray-50) */
+  --paper-2: #f3f4f6; /* 보조 표면 (gray-100) */
+  --card: #ffffff; /* 카드·입력 */
+  --ink: #101828; /* 제목·강한 텍스트 (gray-900) */
+  --ink-label: #364153; /* 라벨 (gray-700) */
+  --ink-2: #4a5565; /* 보조 텍스트 (gray-600) */
+  --ink-3: #6a7282; /* 흐린 텍스트 (gray-500) */
+  --ink-4: #99a1af; /* 면책 (gray-400) */
+  --rule: #e5e7eb; /* 테두리 (gray-200) */
+  --rule-soft: #f3f4f6; /* 카드 안 구분선 (gray-100) */
+  --accent: #155dfc; /* 포인트 (blue-600) */
+  --accent-bg: #eff6ff; /* 선택 바탕 (blue-50) */
   --accent-ink: #ffffff;
-  --cash: #1c1b19;
-  --voucher: #9c8f7a;
-  --leave: #6b655c;
-  --local: #3e6b58;
-  --focus: #c2410c;
+  --amount: #1c398e; /* 핵심 금액 (blue-900) */
+  --best: #00c950; /* 1위 테두리 (green-500) */
+  --best-ink: #008235; /* 1위 배지 글자 (green-700) */
+  --best-bg: #dcfce7; /* 1위 배지 바탕 (green-100) */
+  --negative: #e7000b; /* 비용·주의 (red-600) */
+  --footer-bg: #101828;
+  --footer-ink: #d1d5dc;
+  --cash: #155dfc; /* 리본: 현금 */
+  --voucher: #93c5fd; /* 리본: 바우처 (design.md 7) */
+  --leave: #1c398e; /* 리본: 육아휴직 빗금 */
+  --local: #008235; /* 지자체 몫 = 좋은 쪽 초록 */
+  --focus: #155dfc;
   color-scheme: light;
 }
 
+/* 다크 모드: 레퍼런스에 없음 → design.md 7의 gray 반전 값 */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --paper: #151412;
-    --paper-2: #1e1c19;
-    --card: #1a1916;
-    --ink: #ece6dc;
-    --ink-2: #aaa294;
-    --rule: #3a3631;
-    --accent: #f08a5d;
-    --accent-ink: #151412;
-    --cash: #ece6dc;
-    --voucher: #a8997f;
-    --leave: #7d766b;
-    --local: #7fb59c;
-    --focus: #f08a5d;
+    --paper: #030712; --band: #0b1220; --paper-2: #1e2939; --card: #101828;
+    --ink: #f3f4f6; --ink-label: #d1d5dc; --ink-2: #d1d5dc; --ink-3: #99a1af; --ink-4: #6a7282;
+    --rule: #1e2939; --rule-soft: #1e2939;
+    --accent: #51a2ff; --accent-bg: #0b1a33; --accent-ink: #030712; --amount: #8ec5ff;
+    --best: #05df72; --best-ink: #7bf1a8; --best-bg: #032e15; --negative: #ff6467;
+    --footer-bg: #000000; --footer-ink: #d1d5dc;
+    --cash: #51a2ff; --voucher: #1c398e; --leave: #8ec5ff; --local: #7bf1a8; --focus: #51a2ff;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --paper: #151412;
-  --paper-2: #1e1c19;
-  --card: #1a1916;
-  --ink: #ece6dc;
-  --ink-2: #aaa294;
-  --rule: #3a3631;
-  --accent: #f08a5d;
-  --accent-ink: #151412;
-  --cash: #ece6dc;
-  --voucher: #a8997f;
-  --leave: #7d766b;
-  --local: #7fb59c;
-  --focus: #f08a5d;
-  color-scheme: dark;
+    --paper: #030712; --band: #0b1220; --paper-2: #1e2939; --card: #101828;
+    --ink: #f3f4f6; --ink-label: #d1d5dc; --ink-2: #d1d5dc; --ink-3: #99a1af; --ink-4: #6a7282;
+    --rule: #1e2939; --rule-soft: #1e2939;
+    --accent: #51a2ff; --accent-bg: #0b1a33; --accent-ink: #030712; --amount: #8ec5ff;
+    --best: #05df72; --best-ink: #7bf1a8; --best-bg: #032e15; --negative: #ff6467;
+    --footer-bg: #000000; --footer-ink: #d1d5dc;
+    --cash: #51a2ff; --voucher: #1c398e; --leave: #8ec5ff; --local: #7bf1a8; --focus: #51a2ff;
+    color-scheme: dark;
 }
 
 @theme {
   --color-paper: var(--paper);
+  --color-band: var(--band);
   --color-paper-2: var(--paper-2);
   --color-card: var(--card);
   --color-ink: var(--ink);
+  --color-ink-label: var(--ink-label);
   --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-ink-4: var(--ink-4);
   --color-rule: var(--rule);
+  --color-rule-soft: var(--rule-soft);
   --color-accent: var(--accent);
+  --color-accent-bg: var(--accent-bg);
   --color-accent-ink: var(--accent-ink);
+  --color-amount: var(--amount);
+  --color-best: var(--best);
+  --color-best-ink: var(--best-ink);
+  --color-best-bg: var(--best-bg);
+  --color-negative: var(--negative);
+  --color-footer-bg: var(--footer-bg);
+  --color-footer-ink: var(--footer-ink);
   --color-local: var(--local);
-  --font-serif: "Hahmlet Variable", "Noto Serif KR", serif;
-  --font-sans: "Wanted Sans Variable", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  --radius-ctl: 12px; /* 입력·큰 버튼·선택 카드·결과 카드 */
+  --radius-sm: 8px; /* 내비 링크·작은 버튼 */
+  --radius-tag: 4px; /* 배지 */
+  /* 레퍼런스는 웹폰트 없이 기기 기본 글꼴. font-serif 클래스도 같은 글꼴 (세리프 없음) */
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  --font-serif: var(--font-sans);
 }
 
 html {
@@ -76,7 +96,7 @@ html {
 body {
   margin: 0;
   background: var(--paper);
-  line-height: 1.6;
+  line-height: 1.5;
   word-break: keep-all;
   overflow-wrap: anywhere;
 }
@@ -95,84 +115,114 @@ body {
 .rule-t { border-top: 1px solid var(--rule); }
 .rule-b { border-bottom: 1px solid var(--rule); }
 
-/* 입력 요소 */
+/* 입력 요소: 높이 60 · 반경 12 · 2px 테두리 */
 .field {
   width: 100%;
-  min-height: 48px;
-  padding: 10px 12px;
-  border: 1px solid var(--rule);
-  border-radius: 4px;
+  min-height: 60px;
+  padding: 16px;
+  border: 2px solid var(--rule);
+  border-radius: var(--radius-ctl);
   background: var(--card);
   color: var(--ink);
   font: inherit;
 }
-.field:focus-visible { border-color: var(--focus); }
+.field:focus-visible { border-color: var(--accent); outline: none; }
 
-/* 세그먼트 선택 (라디오 그룹) */
-.seg { gap: 6px; } /* 배치(flex/grid)는 Tailwind 클래스로 정한다 */
+/* 선택 카드 (라디오 그룹): 선택되면 파란 테두리 + 옅은 파란 바탕 */
+.seg { gap: 12px; } /* 배치(flex/grid)는 Tailwind 클래스로 정한다 */
 .seg label {
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   white-space: nowrap;
-  min-height: 44px;
-  padding: 0 14px;
-  border: 1px solid var(--rule);
-  border-radius: 4px;
+  min-height: 52px;
+  padding: 0 16px;
+  border: 2px solid var(--rule);
+  border-radius: var(--radius-ctl);
   background: var(--card);
+  color: var(--ink);
   cursor: pointer;
+  transition: border-color 150ms, background-color 150ms;
 }
 .seg input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
-.seg label:has(input:checked) { border-color: var(--ink); background: var(--ink); color: var(--paper); }
+.seg label:has(input:checked) { border-color: var(--accent); background: var(--accent-bg); }
 .seg label:has(input:focus-visible) { outline: 2px solid var(--focus); outline-offset: 2px; }
 
+/* 버튼: 보조(1px 테두리·반경 8) / 주(파랑·반경 12·높이 56) / 작은 주 */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 48px;
+  gap: 8px;
+  min-height: 44px;
   padding: 0 20px;
-  border: 1px solid var(--ink);
-  border-radius: 4px;
-  background: transparent;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-sm);
+  background: var(--card);
   color: var(--ink);
   font: inherit;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   text-decoration: none;
+  transition: background-color 150ms, border-color 150ms;
 }
-.btn-primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
-/* 비활성: 강조색을 흐리게 하지 않고 중립색으로 (강조색은 누를 수 있는 주 행동에만) */
-.btn:disabled, .btn-primary:disabled { background: transparent; border-color: var(--rule); color: var(--ink-2); cursor: not-allowed; }
+.btn:hover { background: var(--paper-2); }
+.btn-primary {
+  min-height: 56px;
+  border-radius: var(--radius-ctl);
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+  font-size: 16px;
+  font-weight: 400;
+}
+.btn-primary:hover { background: color-mix(in srgb, var(--accent) 88%, #000); }
+.btn-sm { min-height: 32px; padding: 0 12px; font-size: 12px; font-weight: 400; }
+.btn:disabled, .btn-primary:disabled { background: var(--paper-2); border-color: var(--paper-2); color: var(--ink-3); cursor: not-allowed; }
 
+/* 필터 칩: 선택 카드와 같은 규칙의 작은 판 */
 .chip {
   display: inline-flex;
   align-items: center;
   min-height: 44px;
-  padding: 0 12px;
-  border: 1px solid var(--rule);
-  border-radius: 999px;
-  background: transparent;
+  padding: 0 14px;
+  border: 2px solid var(--rule);
+  border-radius: var(--radius-sm);
+  background: var(--card);
   color: var(--ink);
   font: inherit;
   font-size: 14px;
   white-space: nowrap;
   cursor: pointer;
+  transition: border-color 150ms, background-color 150ms;
 }
-.chip[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.chip[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-bg); color: var(--ink); }
 
-/* 상태 배지: 색 + 글자로 구분 */
+/* 배지: 12/500 · 반경 4 · 옅은 바탕 + 진한 글자 */
 .badge {
   display: inline-block;
-  padding: 1px 6px;
-  border: 1px solid currentColor;
-  border-radius: 2px;
+  padding: 2px 8px;
+  border-radius: var(--radius-tag);
+  background: var(--paper-2);
+  color: var(--ink-label);
   font-size: 12px;
-  line-height: 1.5;
+  font-weight: 500;
+  line-height: 16px;
   white-space: nowrap;
 }
+.badge-best { background: var(--best-bg); color: var(--best-ink); }
+.badge-accent { background: var(--accent-bg); color: var(--accent); }
 .badge-proposed { background-image: repeating-linear-gradient(135deg, transparent 0 3px, color-mix(in srgb, currentColor 22%, transparent) 3px 4px); }
+
+/* 결과 카드: 흰 판 · 반경 12 · 2px 테두리(평소 투명, 1위 초록) — 띠(band) 위에 놓는다 */
+.card { background: var(--card); border: 2px solid transparent; border-radius: var(--radius-ctl); }
+.card-best { border-color: var(--best); }
+.band { background: var(--band); }
+/* 카드 안 수치 칸: 작은 라벨 위, 값 아래 */
+.stat-label { display: block; font-size: 12px; line-height: 16px; color: var(--ink-3); }
+.stat-value { display: block; font-size: 14px; line-height: 20px; font-weight: 500; color: var(--ink); font-variant-numeric: tabular-nums; }
 
 a { color: inherit; text-underline-offset: 3px; }
 
