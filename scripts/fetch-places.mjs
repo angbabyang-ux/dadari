@@ -409,7 +409,6 @@ async function main() {
   console.log(`키즈카페 ${kids.length} · 도서관 ${libs.length} · 박물관 ${muses.length} · 공원 ${parks.length} · 주차장 ${lots.length}`);
   const all = [...kids.map(fromKidscafe), ...libs.map(fromLibrary), ...muses.map(fromMuseum), ...parks.map(fromPark)].filter(Boolean);
   mkdirSync(OUT, { recursive: true });
-  for (const f of readdirSync(OUT)) if (f.endsWith(".json")) rmSync(join(OUT, f));
   const short = [];
   const counts = {};
   const byRegion = {};
@@ -418,6 +417,10 @@ async function main() {
   for (const r of regions) raw[r.id] = pick(all.filter((p) => p.sigungu === r.id));
   const chosenAll = Object.values(raw).flat();
   const enriched = await enrichKidscafes(chosenAll);
+  // 키움포털을 절반도 못 읽으면(접속 차단 등) 보강 정보가 빈칸으로 덮이지 않게 이번 갱신을 멈춘다
+  const kidsTotal = chosenAll.filter((p) => p.category === "kidscafe").length;
+  if (enriched < kidsTotal / 2) throw new Error(`키움포털 시설 페이지를 ${enriched}/${kidsTotal}곳만 읽음`);
+  for (const f of readdirSync(OUT)) if (f.endsWith(".json")) rmSync(join(OUT, f)); // 모두 받은 뒤에만 지우고 새로 쓴다
   enrichNearby(chosenAll, lots);
   console.log(`키즈카페 공식 페이지 보강 ${enriched}/${chosenAll.filter((p) => p.category === "kidscafe").length} · 공영주차장 근처 ${chosenAll.filter((p) => p.nearbyParking).length}`);
   for (const r of regions) {
