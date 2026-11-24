@@ -5,10 +5,10 @@ import { formatWon } from "../../engine/money";
 
 // 강조색은 총액·증가분·'지금' 표시에만 쓴다. 배지는 잉크색과 테두리 모양으로 구분한다
 export function StatusBadge({ status }: { status: Benefit["status"] }) {
-  if (status === "confirmed") return <span className="badge text-ink-2">확정</span>;
-  if (status === "proposed") return <span className="badge badge-proposed text-ink">정부안</span>;
-  if (status === "ended") return <span className="badge text-ink-2 line-through">종료</span>;
-  return <span className="badge text-ink border-dashed">확인 필요</span>;
+  if (status === "confirmed") return <span className="badge">확정</span>;
+  if (status === "proposed") return <span className="badge badge-accent badge-proposed">정부안</span>;
+  if (status === "ended") return <span className="badge line-through">종료</span>;
+  return <span className="badge badge-check">확인 필요</span>;
 }
 
 export function Evidence({ benefit, formula }: { benefit: Benefit; formula?: string }) {

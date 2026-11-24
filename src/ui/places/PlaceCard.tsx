@@ -7,7 +7,7 @@ import { kakaoMapHref, naverMapHref, reportHref } from "../../places/links";
 export const SETTING_LABEL: Record<Place["setting"], string> = { indoor: "실내", outdoor: "야외", mixed: "실내외" };
 export const CATEGORY_LABEL: Record<Place["category"], string> = { kidscafe: "키즈카페", library: "도서관", museum: "박물관·미술관", park: "공원" };
 
-const NEED = <span className="badge text-ink border-dashed">확인 필요</span>;
+const NEED = <span className="badge badge-check">확인 필요</span>;
 
 function feeText(p: Place) {
   if (p.fee.free === true) return "무료";

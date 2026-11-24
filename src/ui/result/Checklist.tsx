@@ -69,7 +69,7 @@ export function Checklist({ result, input }: { result: Result; input: Input }) {
               <div>
                 <p className="font-semibold">
                   {t.title}
-                  {t.warn && <span className="badge ml-2 bg-ink text-paper border-ink">기한 주의</span>}
+                  {t.warn && <span className="badge badge-warn ml-2">기한 주의</span>}
                 </p>
                 <p className="text-sm">
                   {t.url ? (

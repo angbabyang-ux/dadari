@@ -49,13 +49,16 @@ export function App() {
       <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:bg-paper focus:p-2">
         본문으로 건너뛰기
       </a>
-      <header className="rule-b no-print">
-        <div className="mx-auto max-w-6xl px-4 md:px-8 flex flex-wrap md:flex-nowrap items-center gap-x-4 md:h-14">
-          <a href={hrefFor("home")} onClick={(e) => (e.preventDefault(), navigate("home"))} className="font-serif text-xl font-semibold no-underline flex items-center h-12 md:h-auto flex-1 md:flex-none">
+      <header className="rule-b no-print bg-paper">
+        <div className="mx-auto max-w-6xl px-4 flex flex-wrap md:flex-nowrap items-center gap-x-4 md:h-[77px]">
+          <a href={hrefFor("home")} onClick={(e) => (e.preventDefault(), navigate("home"))} className="font-semibold no-underline flex items-center gap-2 h-14 md:h-auto flex-1 md:flex-none">
+            <span aria-hidden className="grid place-items-center w-8 h-8 rounded-sm bg-accent text-accent-ink text-sm font-bold">
+              다
+            </span>
             다달이
           </a>
-          <nav aria-label="주 메뉴" className="order-last md:order-none w-full md:w-auto md:flex-1 overflow-x-auto">
-            <ul className="flex justify-between md:justify-start md:gap-4 text-sm whitespace-nowrap">
+          <nav aria-label="주 메뉴" className="order-last md:order-none w-full md:w-auto md:flex-1 md:flex md:justify-end overflow-x-auto pb-2 md:pb-0">
+            <ul className="flex justify-between md:justify-end md:gap-1 text-sm whitespace-nowrap">
               {NAV.map((n) => {
                 const q = n.route === "calc" && complete ? query : undefined;
                 const active = route === n.route || (n.route === "calc" && (route === "result" || route === "compare" || !!regionId || (route === "home" && params.has("b"))));
@@ -65,7 +68,7 @@ export function App() {
                       href={hrefFor(n.route, q)}
                       onClick={(e) => (e.preventDefault(), navigate(n.route, q))}
                       aria-current={active ? "page" : undefined}
-                      className={`no-underline inline-flex items-center min-h-11 md:min-h-14 ${active ? "font-semibold border-b-2 border-ink" : "text-ink-2"}`}
+                      className={`no-underline inline-flex items-center min-h-11 md:min-h-9 px-2 md:px-3 rounded-sm transition-colors ${active ? "bg-paper-2 text-ink font-medium" : "text-ink-2 hover:bg-paper-2"}`}
                     >
                       {n.label}
                     </a>
@@ -78,8 +81,8 @@ export function App() {
         </div>
       </header>
       <main id="main">{page}</main>
-      <footer className="rule-t mt-8">
-        <div className="mx-auto max-w-6xl px-4 md:px-8 py-8 text-sm text-ink-2 space-y-2">
+      <footer className="bg-footer-bg text-footer-ink">
+        <div className="mx-auto max-w-6xl px-4 py-8 text-sm space-y-2">
           <p>입력한 정보는 서버로 보내지 않아요. 모든 계산은 이 브라우저 안에서 해요.</p>
           <p>
             참고용 계산이에요. 실제 지급액은 신청 기관의 심사로 정해져요.{" "}
@@ -120,7 +123,7 @@ function ThemeToggle() {
   return (
     <button
       type="button"
-      className="text-sm text-ink-2 underline underline-offset-4 shrink-0"
+      className="shrink-0 rounded-sm bg-paper-2 p-1 text-sm"
       onClick={() => {
         setTheme(next);
         if (next === "auto") document.documentElement.removeAttribute("data-theme");
@@ -133,7 +136,7 @@ function ThemeToggle() {
       }}
       aria-label={`${label}. 눌러서 바꾸기`}
     >
-      {{ auto: "자동", dark: "밤", light: "낮" }[theme]}
+      <span className="inline-flex items-center h-9 px-3 rounded-[6px] bg-card text-ink">{{ auto: "자동", dark: "밤", light: "낮" }[theme]}</span>
     </button>
   );
 }

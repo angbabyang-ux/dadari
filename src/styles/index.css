@@ -214,6 +214,8 @@ body {
 }
 .badge-best { background: var(--best-bg); color: var(--best-ink); }
 .badge-accent { background: var(--accent-bg); color: var(--accent); }
+.badge-check { background: var(--card); color: var(--ink); border: 1px dashed var(--ink-3); padding: 1px 7px; }
+.badge-warn { background: color-mix(in srgb, var(--negative) 8%, var(--card)); color: var(--negative); }
 .badge-proposed { background-image: repeating-linear-gradient(135deg, transparent 0 3px, color-mix(in srgb, currentColor 22%, transparent) 3px 4px); }
 
 /* 결과 카드: 흰 판 · 반경 12 · 2px 테두리(평소 투명, 1위 초록) — 띠(band) 위에 놓는다 */

@@ -94,7 +94,7 @@ export function ChangesPage() {
           ].map((c) => (
             <div key={c.title}>
               <p className="font-semibold">
-                {c.title} {c.draft && <span className="badge badge-proposed font-normal">정부안</span>}
+                {c.title} {c.draft && <span className="badge badge-accent badge-proposed">정부안</span>}
               </p>
               <p className="font-serif text-3xl font-semibold num mt-1">{formatWon(c.total)}</p>
               <p className="text-sm text-ink-2">{c.note}</p>

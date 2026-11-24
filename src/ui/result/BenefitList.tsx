@@ -105,7 +105,7 @@ function BenefitCard({ g, birthDate, today }: { g: BenefitGroup; birthDate: stri
   );
 }
 
-const NEED = <span className="badge text-ink border-dashed">확인 필요</span>;
+const NEED = <span className="badge badge-check">확인 필요</span>;
 
 function UsagePanel({ usage: u, birthDate, today }: { usage: Usage; birthDate: string; today: string }) {
   const unverified = (k: string) => u.unverified?.some((x) => x.includes(k));

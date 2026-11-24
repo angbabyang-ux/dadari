@@ -174,7 +174,7 @@ export function LeaveCard({ applied, result, input, scenario }: { applied: Input
                   <tr key={r.key} className={`rule-b ${isBest(r) ? "bg-paper-2" : ""}`}>
                     <th scope="row" className="py-3 pl-1 text-left font-semibold">
                       {r.label}
-                      {isBest(r) && <span className="badge ml-2 bg-ink text-paper border-ink font-normal">가장 많아요</span>}
+                      {isBest(r) && <span className="badge badge-best ml-2">가장 많아요</span>}
                     </th>
                     <td className="py-3 text-right hidden sm:table-cell">{formatWon(r.pay)}</td>
                     <td className="py-3 text-right hidden sm:table-cell">{r.local ? formatWon(r.local) : "—"}</td>

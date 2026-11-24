@@ -3,11 +3,11 @@ import { useId, type ReactNode } from "react";
 
 export function Field({ label, hint, children, htmlFor }: { label: string; hint?: ReactNode; children: ReactNode; htmlFor?: string }) {
   return (
-    <div className="py-4 rule-b">
-      <label htmlFor={htmlFor} className="block font-semibold mb-1">
+    <div className="pt-6">
+      <label htmlFor={htmlFor} className="block text-ink-label mb-2">
         {label}
       </label>
-      {hint && <p className="text-sm text-ink-2 mb-2">{hint}</p>}
+      {hint && <p className="text-sm text-ink-3 -mt-1 mb-2">{hint}</p>}
       {children}
     </div>
   );
@@ -31,10 +31,10 @@ export function Segmented<T extends string | number>({
   const name = useId();
   const grid = cols ? { 2: "grid grid-cols-2 sm:flex sm:flex-wrap", 3: "grid grid-cols-3 sm:flex sm:flex-wrap", 4: "grid grid-cols-4 sm:flex sm:flex-wrap" }[cols] : "flex flex-wrap";
   return (
-    <fieldset className="py-4 rule-b">
-      <legend className="font-semibold mb-1 float-left w-full">{legend}</legend>
-      {hint && <p className="text-sm text-ink-2 mb-2 clear-both">{hint}</p>}
-      <div className={`seg clear-both pt-1 ${grid}`}>
+    <fieldset className="pt-6">
+      <legend className="text-ink-label mb-2 float-left w-full">{legend}</legend>
+      {hint && <p className="text-sm text-ink-3 -mt-1 mb-2 clear-both">{hint}</p>}
+      <div className={`seg clear-both ${grid}`}>
         {options.map((o) => (
           <label key={String(o.value)}>
             <input type="radio" name={name} checked={value === o.value} onChange={() => onChange(o.value)} />
@@ -62,7 +62,7 @@ export function ManwonInput({ id, value, onChange, placeholder }: { id: string; 
           onChange(raw === "" ? undefined : Number(raw) * 10000);
         }}
       />
-      <span className="text-ink-2">만 원</span>
+      <span className="text-ink-3">만 원</span>
     </div>
   );
 }
