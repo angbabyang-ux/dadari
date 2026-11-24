@@ -199,3 +199,35 @@ export type Reference = z.infer<typeof Reference>;
 export type AllowanceTier = z.infer<typeof AllowanceTier>;
 export type Status = z.infer<typeof Status>;
 export type Category = z.infer<typeof Category>;
+
+/* ───────── 아이랑 갈 곳 ───────── */
+const triBool = z.boolean().nullable(); // null = 확인 필요
+export const AgeBand = z.enum(["0", "1-3", "4-7"]); // 0~12개월 / 1~3세 / 4~7세
+export const PlaceCategory = z.enum(["kidscafe", "library", "museum", "park"]);
+export const Place = z.object({
+  id: z.string().regex(/^[a-z]{2}-[a-z0-9-]+$/),
+  name: z.string().min(1),
+  sido: z.enum(["seoul", "gyeonggi"]),
+  sigungu: z.string().regex(/^(seoul|gyeonggi)-[a-z]+$/),
+  address: z.string().min(5),
+  lat: z.number().min(36.8).max(38.4),
+  lng: z.number().min(126.3).max(127.9),
+  setting: z.enum(["indoor", "outdoor", "mixed"]),
+  ages: z.array(AgeBand).min(1).nullable(),
+  agesText: z.string().nullable(),
+  fee: z.object({ free: triBool, text: z.string().nullable() }),
+  category: PlaceCategory,
+  hours: z.string().nullable(),
+  closedDays: z.string().nullable(),
+  reservation: z.object({ need: z.enum(["yes", "no"]), note: z.string(), sourceUrl: z.string().url().optional() }).nullable(),
+  amenities: z.object({ nursingRoom: triBool, diaperTable: triBool, strollerAccess: triBool, parking: triBool }),
+  homepage: z.string().url().nullable(),
+  summary: z.string().min(5),
+  phone: z.string().nullable().optional(),
+  source: z.enum(["kidscafe", "library", "museum", "park"]),
+  sourceUrl: z.string().url().startsWith("https://"),
+  lastVerified: isoDate,
+});
+export const PlacesFile = z.array(Place);
+export type Place = z.infer<typeof Place>;
+export type AgeBand = z.infer<typeof AgeBand>;

@@ -1,0 +1,33 @@
+{
+  "fetchedAt": "2026-11-24",
+  "sources": {
+    "kidscafe": {
+      "name": "서울시 서울형 키즈카페 시설 현황",
+      "url": "https://data.seoul.go.kr/dataList/OA-21716/S/1/datasetView.do",
+      "org": "서울 열린데이터광장",
+      "license": "이용허락범위 제한 없음"
+    },
+    "library": {
+      "name": "전국도서관표준데이터",
+      "url": "https://www.data.go.kr/data/15013109/standard.do",
+      "org": "공공데이터포털",
+      "license": "공공데이터포털 이용정책"
+    },
+    "museum": {
+      "name": "전국박물관미술관정보표준데이터",
+      "url": "https://www.data.go.kr/data/15017323/standard.do",
+      "org": "공공데이터포털",
+      "license": "공공데이터포털 이용정책"
+    },
+    "park": {
+      "name": "전국도시공원정보표준데이터",
+      "url": "https://www.data.go.kr/data/15012890/standard.do",
+      "org": "공공데이터포털",
+      "license": "공공데이터포털 이용정책"
+    }
+  },
+  "extra": [
+    "https://mediahub.seoul.go.kr/archives/2008564",
+    "https://mediahub.seoul.go.kr/archives/2017820"
+  ]
+}

@@ -1,0 +1,36 @@
+# 매주 월요일 공공데이터를 다시 받아 「아이랑 갈 곳」 JSON을 갱신하고, 바뀐 게 있으면 커밋한다(커밋되면 deploy가 다시 배포)
+name: update-places
+
+on:
+  schedule:
+    - cron: "0 18 * * 0" # 한국 시간 월요일 03:00
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write # 갱신 커밋 뒤 배포 워크플로를 직접 실행 (기본 토큰의 push는 다른 워크플로를 깨우지 않음)
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      # 인증키가 필요 없는 공개 내려받기 주소만 쓴다. 나중에 TourAPI 등 키가 필요한 출처를 더하면 secrets로 넘긴다
+      - run: node scripts/fetch-places.mjs
+      - run: npx vitest run tests/unit/places-data.test.ts
+      - name: 바뀐 데이터 커밋
+        run: |
+          if git diff --quiet -- src/data/places src/data/places-meta.json; then echo "변경 없음"; exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/data/places src/data/places-meta.json
+          git commit -m "아이랑 갈 곳 공공데이터 주간 갱신"
+          git push
+          gh workflow run deploy.yml --ref "${GITHUB_REF_NAME}"
+        env:
+          GH_TOKEN: ${{ github.token }}
