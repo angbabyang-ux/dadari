@@ -4,6 +4,7 @@ import { benefits, leaveRules, reference, regions } from "../data";
 import { formatWon } from "../engine/money";
 import { CATEGORY_LABEL, LEVEL_LABEL } from "./result/aggregate";
 import { StatusBadge } from "./result/parts";
+import { fetchedAt, sources as placeSources } from "../data/places-meta.json";
 
 export function DataPage() {
   const [q, setQ] = useState("");
@@ -98,6 +99,49 @@ export function DataPage() {
           </tbody>
         </table>
       </div>
+
+      <h2 id="places" className="font-serif text-xl font-semibold pt-10 pb-2 rule-b border-ink scroll-mt-4">
+        아이랑 갈 곳 데이터
+      </h2>
+      <div className="grid md:grid-cols-12 gap-x-8 pt-3 text-sm">
+        <div className="md:col-span-7 space-y-2">
+          <p>아래 공공데이터를 매주 자동으로 다시 받아 지역마다 20곳까지 골라요. 서울형 키즈카페, 어린이도서관, 공공도서관, 박물관·미술관, 놀이시설이 있는 큰 공원 순서예요.</p>
+          <p>카드의 확인일은 각 공공데이터가 밝힌 기준일이에요. 수유실·기저귀 교환대·유모차 정보는 공공데이터에 거의 없어서 대부분 ‘확인 필요’로 보여요.</p>
+          <p>
+            공공도서관은 기본 이용(열람·대출)이 무료라 무료로 표시해요. 서울형 키즈카페의 예약 방식은{" "}
+            <a href="https://mediahub.seoul.go.kr/archives/2008564" target="_blank" rel="noreferrer">
+              서울시 공식 소식
+            </a>
+            을 따랐어요. 블로그 후기 같은 비공식 정보는 쓰지 않아요.
+          </p>
+          <p className="num text-ink-2">마지막 수집 {fetchedAt}</p>
+        </div>
+        <ul className="md:col-span-5 mt-4 md:mt-0">
+          {Object.values(placeSources).map((src) => (
+            <li key={src.url} className="py-2 rule-b">
+              <a href={src.url} target="_blank" rel="noreferrer" className="font-medium">
+                {src.name}
+              </a>
+              <span className="block text-ink-2">
+                {src.org} · {src.license}
+              </span>
+            </li>
+          ))}
+          <li className="py-2 rule-b">
+            <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer" className="font-medium">
+              지도 © OpenStreetMap 기여자
+            </a>
+            <span className="block text-ink-2">ODbL · 지도 보기를 누를 때만 불러와요</span>
+          </li>
+        </ul>
+      </div>
+
+      <h2 id="report" className="font-serif text-xl font-semibold pt-10 pb-2 rule-b border-ink scroll-mt-4">
+        정보가 달라졌을 때
+      </h2>
+      <p className="pt-3 text-sm max-w-2xl">
+        장소 카드의 ‘정보가 달라졌어요’를 누르면 이 사이트의 GitHub 저장소에 제보 글을 남길 수 있어요. 공식 누리집이나 전화로 확인한 내용을 적어 주시면 공공데이터와 함께 다시 확인해 반영해요. 개인정보는 적지 말아 주세요.
+      </p>
 
       <h2 className="font-serif text-xl font-semibold pt-10 pb-2 rule-b border-ink">시·군·구 현금 지원 확인 현황</h2>
       <ul className="grid sm:grid-cols-2 md:grid-cols-3 gap-x-8 text-sm pt-2">

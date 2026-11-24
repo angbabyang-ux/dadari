@@ -4,7 +4,7 @@ import { benefits, leaveRules, reference, regions } from "../../data";
 import { computeTimeline } from "../../engine/timeline";
 import { formatWon } from "../../engine/money";
 import type { Input, MonthRow, Result } from "../../engine/types";
-import { hrefFor, navigate, replaceQuery } from "../../router";
+import { hrefFor, navigate, navigateHref, placesHref, replaceQuery } from "../../router";
 import { draftToParams, scenarioFrom, withDraft } from "../../state/url";
 import { FILTERS, filterRows, summarize, type FilterKey } from "./aggregate";
 import { BenefitList, ExcludedList, InfoCards } from "./BenefitList";
@@ -211,6 +211,7 @@ export function ResultPage({ input, params }: { input: Input; params: URLSearchP
       <p className="sr-only" aria-live="polite">
         {copied ? "주소를 복사했어요." : ""}
       </p>
+      <PlacesLink input={input} />
 
       {selected !== undefined && shown[selected] && (
         <MonthSheet
@@ -266,6 +267,21 @@ function SummaryStrip({ summary: s, delta }: { summary: ReturnType<typeof summar
           ))}
         </dl>
       </div>
+    </section>
+  );
+}
+
+/** 사는 곳이 서울·경기 시군구면 그 지역의 「아이랑 갈 곳」으로 잇는다 */
+function PlacesLink({ input }: { input: Input }) {
+  const r = regions.sigungu.find((x) => x.sido === input.sido && x.sigungu === input.sigungu);
+  if (!r || !/^(seoul|gyeonggi)-/.test(r.id)) return null;
+  const href = placesHref(r.id.replace(/^(seoul|gyeonggi)-/, "$1/"));
+  return (
+    <section className="mt-12 rule-t pt-6 no-print">
+      <a href={href} onClick={(e) => (e.preventDefault(), navigateHref(href))} className="font-serif text-xl font-semibold">
+        {r.sigungu}에서 아이랑 갈 곳
+      </a>
+      <p className="text-sm text-ink-2 mt-1">키즈카페·도서관·박물관·공원을 실내·무료·연령으로 골라 볼 수 있어요.</p>
     </section>
   );
 }

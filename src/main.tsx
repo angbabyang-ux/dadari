@@ -3,6 +3,8 @@ import { StrictMode } from "react";
 import { createRoot, hydrateRoot } from "react-dom/client";
 import "./styles/index.css";
 import { App } from "./ui/App";
+import { loadPlacesUI } from "./places/lazy";
+import { loadRegions } from "./places/store";
 
 try {
   const t = localStorage.getItem("theme");
@@ -22,7 +24,19 @@ const app = (
 const path = window.location.pathname.replace(import.meta.env.BASE_URL, "/");
 const hydratable = path === "/" || path.startsWith("/r/");
 if (root.hasChildNodes() && !window.location.search && hydratable) hydrateRoot(root, app);
-else {
+else if (path.startsWith("/places")) {
+  // 아이랑 갈 곳: 화면 묶음과 필요한 지역 데이터를 먼저 받은 뒤 그린다 (그동안은 미리 그린 HTML이 보인다)
+  void loadPlacesUI()
+    .then((m) => loadRegions(m.regionsNeeded(window.location.pathname, new URLSearchParams(window.location.search))))
+    .finally(() => {
+      // 데이터가 미리 그린 HTML과 같으니 이어받는다. 쿼리(필터)가 있으면 내용이 달라서 새로 그린다
+      if (root.hasChildNodes() && !window.location.search) hydrateRoot(root, app);
+      else {
+        root.textContent = "";
+        createRoot(root).render(app);
+      }
+    });
+} else {
   root.textContent = "";
   createRoot(root).render(app);
 }

@@ -4,7 +4,7 @@ import { dirname, join, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 
 const DIST = "dist";
-const { render } = await import(pathToFileURL(resolve("dist-ssr/entry-server.js")).href);
+const { render, placesMeta } = await import(pathToFileURL(resolve("dist-ssr/entry-server.js")).href);
 const BASE = "/dadari/";
 // 쿼리에 따라 내용이 바뀌는 결과·비교 화면은 HTML을 미리 그리지 않고 같은 톤의 로딩 문구만 넣는다
 const LOADING = `<div style="max-width:72rem;margin:0 auto;padding:4rem 1rem"><p>결과를 계산하고 있어요.</p></div>`;
@@ -50,6 +50,17 @@ for (const r of regions.sigungu) {
       `${short} ${r.sigungu}에 살면 아이가 태어나서 초등학교 입학 전까지 매달 받는 국가·${short === "서울" ? "서울시" : "경기도"}·${r.sigungu} 지원금과 육아휴직 급여를 달력으로 계산해요.`,
     ),
   );
+}
+
+// 아이랑 갈 곳: 첫 화면·실내·시도 2곳·지역 56곳
+const placePaths = ["places/", "places/indoor/", "places/seoul/", "places/gyeonggi/"];
+for (const r of regions.sigungu) {
+  if (r.sido !== "서울특별시" && r.sido !== "경기도") continue;
+  placePaths.push(`places/${r.id.replace(/^(seoul|gyeonggi)-/, (m) => m.slice(0, -1) + "/")}/`);
+}
+for (const p of placePaths) {
+  const { title, desc } = placesMeta(BASE + p);
+  urls.push(page(p, title, desc));
 }
 
 // GitHub Pages는 없는 경로에서 404.html을 보여준다 → 앱이 주소를 읽어 화면을 그린다

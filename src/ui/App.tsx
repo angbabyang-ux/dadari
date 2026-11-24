@@ -2,6 +2,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { regions } from "../data";
 import { hrefFor, navigate, useLocation, type Route } from "../router";
+import { usePlacesUI } from "../places/lazy";
 import { draftFromParams, isComplete } from "../state/url";
 import { ChangesPage } from "./ChangesPage";
 import { ComparePage } from "./ComparePage";
@@ -10,14 +11,16 @@ import { ResultPage } from "./result/ResultPage";
 import { Wizard } from "./Wizard";
 
 const NAV: { route: Route; label: string }[] = [
-  { route: "home", label: "계산" },
+  { route: "home", label: "지원금 계산" },
+  { route: "places", label: "아이랑 갈 곳" },
   { route: "compare", label: "지역 비교" },
   { route: "changes", label: "2027 변화" },
   { route: "data", label: "데이터" },
 ];
 
 export function App() {
-  const { route, params, regionId } = useLocation();
+  const { route, params, regionId, pathname } = useLocation();
+  const placesUI = usePlacesUI(route === "places");
   const query = params.toString();
   const draft = useMemo(() => {
     const p = new URLSearchParams(query);
@@ -36,6 +39,7 @@ export function App() {
     page = complete ? route === "result" ? <ResultPage input={draft} params={params} /> : <ComparePage input={draft} params={params} /> : <EmptyState />;
   } else if (route === "changes") page = <ChangesPage />;
   else if (route === "data") page = <DataPage />;
+  else if (route === "places") page = placesUI ? <placesUI.PlacesApp pathname={pathname} params={params} /> : <p className="mx-auto max-w-6xl px-4 md:px-8 py-16 text-ink-2">장소를 불러오고 있어요.</p>;
   else page = <Wizard draft={draft} />;
 
   return (
@@ -50,15 +54,16 @@ export function App() {
           </a>
           <nav aria-label="주 메뉴" className="flex-1 overflow-x-auto">
             <ul className="flex gap-4 text-sm whitespace-nowrap">
-              {NAV.slice(1).map((n) => {
-                const q = n.route === "compare" && complete ? query : undefined;
+              {NAV.map((n) => {
+                const q = (n.route === "compare" || n.route === "home") && complete ? query : undefined;
+                const active = route === n.route || (n.route === "home" && route === "result");
                 return (
                   <li key={n.route}>
                     <a
                       href={hrefFor(n.route, q)}
                       onClick={(e) => (e.preventDefault(), navigate(n.route, q))}
-                      aria-current={route === n.route ? "page" : undefined}
-                      className={`no-underline py-4 ${route === n.route ? "font-semibold border-b-2 border-ink" : "text-ink-2"}`}
+                      aria-current={active ? "page" : undefined}
+                      className={`no-underline py-4 ${active ? "font-semibold border-b-2 border-ink" : "text-ink-2"}`}
                     >
                       {n.label}
                     </a>
