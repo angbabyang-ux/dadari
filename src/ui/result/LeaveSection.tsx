@@ -97,7 +97,7 @@ export function LeaveCard({ applied, result, input, scenario }: { applied: Input
             </div>
             <dl className="text-sm mt-1">
               <Row k="받는 기간" v={`${ym(p.from)} ~ ${ym(p.to)} (${p.months}개월)`} />
-              <Row k="계산" v={bundle.sixPlusSix ? "첫 6개월은 6+6 상한, 그다음은 일반 상한" : "월별 상한·하한을 적용했어요"} />
+              <Row k="계산" v={bundle.sixPlusSix ? (p.months > 6 ? "첫 6개월은 6+6 상한, 그다음은 일반 상한" : "6+6 상한을 적용했어요") : "월별 상한·하한을 적용했어요"} />
               <Row k="신청처" v={<a href="https://www.work24.go.kr/" target="_blank" rel="noreferrer">고용24</a>} />
               <Row k="신청 기한" v={`${ymd(p.deadline)}까지`} />
             </dl>
