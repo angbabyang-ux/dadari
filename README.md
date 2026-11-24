@@ -31,6 +31,8 @@ npm run test:e2e   # Playwright e2e (처음 한 번: npx playwright install chro
 | `regions.json` | 시·도/시·군·구 목록, 아동수당 지역 구분, 자체 현금 지원 확인 상태 |
 | `leave-rules.json` | 육아휴직 급여 지급률·상한·하한, 6+6 상한 |
 | `reference.json` | 기준 중위소득(연도별), 보육료 단가 |
+| `places/<지역id>.json` | 아이랑 갈 곳 (자동 수집, 손으로 고치지 않음) |
+| `places-meta.json`, `places-index.json` | 장소 데이터 출처·수집일, 지역별 개수·추천 |
 
 바꾸는 순서는 이래요.
 
@@ -41,6 +43,10 @@ npm run test:e2e   # Playwright e2e (처음 한 번: npx playwright install chro
 4. 결정과 출처 간 불일치는 `context-notes.md`에 적어요.
 
 새 지역 혜택은 `schedule.type`으로 지급 방식을 고르면 돼요. `lumpSum`은 일시금·분할, `monthly`는 월 정액, `perLeaveMonth`는 휴직 월마다, `classAge`는 유아 학급 연령별, `info`는 금액 없는 안내 카드예요. 자세한 필드는 `src/data/schema.ts`의 주석을 봐 주세요.
+
+### 아이랑 갈 곳 데이터
+
+`node scripts/fetch-places.mjs`가 공공데이터(서울형 키즈카페, 전국 도서관·박물관미술관·도시공원 표준데이터)를 받아 지역마다 20곳까지 골라 저장해요. 인증키가 필요 없어서 GitHub Secrets도 필요 없어요. `update-places.yml`이 매주 월요일 새벽에 같은 일을 하고, 바뀐 게 있으면 커밋한 뒤 배포를 다시 돌려요. 하나라도 받지 못하면 기존 파일을 그대로 둬요.
 
 ## 데이터 출처 정책
 
@@ -55,8 +61,9 @@ npm run test:e2e   # Playwright e2e (처음 한 번: npx playwright install chro
 src/data/        정책 JSON, zod 스키마
 src/engine/      순수 함수 계산 엔진 (computeTimeline, 육아휴직 급여, 금액 표기)
 src/state/       URL 쿼리 ↔ 입력값
-src/ui/          화면 (입력, 결과, 비교, 2027 변화, 데이터)
-scripts/         빌드 후 정적 HTML·sitemap 생성
+src/ui/          화면 (입력, 결과, 비교, 2027 변화, 데이터, places/ 아이랑 갈 곳)
+src/places/      장소 필터·경로·지연 로딩·제목
+scripts/         빌드 후 정적 HTML·sitemap 생성, 장소 데이터 수집
 tests/unit       Vitest (지시서 테스트 T1~T15 포함)
 tests/e2e        Playwright
 ```
