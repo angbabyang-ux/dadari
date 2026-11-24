@@ -289,15 +289,29 @@ async function main() {
   mkdirSync(OUT, { recursive: true });
   for (const f of readdirSync(OUT)) if (f.endsWith(".json")) rmSync(join(OUT, f));
   const short = [];
+  const counts = {};
+  const byRegion = {};
   for (const r of regions) {
     const chosen = pick(all.filter((p) => p.sigungu === r.id)).map(finalize);
     if (chosen.length < 10) short.push(`${r.sigungu} ${chosen.length}곳`);
+    byRegion[r.id] = chosen;
+    counts[r.id] = { total: chosen.length, indoor: chosen.filter((p) => p.setting !== "outdoor").length, free: chosen.filter((p) => p.fee.free === true).length };
     writeFileSync(join(OUT, `${r.id}.json`), `[\n${chosen.map((p) => JSON.stringify(p)).join(",\n")}\n]\n`); // 한 줄에 한 곳: 주간 갱신 diff를 읽기 쉽게
   }
-  writeFileSync(
-    "src/data/places-meta.json",
-    `${JSON.stringify({ fetchedAt: new Date().toISOString().slice(0, 10), sources: SOURCES, extra: [KIDS_RESERVE_SRC, KIDS_OUTDOOR_SRC] }, null, 2)}\n`,
-  );
+  // 시·도 첫 화면 추천: 무료 실내 공공시설(무료 키즈카페 → 어린이도서관 → 무료 공립 박물관) 가운데 지역마다 1곳, 6곳까지
+  const rank = (p) => (p.category === "kidscafe" ? 0 : p.category === "library" ? 1 : 2);
+  const picks = {};
+  for (const sido of ["seoul", "gyeonggi"]) {
+    const cands = regions
+      .filter((r) => SIDO_ID[r.sido] === sido)
+      .map((r) => byRegion[r.id].filter((p) => p.fee.free === true && p.setting === "indoor" && (p.category !== "library" || /어린이/.test(p.name))).sort((a, b) => rank(a) - rank(b))[0])
+      .filter(Boolean)
+      .sort((a, b) => rank(a) - rank(b) || a.sigungu.localeCompare(b.sigungu));
+    picks[sido] = cands.slice(0, 6);
+  }
+  // 출처(데이터 페이지가 첫 화면 묶음에서 씀)와 색인(아이랑 갈 곳 화면 묶음에서만 씀)을 나눠 저장한다
+  writeFileSync("src/data/places-meta.json", `${JSON.stringify({ fetchedAt: new Date().toISOString().slice(0, 10), sources: SOURCES, extra: [KIDS_RESERVE_SRC, KIDS_OUTDOOR_SRC] }, null, 1)}\n`);
+  writeFileSync("src/data/places-index.json", `${JSON.stringify({ counts, picks }, null, 1)}\n`);
   console.log(`지역 ${regions.length}곳 저장. 10곳 미만: ${short.length ? short.join(", ") : "없음"}`);
 }
 

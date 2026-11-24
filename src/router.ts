@@ -1,15 +1,15 @@
 // History API 기반의 작은 라우터. 경로와 쿼리스트링을 React 상태로 연결한다
 import { useSyncExternalStore } from "react";
 
-export type Route = "home" | "result" | "compare" | "changes" | "data";
+export type Route = "home" | "result" | "compare" | "changes" | "data" | "places";
 
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, ""); // "/dadari"
-const PATHS: Record<Route, string> = { home: "/", result: "/result/", compare: "/compare/", changes: "/changes/", data: "/data/" };
+const PATHS: Record<Route, string> = { home: "/", result: "/result/", compare: "/compare/", changes: "/changes/", data: "/data/", places: "/places/" };
 
 function routeOf(pathname: string): Route {
   const p = pathname.startsWith(BASE) ? pathname.slice(BASE.length) : pathname;
   const seg = p.replace(/^\/+|\/+$/g, "").split("/")[0];
-  if (seg === "result" || seg === "compare" || seg === "changes" || seg === "data") return seg;
+  if (seg === "result" || seg === "compare" || seg === "changes" || seg === "data" || seg === "places") return seg;
   return "home";
 }
 
@@ -30,7 +30,8 @@ function subscribe(l: () => void) {
 const getSnapshot = () => window.location.pathname + window.location.search;
 
 // 빌드 시 정적 HTML을 그릴 때 쓰는 주소 (브라우저에서는 쓰지 않음)
-let serverUrl = "/";
+// 브라우저에서 이어받기(hydrate)할 때도 React가 이 값을 읽으므로 현재 주소로 시작한다
+let serverUrl = typeof window !== "undefined" ? window.location.pathname + window.location.search : "/";
 export function setServerUrl(url: string) {
   serverUrl = url;
 }
@@ -43,10 +44,31 @@ function regionOf(pathname: string): string | undefined {
   return m?.[1];
 }
 
-export function useLocation(): { route: Route; params: URLSearchParams; regionId?: string } {
+/** 아이랑 갈 곳 하위 경로: /places/ · /places/indoor/ · /places/<시도>/ · /places/<시도>/<지역>/ */
+export type PlacesPath = { kind: "home" } | { kind: "indoor" } | { kind: "sido"; sido: string } | { kind: "region"; sido: string; slug: string };
+export function placesPathOf(pathname: string): PlacesPath {
+  const p = pathname.startsWith(BASE) ? pathname.slice(BASE.length) : pathname;
+  const all = p.replace(/^\/+|\/+$/g, "").split("/");
+  const segs = all.slice(all.indexOf("places") + 1).filter(Boolean);
+  if (segs[0] === "indoor") return { kind: "indoor" };
+  if (segs.length >= 2) return { kind: "region", sido: segs[0]!, slug: segs[1]! };
+  if (segs.length === 1) return { kind: "sido", sido: segs[0]! };
+  return { kind: "home" };
+}
+/** 아이랑 갈 곳 주소. 지역 slug는 regions.json id에서 시도 접두어를 뗀 것 (seoul-gangseo → gangseo) */
+export function placesHref(sub = "", query?: string): string {
+  return `${BASE}/places/${sub ? `${sub.replace(/^\/|\/$/g, "")}/` : ""}${query ? `?${query}` : ""}`;
+}
+export function navigateHref(href: string) {
+  window.history.pushState(null, "", href);
+  window.scrollTo(0, 0);
+  emit();
+}
+
+export function useLocation(): { route: Route; params: URLSearchParams; regionId?: string; pathname: string } {
   const snap = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
   const url = new URL(snap, "http://localhost");
-  return { route: routeOf(url.pathname), params: url.searchParams, regionId: regionOf(url.pathname) };
+  return { route: routeOf(url.pathname), params: url.searchParams, regionId: regionOf(url.pathname), pathname: url.pathname };
 }
 
 export function navigate(route: Route, query?: string) {
