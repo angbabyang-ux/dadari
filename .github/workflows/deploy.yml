@@ -17,6 +17,10 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    # e2e의 webServer도 다시 빌드하므로, 두 빌드가 같은 값을 쓰도록 작업 전체에 건다
+    env:
+      SITE_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/
+      VITE_REPO: ${{ github.repository }} # 장소 카드 '정보가 달라졌어요' → 이 저장소의 새 이슈
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -26,9 +30,6 @@ jobs:
       - run: npm ci
       - run: npm test
       - run: npm run build
-        env:
-          SITE_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/
-          VITE_REPO: ${{ github.repository }} # 장소 카드 '정보가 달라졌어요' → 이 저장소의 새 이슈
       - run: npx playwright install --with-deps chromium
       - run: npx playwright test
       - uses: actions/upload-pages-artifact@v3
