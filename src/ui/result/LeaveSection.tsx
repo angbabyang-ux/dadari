@@ -80,7 +80,9 @@ function InfoRow({ b, period }: { b: Benefit; period: string }) {
 export function LeaveCard({ applied, result, input, scenario }: { applied: Input; result: Result; input: Input; scenario: Scenario }) {
   const bundle = leaveBundle(applied, result);
   const rows = useMemo(() => (availablePlans(input).includes("b") ? compareScenarios(input, scenario) : []), [input, scenario]);
-  const best = rows.length ? rows.reduce((a, b) => (b.total > a.total ? b : a)) : undefined;
+  // 합계가 같은 조합이 여럿이면 모두 "가장 많아요"
+  const maxTotal = rows.length ? Math.max(...rows.map((r) => r.total)) : -1;
+  const isBest = (r: { total: number }) => r.total === maxTotal && maxTotal > 0;
   const wageMissing = (["mother", "father"] as const).some((w) => applied[w].leave && !applied[w].wage);
 
   return (
@@ -157,26 +159,26 @@ export function LeaveCard({ applied, result, input, scenario }: { applied: Input
           <h3 className="font-serif text-lg font-semibold pb-1">어떻게 나눠 쓰면 가장 많이 받을까요?</h3>
           <p className="text-sm text-ink-2">휴직 급여와 지자체 장려금을 더한 값이에요. 부모급여·아동수당은 어느 조합이든 같아요.</p>
           <div className="overflow-x-auto mt-2">
-            <table className="w-full text-sm num min-w-[440px]">
+            <table className="w-full text-sm num">
               <caption className="sr-only">육아휴직 조합별 금액 비교</caption>
               <thead>
                 <tr className="rule-b text-left text-ink-2">
                   <th scope="col" className="py-2 font-medium">조합</th>
-                  <th scope="col" className="py-2 font-medium text-right">휴직 급여</th>
-                  <th scope="col" className="py-2 font-medium text-right">지자체</th>
+                  <th scope="col" className="py-2 font-medium text-right hidden sm:table-cell">휴직 급여</th>
+                  <th scope="col" className="py-2 font-medium text-right hidden sm:table-cell">지자체</th>
                   <th scope="col" className="py-2 font-medium text-right">합계</th>
                 </tr>
               </thead>
               <tbody>
                 {rows.map((r) => (
-                  <tr key={r.key} className={`rule-b ${r === best ? "bg-paper-2" : ""}`}>
+                  <tr key={r.key} className={`rule-b ${isBest(r) ? "bg-paper-2" : ""}`}>
                     <th scope="row" className="py-3 pl-1 text-left font-semibold">
                       {r.label}
-                      {r === best && <span className="badge ml-2 bg-ink text-paper border-ink font-normal">가장 많아요</span>}
+                      {isBest(r) && <span className="badge ml-2 bg-ink text-paper border-ink font-normal">가장 많아요</span>}
                     </th>
-                    <td className="py-3 text-right">{formatWon(r.pay)}</td>
-                    <td className="py-3 text-right">{r.local ? formatWon(r.local) : "—"}</td>
-                    <td className={`py-3 pr-1 text-right ${r === best ? "font-bold" : ""}`}>{formatWon(r.total)}</td>
+                    <td className="py-3 text-right hidden sm:table-cell">{formatWon(r.pay)}</td>
+                    <td className="py-3 text-right hidden sm:table-cell">{r.local ? formatWon(r.local) : "—"}</td>
+                    <td className={`py-3 pr-1 text-right ${isBest(r) ? "font-bold" : ""}`}>{formatWon(r.total)}</td>
                   </tr>
                 ))}
               </tbody>
