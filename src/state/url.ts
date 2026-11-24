@@ -117,5 +117,5 @@ export function scenarioFrom(p: URLSearchParams): Scenario {
 
 /** 결과 화면 고유 설정(시나리오·필터)을 유지한 채 입력값만 바꾼 쿼리 */
 export function withDraft(p: URLSearchParams, d: Draft): string {
-  return draftToParams(d, { sc: p.get("sc") ?? undefined, f: p.get("f") ?? undefined, cmp: p.get("cmp") ?? undefined });
+  return draftToParams(d, { sc: p.get("sc") ?? undefined, f: p.get("f") ?? undefined, cmp: p.get("cmp") ?? undefined, lv: p.get("lv") ?? undefined });
 }

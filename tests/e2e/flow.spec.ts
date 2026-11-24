@@ -77,3 +77,39 @@ test("월 막대를 키보드로 열고 닫는다", async ({ page }) => {
   await page.keyboard.press("Escape");
   await expect(sheet).toHaveCount(0);
 });
+
+test("육아휴직 스위치로 증가분을 보고, 첫만남이용권 사용처를 펼쳐 본다", async ({ page }) => {
+  // 강서구, 엄마만 고용보험(통상임금 300만), 아빠는 일하지 않음 → 스위치를 켜면 엄마 12개월
+  await page.goto("result/?b=2026-12-15&sd=seoul&sg=seoul-gangseo&mw=300&fe=n");
+  const total = page.getByLabel("요약").locator("[aria-label]").first();
+  await expect(total).toHaveAttribute("aria-label", /만 원/);
+  const before = await total.getAttribute("aria-label");
+
+  const sw = page.getByRole("switch", { name: "육아휴직 써요" });
+  await expect(sw).toHaveAttribute("aria-checked", "false");
+  await sw.click();
+  await expect(sw).toHaveAttribute("aria-checked", "true");
+  await expect(page).toHaveURL(/lv=m/);
+
+  // 증가분: 지시서 T1과 같은 2,310만 원
+  await expect(page.getByTestId("leave-delta")).toHaveText("+2,310만 원 육아휴직으로 늘어요");
+  await expect(total).not.toHaveAttribute("aria-label", before!);
+  await expect(page.getByRole("heading", { name: "휴직하면 받는 것" })).toBeVisible();
+  await expect(page.getByText("휴직이 끝나고 12개월 안에 신청하지 않으면 받을 수 없어요.")).toBeVisible();
+  await expect(page.locator("svg text", { hasText: "엄마 육아휴직 12개월" })).toBeVisible();
+
+  // 끄면 원래 금액으로
+  await sw.click();
+  await expect(total).toHaveAttribute("aria-label", before!);
+  await expect(page.getByTestId("leave-delta")).toHaveText("");
+
+  // 첫만남이용권 "이렇게 써요"
+  const card = page.getByRole("button", { name: /첫만남이용권/ }).first();
+  await card.click();
+  await expect(card).toHaveAttribute("aria-expanded", "true");
+  const panel = page.getByRole("region", { name: "첫만남이용권 이렇게 써요" });
+  await expect(panel.getByRole("heading", { name: "쓸 수 있는 곳" })).toBeVisible();
+  await expect(panel.getByText("온라인 구매도 돼요. 제외 업종은 온라인에서도 안 돼요.")).toBeVisible();
+  await expect(panel.getByText(/유흥업소/)).toBeVisible();
+  await expect(panel.getByText(/2028년 12월 14일까지/)).toBeVisible();
+});
