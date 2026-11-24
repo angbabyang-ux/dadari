@@ -115,7 +115,7 @@ function PlacesHome() {
   return (
     <>
       <h1 className="font-serif text-3xl md:text-5xl font-semibold pt-10 pb-3 rule-b">아이랑 갈 곳</h1>
-      <p className="pt-4 max-w-2xl">서울 25개 구와 경기 31개 시·군에서 아이와 갈 만한 키즈카페·도서관·박물관·공원을 공공데이터로 모았어요.</p>
+      <p className="pt-4 max-w-2xl min-h-[5.5rem] md:min-h-0">서울 25개 구와 경기 31개 시·군에서 아이와 갈 만한 키즈카페·도서관·박물관·공원을 공공데이터로 모았어요.</p>
       <ul className="grid md:grid-cols-2 gap-x-8 pt-6">
         {SIDO_IDS.map((s) => {
           const rs = regionsOfSido(s);
@@ -163,12 +163,13 @@ function SidoPage({ sido }: { sido: SidoId }) {
         <h2 id="pick-region" className="font-semibold">
           {sido === "seoul" ? "구" : "시·군"}를 골라 주세요.
         </h2>
-        <ul className="flex flex-wrap gap-2 pt-3">
+        {/* 칸 수를 고정해 웹폰트가 늦게 바뀌어도 줄 수가 달라지지 않게 한다 */}
+        <ul className="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-7 gap-2 pt-3">
           {rs.map((r) => (
             <li key={r.id}>
-              <Link href={placesHref(`${sido}/${slugOf(r.id)}`)} className="chip no-underline">
+              <Link href={placesHref(`${sido}/${slugOf(r.id)}`)} className="chip no-underline w-full justify-between">
                 {r.sigungu}
-                <span className="num text-ink-2 ml-1.5">{regionCount(r.id).total}</span>
+                <span className="num text-ink-2">{regionCount(r.id).total}</span>
               </Link>
             </li>
           ))}
