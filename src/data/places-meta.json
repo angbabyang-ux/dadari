@@ -31,6 +31,12 @@
    "org": "서울특별시",
    "license": "공식 누리집 안내"
   },
+  "commons": {
+   "name": "위키미디어 공용 (장소 사진)",
+   "url": "https://commons.wikimedia.org/",
+   "org": "Wikimedia Commons",
+   "license": "사진마다 CC 등 자유 이용 라이선스, 저작자 표시"
+  },
   "parking": {
    "name": "전국주차장정보표준데이터",
    "url": "https://www.data.go.kr/data/15012896/standard.do",

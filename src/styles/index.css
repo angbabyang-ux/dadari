@@ -249,5 +249,7 @@ a { color: inherit; text-underline-offset: 3px; }
 
 /* 화면 밖 긴 섹션은 보일 때까지 스타일·레이아웃 계산을 건너뛴다 (폰트 교체·카운트업 때 비용 절약) */
 .cv-auto { content-visibility: auto; contain-intrinsic-size: auto 1600px; }
+/* 장소 카드: 화면 밖 카드는 그리기를 미룬다 (실내 모음처럼 카드가 많은 화면) */
+.cv-card { content-visibility: auto; contain-intrinsic-size: auto 200px; }
 /* 카운트업 숫자가 바뀌어도 바깥 레이아웃을 다시 계산하지 않게 가둔다 */
 .contain-box { contain: layout paint; }

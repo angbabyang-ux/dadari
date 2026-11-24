@@ -105,3 +105,19 @@ describe("이용 연령 문구 → 연령대", () => {
     expect(ageBands("")).toBeNull();
   });
 });
+
+import { tilesFor, worldPx } from "../../src/ui/places/PlaceThumb";
+describe("위치 지도 조각", () => {
+  it("장소가 창 한가운데 오도록 조각을 놓는다", () => {
+    const lat = 37.55719, lng = 126.8517;
+    const tiles = tilesFor(lat, lng, 96);
+    expect(tiles.length).toBeGreaterThanOrEqual(1);
+    expect(tiles.length).toBeLessThanOrEqual(4);
+    const { x, y } = worldPx(lat, lng);
+    // 장소의 픽셀이 들어 있는 조각에서, 창 안 위치가 (48, 48)이어야 한다
+    const tx = Math.floor(x / 128), ty = Math.floor(y / 128);
+    const t = tiles.find((k) => k.src.endsWith(`/17/${tx}/${ty}.png`))!;
+    expect(Math.abs(t.dx + (x - tx * 128) - 48)).toBeLessThanOrEqual(1);
+    expect(Math.abs(t.dy + (y - ty * 128) - 48)).toBeLessThanOrEqual(1);
+  });
+});

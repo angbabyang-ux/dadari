@@ -280,6 +280,7 @@ export function pick(list) {
 /* ───── 보강: 공식 페이지·주변 공공데이터로 빈칸 채우기 ───── */
 export const EXTRA_SOURCES = {
   icare: { name: "서울시 우리동네키움포털 서울형 키즈카페 시설 안내", url: "https://umppa.seoul.go.kr/icare/user/kidsCafe/BD_selectKidsCafeList.do", org: "서울특별시", license: "공식 누리집 안내" },
+  commons: { name: "위키미디어 공용 (장소 사진)", url: "https://commons.wikimedia.org/", org: "Wikimedia Commons", license: "사진마다 CC 등 자유 이용 라이선스, 저작자 표시" },
   parking: { name: "전국주차장정보표준데이터", url: "https://www.data.go.kr/data/15012896/standard.do", org: "공공데이터포털", license: "공공데이터포털 이용정책" },
 };
 const icareUrl = (fid) => `https://umppa.seoul.go.kr/icare/user/kidsCafe/BD_selectKidsCafeView.do?q_fcltyId=${encodeURIComponent(fid)}&q_fcltyStle=`;
@@ -395,6 +396,110 @@ function parkingRows(rows) {
     .filter((x) => x.name && validLatLng(x.lat, x.lng));
 }
 
+/* ───── 사진: 위키미디어 공용의 자유 이용 사진만 (이름이 정확히 맞고 가까울 때) ───── */
+const WM_UA = { "User-Agent": "dadari-places/1.0 (https://github.com/angbabyang-ux/dadari)" };
+async function wmJson(u) {
+  const r = await fetch(u, { headers: WM_UA });
+  if (!r.ok) throw new Error(`${r.status}`);
+  return r.json();
+}
+const squash = (s) => s.replace(/\(.*?\)|\[.*?\]/g, "").replace(/[\s·.,_-]/g, "");
+const stripTags = (s) => (s ?? "").replace(/<[^>]+>/g, "").replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/\s+/g, " ").trim();
+
+/** 파일 하나의 썸네일 주소·저작자·라이선스 (자유 이용 라이선스가 아니면 null) */
+async function fileInfo(title) {
+  const j = await wmJson(`https://commons.wikimedia.org/w/api.php?action=query&titles=${encodeURIComponent(title)}&prop=imageinfo&iiprop=url|extmetadata&iiurlwidth=250&format=json`);
+  const page = Object.values(j.query?.pages ?? {})[0];
+  const ii = page?.imageinfo?.[0];
+  if (!ii?.thumburl) return null;
+  const m = ii.extmetadata ?? {};
+  const license = stripTags(m.LicenseShortName?.value);
+  if (!/^(CC|Public domain|PD|CC0|KOGL)/i.test(license)) return null;
+  return {
+    url: ii.thumburl.split("?")[0], // 추적용 쿼리는 뺀다
+    page: ii.descriptionurl,
+    author: stripTags(m.Artist?.value).slice(0, 80) || "작자 미상",
+    license,
+    licenseUrl: m.LicenseUrl?.value || null,
+  };
+}
+
+/** 위키데이터 대표 사진(P18, 좌표 600m 안) → 없으면 공용 사진 중 250m 안·파일 이름에 장소 이름 전체가 들어간 것 */
+async function findPhoto(p) {
+  const name = p.name.replace(/\(.*?\)/g, "").trim();
+  const key = squash(name);
+  if (key.length < 3) return null;
+  try {
+    const s = await wmJson(`https://www.wikidata.org/w/api.php?action=wbsearchentities&search=${encodeURIComponent(name)}&language=ko&uselang=ko&limit=5&format=json`);
+    const ids = (s.search ?? []).map((x) => x.id);
+    if (ids.length) {
+      const e = await wmJson(`https://www.wikidata.org/w/api.php?action=wbgetentities&ids=${ids.join("|")}&props=claims&format=json`);
+      for (const id of ids) {
+        const c = e.entities?.[id]?.claims ?? {};
+        const img = c.P18?.[0]?.mainsnak?.datavalue?.value;
+        const co = c.P625?.[0]?.mainsnak?.datavalue?.value;
+        if (img && co && distM(p, { lat: co.latitude, lng: co.longitude }) <= 600) {
+          const info = await fileInfo(`File:${img}`);
+          if (info) return info;
+        }
+      }
+    }
+    const g = await wmJson(`https://commons.wikimedia.org/w/api.php?action=query&list=geosearch&gscoord=${p.lat}|${p.lng}&gsradius=250&gsnamespace=6&gslimit=50&format=json`);
+    const hit = (g.query?.geosearch ?? []).find((x) => squash(x.title.replace(/^File:/, "").replace(/\.\w+$/, "")).includes(key));
+    if (hit) return await fileInfo(hit.title);
+  } catch {
+    /* 사진 없이 둔다 */
+  }
+  return null;
+}
+
+/** 자유 이용 사진을 우리 사이트로 내려받아 직접 제공한다 (외부 쿠키·캐시 문제를 없애기 위해, 라이선스상 재배포 가능) */
+export const PHOTO_DIR = "public/place-photos";
+export async function storePhotos(list) {
+  mkdirSync(PHOTO_DIR, { recursive: true });
+  const keep = new Set();
+  for (const p of list) {
+    if (!p.photo) continue;
+    const origin = p.photo.origin ?? p.photo.url;
+    const file = `${p.id}.jpg`;
+    try {
+      const r = await fetch(origin, { headers: WM_UA });
+      if (!r.ok) throw new Error(String(r.status));
+      writeFileSync(join(PHOTO_DIR, file), Buffer.from(await r.arrayBuffer()));
+      p.photo = { ...p.photo, url: `place-photos/${file}`, origin };
+      keep.add(file);
+    } catch {
+      delete p.photo; // 못 받은 사진은 지도로 대신한다
+    }
+  }
+  for (const f of readdirSync(PHOTO_DIR)) if (!keep.has(f)) rmSync(join(PHOTO_DIR, f));
+  return keep.size;
+}
+
+/** 장소가 아닌 사진(역·출구·표지판, 장소 이름이 붙은 도로)을 거른다 */
+export function badPhotoTitle(placeName, fileUrlOrTitle, category) {
+  const t = decodeURIComponent(String(fileUrlOrTitle).split("/").pop() ?? "").replace(/_/g, " ");
+  if (/station|exit|sign|역\s|역\.|출구|표지/i.test(t)) return true;
+  // 공원은 파일 이름에 공원·숲·산이 있어야 한다 (이름만 같은 동네·역 사진을 거르기 위해)
+  if (category === "park" && !/공원|숲|산|park|forest/i.test(t)) return true;
+  const key = squash(placeName.replace(/\(.*?\)/g, ""));
+  const flat = squash(t);
+  const i = flat.indexOf(key);
+  return i >= 0 && /^(로|길|역)/.test(flat.slice(i + key.length));
+}
+
+async function enrichPhotos(list) {
+  let n = 0;
+  for (let i = 0; i < list.length; i += 4) {
+    const part = list.slice(i, i + 4);
+    const found = await Promise.all(part.map(findPhoto));
+    part.forEach((p, k) => {
+      if (found[k] && !badPhotoTitle(p.name, found[k].page, p.category)) (p.photo = found[k]), n++;
+    });
+  }
+  return n;
+}
+
 const STRIP = ["kids", "size", "public", "play", "big", "fid"];
 function finalize(p) {
   const o = { ...p };
@@ -422,6 +527,9 @@ async function main() {
   if (enriched < kidsTotal / 2) throw new Error(`키움포털 시설 페이지를 ${enriched}/${kidsTotal}곳만 읽음`);
   for (const f of readdirSync(OUT)) if (f.endsWith(".json")) rmSync(join(OUT, f)); // 모두 받은 뒤에만 지우고 새로 쓴다
   enrichNearby(chosenAll, lots);
+  await enrichPhotos(chosenAll);
+  const photos = await storePhotos(chosenAll);
+  console.log(`자유 이용 사진 ${photos}곳`);
   console.log(`키즈카페 공식 페이지 보강 ${enriched}/${chosenAll.filter((p) => p.category === "kidscafe").length} · 공영주차장 근처 ${chosenAll.filter((p) => p.nearbyParking).length}`);
   for (const r of regions) {
     const chosen = raw[r.id].map(finalize);

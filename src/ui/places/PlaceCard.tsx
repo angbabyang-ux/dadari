@@ -3,6 +3,7 @@ import { useId, useState } from "react";
 import type { Place } from "../../data/schema";
 import { AGE_LABEL } from "../../places/filter";
 import { kakaoMapHref, naverMapHref, reportHref } from "../../places/links";
+import { PlaceThumb } from "./PlaceThumb";
 
 export const SETTING_LABEL: Record<Place["setting"], string> = { indoor: "실내", outdoor: "야외", mixed: "실내외" };
 export const CATEGORY_LABEL: Record<Place["category"], string> = { kidscafe: "키즈카페", library: "도서관", museum: "박물관·미술관", park: "공원" };
@@ -20,10 +21,12 @@ export function PlaceCard({ p, regionLabel }: { p: Place; regionLabel?: string }
   const [everOpened, setEverOpened] = useState(false);
   const panelId = useId();
   return (
-    <li className="card border-rule p-4" id={p.id}>
+    <li className="card border-rule p-4 cv-card" id={p.id}>
       <button type="button" className="w-full text-left block min-h-11" aria-expanded={open} aria-controls={panelId} onClick={() => (setOpen(!open), setEverOpened(true))}>
-        {/* 레퍼런스 결과 카드: 왼쪽 이름·설명 | 오른쪽 수치 칸(연령·요금) */}
-        <span className="grid sm:grid-cols-[1fr_13rem] gap-x-6 gap-y-3">
+        {/* 레퍼런스 결과 카드: 왼쪽 사진(로고 자리) | 이름·설명 | 오른쪽 수치 칸(연령·요금) */}
+        <span className="flex gap-4">
+        <PlaceThumb p={p} />
+        <span className="grid flex-1 min-w-0 sm:grid-cols-[1fr_13rem] gap-x-6 gap-y-3">
           <span className="block">
             <span className="block font-semibold leading-snug">{p.name}</span>
             <span className="mt-1.5 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-ink-3">
@@ -50,6 +53,7 @@ export function PlaceCard({ p, regionLabel }: { p: Place; regionLabel?: string }
               <span className="stat-value">{feeText(p)}</span>
             </span>
           </span>
+        </span>
         </span>
         <span className="block text-sm text-accent font-medium mt-3">{open ? "접기" : "운영 정보 보기"}</span>
       </button>
@@ -131,6 +135,15 @@ function Details({ p }: { p: Place }) {
         {p.detailSource && (
           <a href={p.detailSource} target="_blank" rel="noreferrer" className="inline-block py-1">
             운영 정보 · 우리동네키움포털
+          </a>
+        )}
+        {p.photo ? (
+          <a href={p.photo.page} target="_blank" rel="noreferrer" className="inline-block py-1">
+            사진 · {p.photo.author} · {p.photo.license} · 위키미디어 공용
+          </a>
+        ) : (
+          <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer" className="inline-block py-1">
+            지도 © OpenStreetMap 기여자
           </a>
         )}
         {lot && (

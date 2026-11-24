@@ -61,6 +61,6 @@ describe("아이랑 가볼만한 곳 데이터", () => {
   });
 
   it("블로그 등 비공식 출처를 쓰지 않는다", () => {
-    for (const s of [...Object.values(meta.sources).map((x) => x.url), ...meta.extra]) expect(s).toMatch(/^https:\/\/(data\.seoul\.go\.kr|www\.data\.go\.kr|mediahub\.seoul\.go\.kr|umppa\.seoul\.go\.kr)\//);
+    for (const s of [...Object.values(meta.sources).map((x) => x.url), ...meta.extra]) expect(s).toMatch(/^https:\/\/(data\.seoul\.go\.kr|www\.data\.go\.kr|mediahub\.seoul\.go\.kr|umppa\.seoul\.go\.kr|commons\.wikimedia\.org)\//);
   });
 });

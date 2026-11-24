@@ -537,7 +537,15 @@
     "phone": "02-813-6740",
     "source": "library",
     "sourceUrl": "https://www.data.go.kr/data/15013109/standard.do",
-    "lastVerified": "2025-12-02"
+    "lastVerified": "2025-12-02",
+    "photo": {
+     "url": "place-photos/lb-1v3s6ct.jpg",
+     "page": "https://commons.wikimedia.org/wiki/File:Daebang_Children%27s_Library.jpg",
+     "author": "Aspere",
+     "license": "CC0",
+     "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+     "origin": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/45/Daebang_Children%27s_Library.jpg/250px-Daebang_Children%27s_Library.jpg"
+    }
    }
   ],
   "gyeonggi": [
@@ -580,6 +588,14 @@
      "m": 296,
      "spaces": 10,
      "fee": "무료"
+    },
+    "photo": {
+     "url": "place-photos/lb-1k7aozx.jpg",
+     "page": "https://commons.wikimedia.org/wiki/File:230903_%EC%83%81%EB%A1%9D%EC%96%B4%EB%A6%B0%EC%9D%B4%EB%8F%84%EC%84%9C%EA%B4%80.jpg",
+     "author": "Aspere",
+     "license": "CC0",
+     "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+     "origin": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fc/230903_%EC%83%81%EB%A1%9D%EC%96%B4%EB%A6%B0%EC%9D%B4%EB%8F%84%EC%84%9C%EA%B4%80.jpg/250px-230903_%EC%83%81%EB%A1%9D%EC%96%B4%EB%A6%B0%EC%9D%B4%EB%8F%84%EC%84%9C%EA%B4%80.jpg"
     }
    },
    {

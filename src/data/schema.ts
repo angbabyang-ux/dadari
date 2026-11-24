@@ -227,6 +227,7 @@ export const Place = z.object({
   manager: z.string().nullable().optional(), // 공원 관리기관
   parkingNote: z.string().optional(), // 시설 공식 페이지의 주차 안내 문구 그대로
   detailSource: z.string().url().optional(), // 운영 정보를 읽어 온 공식 페이지 목록 주소
+  photo: z.object({ url: z.string().regex(/^place-photos\/[a-z0-9-]+\.jpg$/), origin: z.string().url().regex(/^https:\/\/(upload|thumb)\.wikimedia\.org\//), page: z.string().url(), author: z.string(), license: z.string(), licenseUrl: z.string().url().nullable() }).optional(),
   nearbyParking: z.object({ name: z.string(), m: z.number().int().nonnegative().max(300), spaces: z.number().int().positive().nullable(), fee: z.string().nullable() }).optional(),
   source: z.enum(["kidscafe", "library", "museum", "park"]),
   sourceUrl: z.string().url().startsWith("https://"),
