@@ -86,8 +86,9 @@ export function ResultPage({ input, params }: { input: Input; params: URLSearchP
   };
 
   return (
-    <div className="mx-auto max-w-6xl px-4 md:px-8 pb-24">
-      <p className="pt-4 text-sm text-ink-2">
+    <>
+    <div className="mx-auto max-w-[864px] px-4 pb-8">
+      <p className="pt-6 text-sm text-ink-3">
         참고용 계산이에요. 실제 지급액은 신청 기관의 심사로 정해져요.{" "}
         <a href={hrefFor("data")} onClick={(e) => (e.preventDefault(), navigate("data"))}>
           계산 방법과 출처
@@ -96,8 +97,8 @@ export function ResultPage({ input, params }: { input: Input; params: URLSearchP
 
       <header className="pt-4 pb-4 rule-b md:flex md:items-end md:gap-6">
         <div className="flex-1">
-          <h1 className="font-serif text-2xl md:text-3xl font-semibold leading-snug">{describeInput(input)}</h1>
-          <p className="text-sm text-ink-2 mt-1 num">
+          <h1 className="text-2xl md:text-[30px] md:leading-9 font-bold">{describeInput(input)}</h1>
+          <p className="text-sm text-ink-3 mt-2 num">
             {result.rows[0]!.month.replace("-", ". ")} ~ {result.rows.at(-1)!.month.replace("-", ". ")} · 입학 직전까지 {result.rows.length}개월
           </p>
         </div>
@@ -153,11 +154,16 @@ export function ResultPage({ input, params }: { input: Input; params: URLSearchP
         {plan !== "off" && <LeaveCard applied={applied} result={result} input={input} scenario={scenario} />}
       </section>
 
-      <section aria-labelledby="by-month" className="pt-10">
-        <h2 id="by-month" className="font-serif text-xl font-semibold pb-2 rule-b border-ink">
+    </div>
+
+    {/* 결과 띠: 레퍼런스의 비교 결과 영역처럼 회색 바탕 위 흰 카드 */}
+    <div className="band pb-16">
+    <div className="mx-auto max-w-[864px] px-4">
+      <section aria-labelledby="by-month" className="pt-8">
+        <h2 id="by-month" className="text-lg font-bold pb-3">
           달마다 들어오는 돈
         </h2>
-        <div className="flex gap-2 overflow-x-auto py-4 -mx-4 px-4 md:mx-0 md:px-0 no-print" aria-label="필터">
+        <div className="flex gap-2 overflow-x-auto pb-3 -mx-4 px-4 md:mx-0 md:px-0 no-print" aria-label="필터">
           {FILTERS.map((f) => (
             <button key={f.key} type="button" className="chip" aria-pressed={filter === f.key} onClick={() => setParam("f", f.key === "all" ? undefined : f.key)}>
               {f.label}
@@ -167,9 +173,10 @@ export function ResultPage({ input, params }: { input: Input; params: URLSearchP
             {includeUnconfirmed ? "미확정 포함" : "미확정 제외"}
           </button>
         </div>
+        <div className="card p-4">
         <div className="flex items-center justify-between gap-4 pb-2">
           <Legend />
-          <button type="button" className="text-sm underline underline-offset-4 shrink-0 min-h-11 no-print" onClick={() => setAsTable(!asTable)} aria-pressed={asTable}>
+          <button type="button" className="text-sm text-accent font-medium shrink-0 min-h-11 no-print" onClick={() => setAsTable(!asTable)} aria-pressed={asTable}>
             {asTable ? "차트로 보기" : "표로 보기"}
           </button>
         </div>
@@ -178,10 +185,11 @@ export function ResultPage({ input, params }: { input: Input; params: URLSearchP
         ) : (
           <Ribbon rows={shown} selected={selected} onSelect={setSelected} currentMonth={currentMonth} milestones={milestonesFor(input, shown.length)} leaveRuns={leaveRuns} growKey={plan} />
         )}
+        </div>
       </section>
 
-      <section aria-labelledby="by-period" className="pt-10 cv-auto">
-        <h2 id="by-period" className="font-serif text-xl font-semibold pb-2 rule-b border-ink">
+      <section aria-labelledby="by-period" className="pt-8 cv-auto">
+        <h2 id="by-period" className="text-lg font-bold pb-3">
           시기별로 받는 돈
         </h2>
         <BenefitList rows={shown} birthDate={input.birthDate} today={today} />
@@ -193,14 +201,16 @@ export function ResultPage({ input, params }: { input: Input; params: URLSearchP
         <ExcludedList items={result.ended} title="종료된 제도" />
       </section>
 
-      <section aria-labelledby="todo" className="pt-10 cv-auto">
-        <h2 id="todo" className="font-serif text-xl font-semibold pb-2 rule-b border-ink">
+      <section aria-labelledby="todo" className="pt-8 cv-auto">
+        <h2 id="todo" className="text-lg font-bold pb-3">
           신청할 것
         </h2>
-        <Checklist result={result} input={applied} />
+        <div className="card px-4">
+          <Checklist result={result} input={applied} />
+        </div>
       </section>
 
-      <div className="flex flex-wrap gap-2 pt-10 no-print">
+      <div className="flex flex-wrap gap-2 pt-8 no-print">
         <button type="button" className="btn" onClick={copy}>
           {copied ? "주소를 복사했어요" : "결과 주소 복사"}
         </button>
@@ -222,6 +232,8 @@ export function ResultPage({ input, params }: { input: Input; params: URLSearchP
         />
       )}
     </div>
+    </div>
+    </>
   );
 }
 
@@ -241,7 +253,7 @@ function SummaryStrip({ summary: s, delta }: { summary: ReturnType<typeof summar
     <section aria-label="요약" className="grid md:grid-cols-12 gap-x-8 pt-6">
       <div className="md:col-span-5 pb-4 md:pb-0">
         <p className="text-sm text-ink-2">입학 전까지 모두</p>
-        <p className="font-serif font-semibold text-accent text-[40px] md:text-[56px] leading-none mt-1 h-[1em] contain-box">
+        <p className="font-bold text-accent text-[36px] md:text-[44px] leading-none mt-2 h-[1em] contain-box">
           <CountUp value={s.total} />
         </p>
         <p className="mt-2 min-h-7 font-semibold text-accent text-lg num" aria-live="polite" data-testid="leave-delta">
@@ -277,8 +289,8 @@ function PlacesLink({ input }: { input: Input }) {
   if (!r || !/^(seoul|gyeonggi)-/.test(r.id)) return null;
   const href = placesHref(r.id.replace(/^(seoul|gyeonggi)-/, "$1/"));
   return (
-    <section className="mt-12 rule-t pt-6 no-print">
-      <a href={href} onClick={(e) => (e.preventDefault(), navigateHref(href))} className="font-serif text-xl font-semibold">
+    <section className="mt-8 card p-4 no-print">
+      <a href={href} onClick={(e) => (e.preventDefault(), navigateHref(href))} className="font-semibold text-accent no-underline">
         {r.sigungu}에서 아이랑 가볼만한 곳
       </a>
       <p className="text-sm text-ink-2 mt-1">키즈카페·도서관·박물관·공원을 실내·무료·연령으로 골라 볼 수 있어요.</p>

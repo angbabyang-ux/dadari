@@ -22,37 +22,42 @@ export function PlaceCard({ p, regionLabel }: { p: Place; regionLabel?: string }
   const [everOpened, setEverOpened] = useState(false);
   const panelId = useId();
   return (
-    <li className="py-4 rule-b" id={p.id}>
+    <li className="card border-rule p-4" id={p.id}>
       <button type="button" className="w-full text-left block min-h-11" aria-expanded={open} aria-controls={panelId} onClick={() => (setOpen(!open), setEverOpened(true))}>
-        <span className="flex items-baseline gap-2 flex-wrap">
-          <span className="font-semibold text-lg leading-snug">{p.name}</span>
+        {/* 레퍼런스 결과 카드: 왼쪽 이름·설명 | 오른쪽 수치 칸(연령·요금) */}
+        <span className="grid sm:grid-cols-[1fr_13rem] gap-x-6 gap-y-3">
+          <span className="block">
+            <span className="block font-semibold leading-snug">{p.name}</span>
+            <span className="mt-1.5 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-ink-3">
+              <span className="badge">{SETTING_LABEL[p.setting]}</span>
+              {p.fee.free === true && <span className="badge badge-best">무료</span>}
+              <span>{CATEGORY_LABEL[p.category]}</span>
+              {regionLabel && (
+                <>
+                  <span aria-hidden>·</span>
+                  <span>{regionLabel}</span>
+                </>
+              )}
+            </span>
+            <span className="block text-sm text-ink-2 mt-2">{p.summary}</span>
+            <span className="block text-xs text-ink-3 mt-1">{p.address}</span>
+          </span>
+          <span className="grid grid-cols-2 sm:grid-cols-1 content-start gap-x-4 gap-y-2 sm:border-l sm:border-rule-soft sm:pl-6">
+            <span className="block">
+              <span className="stat-label">연령</span>
+              <span className="stat-value">{agesText(p)}</span>
+            </span>
+            <span className="block">
+              <span className="stat-label">요금</span>
+              <span className="stat-value">{feeText(p)}</span>
+            </span>
+          </span>
         </span>
-        <span className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-ink-2">
-          <span className="badge text-ink">{SETTING_LABEL[p.setting]}</span>
-          {p.fee.free === true && <span className="badge text-local">무료</span>}
-          <span>{CATEGORY_LABEL[p.category]}</span>
-          {regionLabel && (
-            <>
-              <span aria-hidden>·</span>
-              <span>{regionLabel}</span>
-            </>
-          )}
-        </span>
-        <span className="block text-sm mt-2">{p.summary}</span>
-        <span className="block text-sm mt-1">
-          <span className="text-ink-2">연령 </span>
-          {agesText(p)}
-        </span>
-        <span className="block text-sm">
-          <span className="text-ink-2">요금 </span>
-          {feeText(p)}
-        </span>
-        <span className="block text-sm text-ink-2">{p.address}</span>
-        <span className="block text-sm underline underline-offset-4 decoration-rule mt-1">{open ? "접기" : "운영 정보 보기"}</span>
+        <span className="block text-sm text-accent font-medium mt-3">{open ? "접기" : "운영 정보 보기"}</span>
       </button>
-      <p className="text-xs text-ink-2 flex flex-wrap gap-x-3 items-center">
+      <p className="text-xs text-ink-3 flex flex-wrap gap-x-3 items-center">
         <span className="num">마지막 확인 {p.lastVerified}</span>
-        <a href={reportHref(p)} target="_blank" rel="noreferrer" className="inline-flex items-center min-h-11 text-ink">
+        <a href={reportHref(p)} target="_blank" rel="noreferrer" className="inline-flex items-center min-h-11 text-accent no-underline">
           정보가 달라졌어요
         </a>
       </p>
@@ -92,7 +97,7 @@ function Details({ p }: { p: Place }) {
   if (p.agesText) rows.splice(2, 0, ["이용 연령", p.agesText]);
   if (p.phone) rows.push(["전화", <a href={`tel:${p.phone.replace(/[^0-9]/g, "")}`} className="inline-block py-1 num">{p.phone}</a>]);
   return (
-    <div className="mt-3 border border-rule bg-card px-4 py-3 text-sm">
+    <div className="mt-1 rounded-sm bg-band px-4 py-3 text-sm">
       <dl className="grid grid-cols-[6.5rem_1fr] gap-x-3 gap-y-2">
         {rows.map(([k, v]) => (
           <div key={k} className="contents">

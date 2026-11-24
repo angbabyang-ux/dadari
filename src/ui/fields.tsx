@@ -52,7 +52,7 @@ export function ManwonInput({ id, value, onChange, placeholder }: { id: string; 
     <div className="flex items-center gap-2">
       <input
         id={id}
-        className="field num max-w-48"
+        className="field num flex-1"
         inputMode="numeric"
         pattern="[0-9]*"
         placeholder={placeholder}
@@ -69,7 +69,7 @@ export function ManwonInput({ id, value, onChange, placeholder }: { id: string; 
 
 export function MonthSelect({ id, value, onChange, from = 0, to = 72 }: { id: string; value: number; onChange: (n: number) => void; from?: number; to?: number }) {
   return (
-    <select id={id} className="field max-w-56" value={value} onChange={(e) => onChange(Number(e.target.value))}>
+    <select id={id} className="field" value={value} onChange={(e) => onChange(Number(e.target.value))}>
       {Array.from({ length: to - from + 1 }, (_, i) => from + i).map((m) => (
         <option key={m} value={m}>
           {m === 0 ? "태어난 달" : `생후 ${m}개월${m % 12 === 0 ? ` (만 ${m / 12}세)` : ""}`}

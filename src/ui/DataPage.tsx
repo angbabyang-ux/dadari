@@ -15,7 +15,7 @@ export function DataPage() {
 
   return (
     <div className="mx-auto max-w-6xl px-4 md:px-8 pb-24">
-      <h1 className="font-serif text-2xl md:text-4xl font-semibold pt-8 pb-3 rule-b">데이터와 계산 방법</h1>
+      <h1 className="text-2xl md:text-4xl font-bold pt-8 pb-3 rule-b">데이터와 계산 방법</h1>
 
       <section className="grid md:grid-cols-12 gap-x-8 pt-6">
         <div className="md:col-span-7 space-y-3">
@@ -41,7 +41,7 @@ export function DataPage() {
         </dl>
       </section>
 
-      <h2 className="font-serif text-xl font-semibold pt-10 pb-2 rule-b border-ink">계산 방법</h2>
+      <h2 className="text-lg font-bold pt-10 pb-3 rule-b">계산 방법</h2>
       <ul className="list-disc pl-5 space-y-2 pt-3 text-[15px]">
         <li>계산 범위는 출생월부터 초등학교 입학 직전 2월(출생연도 + 7년)까지예요. 조기·유예 입학은 따지지 않아요.</li>
         <li>나이는 생후 개월 수로 셈해요. 출생월이 0개월이에요.</li>
@@ -58,7 +58,7 @@ export function DataPage() {
         <li>정부안(국회 의결 전)은 ‘정부안 포함’을 켰을 때만 더하고, 빗금으로 구분해요.</li>
       </ul>
 
-      <h2 className="font-serif text-xl font-semibold pt-10 pb-2 rule-b border-ink">모든 항목</h2>
+      <h2 className="text-lg font-bold pt-10 pb-3 rule-b">모든 항목</h2>
       <div className="py-3">
         <label htmlFor="q" className="sr-only">
           항목 검색
@@ -100,7 +100,7 @@ export function DataPage() {
         </table>
       </div>
 
-      <h2 id="places" className="font-serif text-xl font-semibold pt-10 pb-2 rule-b border-ink scroll-mt-4">
+      <h2 id="places" className="text-lg font-bold pt-10 pb-3 rule-b scroll-mt-4">
         아이랑 가볼만한 곳 데이터
       </h2>
       <div className="grid md:grid-cols-12 gap-x-8 pt-3 text-sm">
@@ -136,14 +136,14 @@ export function DataPage() {
         </ul>
       </div>
 
-      <h2 id="report" className="font-serif text-xl font-semibold pt-10 pb-2 rule-b border-ink scroll-mt-4">
+      <h2 id="report" className="text-lg font-bold pt-10 pb-3 rule-b scroll-mt-4">
         정보가 달라졌을 때
       </h2>
       <p className="pt-3 text-sm max-w-2xl">
         장소 카드의 ‘정보가 달라졌어요’를 누르면 이 사이트의 GitHub 저장소에 제보 글을 남길 수 있어요. 공식 누리집이나 전화로 확인한 내용을 적어 주시면 공공데이터와 함께 다시 확인해 반영해요. 개인정보는 적지 말아 주세요.
       </p>
 
-      <h2 className="font-serif text-xl font-semibold pt-10 pb-2 rule-b border-ink">시·군·구 현금 지원 확인 현황</h2>
+      <h2 className="text-lg font-bold pt-10 pb-3 rule-b">시·군·구 현금 지원 확인 현황</h2>
       <ul className="grid sm:grid-cols-2 md:grid-cols-3 gap-x-8 text-sm pt-2">
         {regions.sigungu.map((r) => (
           <li key={r.id} className="py-1.5 rule-b flex justify-between gap-2">

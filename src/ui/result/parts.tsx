@@ -14,7 +14,7 @@ export function StatusBadge({ status }: { status: Benefit["status"] }) {
 export function Evidence({ benefit, formula }: { benefit: Benefit; formula?: string }) {
   return (
     <details className="text-sm group">
-      <summary className="cursor-pointer text-ink-2 underline underline-offset-4 decoration-rule w-fit inline-flex items-center min-h-11">근거 보기</summary>
+      <summary className="cursor-pointer text-accent font-medium w-fit inline-flex items-center min-h-11">근거 보기</summary>
       <div className="mb-2 pl-3 border-l-2 border-rule space-y-1">
         {formula && <p className="num">계산 · {formula}</p>}
         {benefit.notes && <p>{benefit.notes}</p>}

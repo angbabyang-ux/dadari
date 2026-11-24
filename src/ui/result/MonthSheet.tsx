@@ -33,7 +33,7 @@ export function MonthSheet({ row, onClose, onPrev, onNext }: { row: MonthRow; on
             <p className="text-sm text-ink-2 num">
               {y}년 {m}월 · 생후 {row.ageMonths}개월
             </p>
-            <p className="font-serif text-2xl font-semibold num">{formatWon(row.total)}</p>
+            <p className="text-2xl font-semibold num">{formatWon(row.total)}</p>
           </div>
           <button type="button" className="btn px-3 min-h-10" onClick={onPrev} disabled={!onPrev} aria-label="이전 달">
             ‹

@@ -43,14 +43,14 @@ export function ChangesPage() {
 
   return (
     <div className="mx-auto max-w-6xl px-4 md:px-8 pb-24">
-      <h1 className="font-serif text-2xl md:text-4xl font-semibold pt-8 pb-3 rule-b leading-snug">2027년, 태어난 날에 따라 달라지는 것</h1>
+      <h1 className="text-2xl md:text-4xl font-bold pt-8 pb-3 rule-b leading-snug">2027년, 태어난 날에 따라 달라지는 것</h1>
 
       <section className="grid md:grid-cols-12 gap-x-8 pt-6">
         <div className="md:col-span-5">
           <label htmlFor="bday" className="font-semibold block">
             출생(예정)일
           </label>
-          <p className="font-serif text-3xl font-semibold num mt-1">{date.replace(/-/g, ". ")}</p>
+          <p className="text-3xl font-semibold num mt-1">{date.replace(/-/g, ". ")}</p>
           <input id="bday" type="range" min={0} max={DAYS} value={day} onChange={(e) => setDay(Number(e.target.value))} className="w-full mt-3 accent-[var(--accent)]" aria-valuetext={date} />
           <div className="flex justify-between text-xs text-ink-2 num">
             <span>2026. 10.</span>
@@ -74,8 +74,8 @@ export function ChangesPage() {
       </section>
 
       <section className="pt-12">
-        <div className="flex flex-wrap items-baseline gap-4 pb-2 rule-b border-ink">
-          <h2 className="font-serif text-xl font-semibold flex-1">하루 차이, 첫 2년 동안 받는 돈</h2>
+        <div className="flex flex-wrap items-center gap-4 pb-3">
+          <h2 className="text-lg font-bold flex-1">하루 차이, 첫 2년 동안 받는 돈</h2>
           <div className="seg flex flex-wrap" role="radiogroup" aria-label="출생순위">
             {[1, 2, 3].map((o) => (
               <label key={o}>
@@ -87,16 +87,16 @@ export function ChangesPage() {
         </div>
         <p className="text-sm text-ink-2 pt-2">서울(기본지역), 출산 예정, 집에서 키우는 경우예요. 서울시 지원은 넣고 시·군·구 지원과 육아휴직 급여는 뺐어요.</p>
 
-        <div className="grid md:grid-cols-2 gap-8 pt-6">
+        <div className="grid md:grid-cols-2 gap-3 pt-4">
           {[
             { title: "2027년 6월 30일생 · 현행", rows: a, total: sum(june, 24), note: "부모급여 + 아동수당 매달, 첫만남이용권 한 번", draft: false },
             { title: "2027년 7월 1일생 · 정부안", rows: b, total: sum(july, 24), note: "아동기본수당 매달, 아이맞이지원금 3개월마다", draft: true },
           ].map((c) => (
-            <div key={c.title}>
-              <p className="font-semibold">
+            <div key={c.title} className="card border-rule p-4">
+              <p className="font-semibold text-sm">
                 {c.title} {c.draft && <span className="badge badge-accent badge-proposed">정부안</span>}
               </p>
-              <p className="font-serif text-3xl font-semibold num mt-1">{formatWon(c.total)}</p>
+              <p className="text-[28px] font-bold num mt-1 text-amount">{formatWon(c.total)}</p>
               <p className="text-sm text-ink-2">{c.note}</p>
               <svg viewBox={`0 0 ${24 * 14} 120`} width="100%" height="120" preserveAspectRatio="none" role="img" aria-label={`${c.title} 첫 24개월 월별 금액: ${c.rows.map(formatWon).join(", ")}`} className="mt-3">
                 <defs>

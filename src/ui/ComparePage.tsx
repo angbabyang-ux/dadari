@@ -35,21 +35,20 @@ export function ComparePage({ input, params }: { input: Input; params: URLSearch
   const max = Math.max(ta, tb, 1);
 
   return (
-    <div className="mx-auto max-w-6xl px-4 md:px-8 pb-24">
+    <div className="mx-auto max-w-[864px] px-4 pb-16">
       <p className="pt-6 text-sm">
-        <a href={hrefFor("result", withDraft(params, input))} onClick={(e) => (e.preventDefault(), navigate("result", withDraft(params, input)))}>
+        <a href={hrefFor("result", withDraft(params, input))} onClick={(e) => (e.preventDefault(), navigate("result", withDraft(params, input)))} className="text-accent no-underline font-medium">
           ← 결과로 돌아가기
         </a>
       </p>
-      {/* 웹폰트 적용으로 줄 수가 바뀌어도 아래가 밀리지 않게 두 줄 높이를 잡아 둔다 */}
-      <h1 className="font-serif text-2xl md:text-3xl font-semibold pt-3 pb-3 rule-b min-h-[5.5rem] md:min-h-0 flex items-end">다른 동네라면 얼마나 달라질까요?</h1>
-      <p className="text-sm text-ink-2 pt-3 min-h-[3.75rem] md:min-h-0">아이·가구·휴직 조건은 그대로 두고 사는 곳만 바꿔서 계산했어요.</p>
+      <h1 className="text-2xl md:text-[30px] md:leading-9 font-bold pt-4">다른 동네라면 얼마나 달라질까요?</h1>
+      <p className="text-ink-2 pt-2">아이·가구·휴직 조건은 그대로 두고 사는 곳만 바꿔서 계산했어요.</p>
 
-      <div className="py-4 rule-b">
-        <label htmlFor="cmp" className="font-semibold block mb-1">
+      <div className="pt-6">
+        <label htmlFor="cmp" className="text-ink-label block mb-2">
           비교할 지역
         </label>
-        <select id="cmp" className="field max-w-72" value={other.id} onChange={(e) => replaceQuery(withDraft(new URLSearchParams({ ...Object.fromEntries(params), cmp: e.target.value }), input))}>
+        <select id="cmp" className="field" value={other.id} onChange={(e) => replaceQuery(withDraft(new URLSearchParams({ ...Object.fromEntries(params), cmp: e.target.value }), input))}>
           {["서울특별시", "경기도"].map((sido) => (
             <optgroup key={sido} label={sido}>
               {regions.sigungu
@@ -64,21 +63,22 @@ export function ComparePage({ input, params }: { input: Input; params: URLSearch
         </select>
       </div>
 
-      <section aria-label="합계 비교" className="grid grid-cols-2 gap-6 pt-6">
+      <section aria-label="합계 비교" className="grid sm:grid-cols-2 gap-3 pt-6">
         {[
           [nameA, ta],
           [nameB, tb],
         ].map(([n, t]) => (
-          <div key={String(n)}>
-            <p className="text-sm text-ink-2">{n}</p>
-            <p className={`font-serif font-semibold text-[28px] md:text-[44px] leading-tight num ${t === Math.max(ta, tb) && ta !== tb ? "text-accent" : ""}`}>{formatWon(Number(t))}</p>
-            <div className="h-2 mt-2 bg-paper-2" aria-hidden>
-              <div className="h-2 bg-ink" style={{ width: `${(Number(t) / max) * 100}%` }} />
+          <div key={String(n)} className={`card p-4 ${t === Math.max(ta, tb) && ta !== tb ? "card-best" : "border-rule"}`}>
+            {t === Math.max(ta, tb) && ta !== tb && <span className="badge badge-best mb-2">더 많아요</span>}
+            <p className="stat-label">{n} · 입학 전까지</p>
+            <p className="text-[28px] font-bold leading-tight num text-amount">{formatWon(Number(t))}</p>
+            <div className="h-2 mt-3 rounded-full bg-paper-2" aria-hidden>
+              <div className="h-2 rounded-full bg-accent" style={{ width: `${(Number(t) / max) * 100}%` }} />
             </div>
           </div>
         ))}
       </section>
-      <p className="pt-4 text-lg">
+      <p className="pt-4">
         {ta === tb ? (
           "두 지역의 합계가 같아요."
         ) : (
@@ -88,11 +88,11 @@ export function ComparePage({ input, params }: { input: Input; params: URLSearch
         )}
       </p>
 
-      <h2 className="font-serif text-xl font-semibold pt-10 pb-2 rule-b border-ink">달라지는 항목</h2>
+      <h2 className="text-lg font-bold pt-8 pb-3">달라지는 항목</h2>
       {diff.length === 0 ? (
         <p className="py-4 text-ink-2">달라지는 항목이 없어요.</p>
       ) : (
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto card border-rule px-4">
           <table className="w-full text-sm num min-w-[480px]">
             <thead>
               <tr className="rule-b text-left text-ink-2">

@@ -68,7 +68,7 @@ export function App() {
                       href={hrefFor(n.route, q)}
                       onClick={(e) => (e.preventDefault(), navigate(n.route, q))}
                       aria-current={active ? "page" : undefined}
-                      className={`no-underline inline-flex items-center min-h-11 md:min-h-9 px-2 md:px-3 rounded-sm transition-colors ${active ? "bg-paper-2 text-ink font-medium" : "text-ink-2 hover:bg-paper-2"}`}
+                      className={`no-underline inline-flex items-center min-h-11 md:min-h-9 px-1 md:px-3 rounded-sm transition-colors ${active ? "bg-paper-2 text-ink font-medium" : "text-ink-2 hover:bg-paper-2"}`}
                     >
                       {n.label}
                     </a>
@@ -99,7 +99,7 @@ export function App() {
 function EmptyState() {
   return (
     <div className="mx-auto max-w-6xl px-4 md:px-8 py-16">
-      <h1 className="font-serif text-2xl font-semibold">계산할 정보가 아직 없어요.</h1>
+      <h1 className="text-2xl font-bold">계산할 정보가 아직 없어요.</h1>
       <p className="mt-2 text-ink-2">출생일과 사는 곳만 넣어도 결과를 볼 수 있어요.</p>
       <a className="btn btn-primary mt-6" href={hrefFor("calc")} onClick={(e) => (e.preventDefault(), navigate("calc"))}>
         입력하러 가기

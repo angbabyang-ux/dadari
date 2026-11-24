@@ -101,7 +101,7 @@ function Loading() {
 function NotFound() {
   return (
     <div className="py-16">
-      <h1 className="font-serif text-2xl font-semibold">찾는 지역이 없어요.</h1>
+      <h1 className="text-2xl font-bold">찾는 지역이 없어요.</h1>
       <p className="mt-2">
         <Link href={placesHref()}>아이랑 가볼만한 곳 처음으로</Link>
       </p>
@@ -114,38 +114,38 @@ const SIDO_UNIT: Record<SidoId, string> = { seoul: "개 구", gyeonggi: "개 시
 function PlacesHome() {
   return (
     <>
-      <h1 className="font-serif text-3xl md:text-5xl font-semibold pt-10 pb-3 rule-b">아이랑 가볼만한 곳</h1>
+      <h1 className="text-3xl md:text-5xl font-bold pt-10 pb-3 rule-b">아이랑 가볼만한 곳</h1>
       <p className="pt-4 max-w-2xl min-h-[5.5rem] md:min-h-0">서울 25개 구와 경기 31개 시·군에서 아이와 갈 만한 키즈카페·도서관·박물관·공원을 공공데이터로 모았어요.</p>
       {/* 시·도는 세로로 크게, 실내 모음은 그보다 한 단계 작게 */}
-      <ul className="mt-8 rule-t border-ink">
+      <ul className="mt-8 space-y-3">
         {SIDO_IDS.map((s) => {
           const rs = regionsOfSido(s);
           const c = rs.reduce((a, r) => { const x = regionCount(r.id); return { total: a.total + x.total, indoor: a.indoor + x.indoor, free: a.free + x.free }; }, { total: 0, indoor: 0, free: 0 });
           return (
-            <li key={s} className="rule-b">
-              <Link href={placesHref(s)} className="grid grid-cols-[1fr_auto] items-center gap-x-4 py-6 no-underline group hover:bg-card transition-colors">
+            <li key={s}>
+              <Link href={placesHref(s)} className="grid grid-cols-[1fr_auto] items-center gap-x-4 rounded-ctl border-2 border-rule bg-card px-5 py-5 no-underline group hover:border-accent hover:bg-accent-bg transition-colors">
                 <span>
-                  <span className="block font-serif text-3xl md:text-4xl font-semibold group-hover:underline underline-offset-8 decoration-2">{SIDO_SHORT[s]}</span>
+                  <span className="block text-2xl md:text-[30px] md:leading-9 font-bold">{SIDO_SHORT[s]}</span>
                   <span className="block mt-2 text-sm text-ink-2 num">
                     {rs.length}
                     {SIDO_UNIT[s]} · {c.total}곳 · 실내 {c.indoor}곳 · 무료 {c.free}곳
                   </span>
                   <span className="block mt-1 text-sm text-ink-2 truncate max-w-[calc(100vw-6rem)] md:max-w-3xl">{rs.map((r) => r.sigungu).join(" · ")}</span>
                 </span>
-                <span aria-hidden className="font-serif text-2xl text-ink-2 group-hover:text-ink transition-colors">
+                <span aria-hidden className="text-xl text-ink-3 group-hover:text-accent transition-colors">
                   →
                 </span>
               </Link>
             </li>
           );
         })}
-        <li className="rule-b">
-          <Link href={placesHref("indoor")} className="grid grid-cols-[1fr_auto] items-center gap-x-4 py-5 no-underline group hover:bg-card transition-colors">
+        <li>
+          <Link href={placesHref("indoor")} className="grid grid-cols-[1fr_auto] items-center gap-x-4 rounded-ctl border-2 border-rule bg-card px-5 py-4 no-underline group hover:border-accent hover:bg-accent-bg transition-colors">
             <span>
-              <span className="block text-lg md:text-xl font-semibold group-hover:underline underline-offset-4">아이랑 가볼만한 실내 장소 모음</span>
+              <span className="block text-base font-semibold">아이랑 가볼만한 실내 장소 모음</span>
               <span className="block mt-1 text-sm text-ink-2">비 오는 날, 눈 오는 날, 너무 더운 날에 좋아요. 무료 공공시설을 먼저 보여 줘요.</span>
             </span>
-            <span aria-hidden className="text-xl text-ink-2 group-hover:text-ink transition-colors">
+            <span aria-hidden className="text-lg text-ink-3 group-hover:text-accent transition-colors">
               →
             </span>
           </Link>
@@ -172,7 +172,7 @@ function SidoPage({ sido }: { sido: SidoId }) {
   return (
     <>
       <Crumbs items={[["아이랑 가볼만한 곳", placesHref()], [short]]} />
-      <h1 className="font-serif text-3xl md:text-4xl font-semibold pb-3 rule-b">{short}에서 아이랑 가볼만한 곳</h1>
+      <h1 className="text-3xl md:text-4xl font-bold pb-3 rule-b">{short}에서 아이랑 가볼만한 곳</h1>
       <section aria-labelledby="pick-region" className="pt-6">
         <h2 id="pick-region" className="font-semibold">
           {sido === "seoul" ? "구" : "시·군"}를 골라 주세요.
@@ -190,11 +190,11 @@ function SidoPage({ sido }: { sido: SidoId }) {
         </ul>
       </section>
       <section aria-labelledby="recs" className="pt-10">
-        <h2 id="recs" className="font-serif text-xl font-semibold pb-2 rule-b border-ink">
+        <h2 id="recs" className="text-lg font-bold pb-3">
           무료 실내 공공시설부터
         </h2>
         <p className="text-sm text-ink-2 pt-2">무료로 확인된 키즈카페·어린이도서관을 지역마다 한 곳씩 골랐어요.</p>
-        <ul>
+        <ul className="space-y-3">
           {recs.map((p) => (
             <PlaceCard key={p.id} p={p} regionLabel={placeRegions.find((r) => r.id === p.sigungu)?.sigungu} />
           ))}
@@ -275,12 +275,12 @@ function RegionPage({ pp, params }: { pp: Extract<PlacesPath, { kind: "region" }
   return (
     <>
       <Crumbs items={[["아이랑 가볼만한 곳", placesHref()], [SIDO_SHORT[sido], placesHref(sido)], [r.sigungu]]} />
-      <h1 className="font-serif text-3xl md:text-4xl font-semibold pb-3 rule-b">{r.sigungu}에서 아이랑 가볼만한 곳</h1>
+      <h1 className="text-3xl md:text-4xl font-bold pb-3 rule-b">{r.sigungu}에서 아이랑 가볼만한 곳</h1>
       <p className="pt-3 text-sm text-ink-2 num">
         {c.total}곳 · 실내 {c.indoor}곳 · 무료 {c.free}곳
       </p>
       <FilterBar f={f} onChange={(nf) => setParams(filterToParams(nf, params))} />
-      <div className="flex items-center gap-3 pt-6 pb-2 rule-b border-ink">
+      <div className="flex items-center gap-3 pt-6 pb-3">
         <p className="flex-1 font-semibold num" aria-live="polite">
           {list.length}곳
         </p>
@@ -308,7 +308,7 @@ function RegionPage({ pp, params }: { pp: Extract<PlacesPath, { kind: "region" }
       ) : view === "map" ? (
         <div className="pt-4">{MapC ? <MapC places={list} onPick={pick} /> : <div className="h-[60vh] min-h-80 border border-rule grid place-items-center text-ink-2">지도를 불러오고 있어요.</div>}</div>
       ) : (
-        <ul>
+        <ul className="space-y-3">
           {list.map((p) => (
             <PlaceCard key={p.id} p={p} />
           ))}
@@ -344,7 +344,7 @@ function IndoorPage({ params, ready }: { params: URLSearchParams; ready: boolean
   return (
     <>
       <Crumbs items={[["아이랑 가볼만한 곳", placesHref()], ["실내 장소 모음"]]} />
-      <h1 className="font-serif text-3xl md:text-4xl font-semibold pb-3 rule-b leading-tight">아이랑 가볼만한 실내 장소 모음</h1>
+      <h1 className="text-3xl md:text-4xl font-bold pb-3 rule-b leading-tight">아이랑 가볼만한 실내 장소 모음</h1>
       <p className="pt-4 max-w-2xl">비 오는 날, 눈 오는 날, 너무 더운 날에 갈 만한 곳이에요. 무료로 확인된 공공시설을 먼저 보여 줘요.</p>
       <div className="grid sm:grid-cols-2 gap-4 pt-6 max-w-2xl">
         <div className="seg grid grid-cols-2" role="radiogroup" aria-label="시·도">
@@ -367,14 +367,14 @@ function IndoorPage({ params, ready }: { params: URLSearchParams; ready: boolean
           </select>
         </label>
       </div>
-      <p className="pt-6 pb-2 rule-b border-ink font-semibold num" aria-live="polite">
+      <p className="pt-6 pb-3 font-bold num" aria-live="polite">
         {ready ? `${list.length}곳` : "불러오는 중"}
       </p>
       {!ready ? (
         <Loading />
       ) : (
         <>
-          <ul>
+          <ul className="space-y-3">
             {list.slice(0, shown).map((p) => (
               <PlaceCard key={p.id} p={p} regionLabel={sg ? undefined : nameOf(p.sigungu)} />
             ))}

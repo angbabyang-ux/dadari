@@ -20,14 +20,14 @@ export function BenefitList({ rows, birthDate, today }: { rows: MonthRow[]; birt
   return (
     <div>
       {periods.map(({ period, groups, total }) => (
-        <section key={period.key} className="pt-8" aria-labelledby={`p-${period.key}`}>
-          <div className="flex items-baseline gap-3 pb-2 rule-b border-ink">
-            <h3 id={`p-${period.key}`} className="font-serif text-xl font-semibold flex-1">
+        <section key={period.key} className="pt-6 first:pt-0" aria-labelledby={`p-${period.key}`}>
+          <div className="flex items-baseline gap-3 pb-2">
+            <h3 id={`p-${period.key}`} className="font-bold flex-1">
               {period.title}
             </h3>
-            <p className="num font-semibold">{formatWon(total)}</p>
+            <p className="num text-sm font-semibold text-ink-2">{formatWon(total)}</p>
           </div>
-          <ul>
+          <ul className="space-y-3">
             {groups.map((g) => (
               <BenefitCard key={g.benefit.id} g={g} birthDate={birthDate} today={today} />
             ))}
@@ -49,21 +49,21 @@ function BenefitCard({ g, birthDate, today }: { g: BenefitGroup; birthDate: stri
     <>
       <span className="flex items-baseline gap-3">
         <span className="font-semibold flex-1">{b.name}</span>
-        <span className="num font-semibold">{formatWon(g.total)}</span>
+        <span className="num text-lg font-bold text-amount">{formatWon(g.total)}</span>
       </span>
       {g.monthlyAmount !== undefined && g.months > 1 && (
-        <span className="block num text-sm text-ink-2 text-right">
+        <span className="block num text-xs text-ink-3 text-right">
           월 {formatWon(g.monthlyAmount)} × {g.months}
         </span>
       )}
     </>
   );
   return (
-    <li className="py-3 rule-b">
+    <li className="card p-4">
       {b.usage ? (
         <button type="button" className="w-full text-left min-h-11 block" aria-expanded={open} aria-controls={panelId} onClick={() => (setOpen(!open), setEverOpened(true))}>
           {head}
-          <span className="block text-sm underline underline-offset-4 decoration-rule mt-1">{open ? "접기" : "이렇게 써요"}</span>
+          <span className="block text-sm text-accent font-medium mt-1">{open ? "접기" : "이렇게 써요"}</span>
         </button>
       ) : (
         <div>{head}</div>
@@ -111,7 +111,7 @@ function UsagePanel({ usage: u, birthDate, today }: { usage: Usage; birthDate: s
   const unverified = (k: string) => u.unverified?.some((x) => x.includes(k));
   const exp = expiryDate(u, birthDate);
   return (
-    <div className="mt-3 border border-rule bg-card px-4 py-3 text-sm space-y-3">
+    <div className="mt-3 rounded-sm bg-band px-4 py-3 text-sm space-y-3">
       <div>
         <h4 className="font-semibold">받는 방법</h4>
         <p>{unverified("받는 방법") ? <>{u.receive} {NEED}</> : u.receive}</p>
@@ -185,14 +185,14 @@ function UsagePanel({ usage: u, birthDate, today }: { usage: Usage; birthDate: s
 export function InfoCards({ items, title }: { items: Benefit[]; title: string }) {
   if (items.length === 0) return null;
   return (
-    <section className="pt-10" aria-labelledby="info-cards">
-      <h3 id="info-cards" className="font-serif text-xl font-semibold pb-2 rule-b border-ink">
+    <section className="pt-8" aria-labelledby="info-cards">
+      <h3 id="info-cards" className="text-lg font-bold pb-3">
         {title}
       </h3>
-      <p className="text-sm text-ink-2 pt-2">금액이 정해지지 않았거나 서비스형이라 합계에 넣지 않았어요.</p>
-      <ul>
+      <p className="text-sm text-ink-3 -mt-1 pb-3">금액이 정해지지 않았거나 서비스형이라 합계에 넣지 않았어요.</p>
+      <ul className="space-y-3">
         {items.map((b) => (
-          <li key={b.id} className="py-3 rule-b">
+          <li key={b.id} className="card p-4">
             <p className="font-semibold">{b.name}</p>
             {b.schedule.type === "info" && b.schedule.amountText && <p className="text-sm num">{b.schedule.amountText}</p>}
             <p className="text-sm text-ink-2 flex flex-wrap gap-x-2 items-center mt-0.5">
@@ -213,14 +213,14 @@ export function ExcludedList({ items, title, open }: { items: Excluded[]; title:
   if (unique.length === 0) return null;
   return (
     <details className="pt-8" open={open}>
-      <summary className="cursor-pointer font-serif text-lg font-semibold pb-2 rule-b min-h-11">
+      <summary className="cursor-pointer font-bold pb-2 min-h-11">
         {title} <span className="num text-ink-2 font-sans text-base">({unique.length})</span>
       </summary>
-      <ul>
+      <ul className="card px-4">
         {unique.map((e) => (
-          <li key={e.benefit.id} className="py-2 rule-b text-sm grid sm:grid-cols-[14rem_1fr] gap-x-4">
+          <li key={e.benefit.id} className="py-3 border-b border-rule-soft last:border-0 text-sm grid sm:grid-cols-[14rem_1fr] gap-x-4">
             <span className="font-medium">{e.benefit.name}</span>
-            <span className="text-ink-2">{e.reason}</span>
+            <span className="text-ink-3">{e.reason}</span>
           </li>
         ))}
       </ul>

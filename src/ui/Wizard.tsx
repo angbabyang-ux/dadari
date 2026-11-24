@@ -20,30 +20,23 @@ export function Wizard({ draft }: { draft: Draft }) {
   const last = step === STEPS.length - 1;
 
   return (
-    <div className="mx-auto max-w-6xl px-4 md:px-8">
-      <div className="grid md:grid-cols-12 gap-x-8">
-        <div className="md:col-span-4 pt-8 md:pt-14">
-          {/* 웹폰트가 늦게 도착해 줄 수가 바뀌어도 아래 입력란이 밀리지 않게 높이를 잡아 둔다 */}
-          <h1 className="font-serif text-[28px] md:text-[40px] leading-[1.25] font-semibold md:tracking-tight min-h-[3.75em] md:min-h-0">
-            아이가 태어난 달부터 입학 전까지, 매달 받는 돈을 달력으로 봐요.
-          </h1>
-          <p className="mt-3 text-ink-2 min-h-[4.8em] md:min-h-0">
-            국가·시도·시군구 지원과 육아휴직 급여를 한 번에 계산해요. 입력한 내용은 이 브라우저 밖으로 나가지 않아요.
-          </p>
-          <ol className="mt-6 hidden md:block rule-t" aria-label="입력 단계">
-            {STEPS.map((s, i) => (
-              <li key={s} className="rule-b py-2 flex gap-3 items-baseline">
-                <span className={`num text-sm ${i === step ? "text-accent font-semibold" : "text-ink-2"}`}>{String(i + 1).padStart(2, "0")}</span>
-                <span className={i === step ? "font-semibold" : "text-ink-2"} aria-current={i === step ? "step" : undefined}>
-                  {s}
-                </span>
-              </li>
-            ))}
-          </ol>
+    <div className="mx-auto max-w-[640px] px-4">
+      <div>
+        <div className="pt-10 md:pt-20 text-center">
+          <h1 className="text-2xl md:text-[30px] md:leading-9 font-bold">출산·육아 지원금 월별 계산</h1>
+          <p className="mt-2 text-ink-2">국가·시도·시군구 지원과 육아휴직 급여를 한 번에 계산해요. 입력한 내용은 이 브라우저 밖으로 나가지 않아요.</p>
         </div>
+        {/* 단계 표시: 네 칸 가로 막대, 지금 단계만 파랑 */}
+        <ol className="mt-8 md:mt-10 grid grid-cols-4 gap-2" aria-label="입력 단계">
+          {STEPS.map((s, i) => (
+            <li key={s} className={`border-t-2 pt-2 text-sm ${i === step ? "border-accent text-accent font-medium" : i < step ? "border-ink-3 text-ink-2" : "border-rule text-ink-3"}`} aria-current={i === step ? "step" : undefined}>
+              <span className="num">{i + 1}</span> {s}
+            </li>
+          ))}
+        </ol>
 
         <form
-          className="md:col-span-8 pt-6 md:pt-14 pb-32"
+          className="pt-6 pb-32 md:pb-20"
           onSubmit={(e) => {
             e.preventDefault();
             if (!canNext) return;
@@ -51,30 +44,32 @@ export function Wizard({ draft }: { draft: Draft }) {
             else setStep(step + 1);
           }}
         >
-          <p className="md:hidden text-sm text-ink-2 num" aria-live="polite">
+          <p className="sr-only" aria-live="polite">
             {step + 1} / {STEPS.length} 단계
           </p>
-          <h2 className="font-serif text-2xl font-semibold mt-1 pb-2 rule-b">{STEPS[step]}</h2>
+          <h2 className="text-lg font-bold">{STEPS[step]}</h2>
           {step === 0 && <StepChild draft={draft} update={update} />}
           {step === 1 && <StepPlace draft={draft} update={update} />}
           {step === 2 && <StepHome draft={draft} update={update} />}
           {step === 3 && <StepWork draft={draft} update={update} />}
 
-          <div className="fixed md:static bottom-0 inset-x-0 bg-paper rule-t md:border-0 px-4 md:px-0 py-3 md:pt-6 flex gap-2 z-10 no-print">
+          <div className="fixed md:static bottom-0 inset-x-0 bg-paper rule-t md:border-0 px-4 md:px-0 py-3 md:pt-8 flex gap-3 z-10 no-print">
             {step > 0 && (
-              <button type="button" className="btn" onClick={() => setStep(step - 1)}>
+              <button type="button" className="btn min-h-14 rounded-ctl" onClick={() => setStep(step - 1)}>
                 이전
               </button>
             )}
-            <button type="submit" className="btn btn-primary flex-1 md:flex-none md:min-w-48" disabled={!canNext}>
+            <button type="submit" className="btn btn-primary flex-1" disabled={!canNext}>
               {last ? "결과 보기" : "다음"}
             </button>
-            {step >= 1 && !last && isComplete(draft) && (
-              <button type="button" className="btn hidden sm:inline-flex" onClick={() => navigate("result", draftToParams(draft))}>
+          </div>
+          {step >= 1 && !last && isComplete(draft) && (
+            <p className="hidden sm:block text-center pt-4 text-sm">
+              <button type="button" className="text-accent font-medium min-h-11" onClick={() => navigate("result", draftToParams(draft))}>
                 여기까지로 결과 보기
               </button>
-            )}
-          </div>
+            </p>
+          )}
         </form>
       </div>
     </div>
@@ -91,7 +86,7 @@ function StepChild({ draft, update }: StepProps) {
         <input
           id="birth"
           type="date"
-          className="field max-w-56 num"
+          className="field num"
           value={draft.birthDate}
           min="2020-01-01"
           max="2030-12-31"
@@ -144,7 +139,7 @@ function StepChild({ draft, update }: StepProps) {
         <Field label="어린이집 시작" htmlFor="dc" hint={careMode === "kg" ? "유치원 전에 어린이집을 다니지 않으면 '안 다님'을 골라요." : undefined}>
           <select
             id="dc"
-            className="field max-w-56"
+            className="field"
             value={draft.care.daycareFrom ?? -1}
             onChange={(e) => {
               const v = Number(e.target.value);
@@ -186,7 +181,7 @@ function StepPlace({ draft, update }: StepProps) {
   return (
     <>
       <Field label="시·도" htmlFor="sido">
-        <select id="sido" className="field max-w-72" value={draft.sido} onChange={(e) => update({ sido: e.target.value, sigungu: undefined, tierOverride: undefined })} required>
+        <select id="sido" className="field" value={draft.sido} onChange={(e) => update({ sido: e.target.value, sigungu: undefined, tierOverride: undefined })} required>
           <option value="">골라 주세요</option>
           {regions.sidoList.map((s) => (
             <option key={s.id} value={s.name}>
@@ -197,7 +192,7 @@ function StepPlace({ draft, update }: StepProps) {
       </Field>
       {detailed && (
         <Field label="시·군·구" htmlFor="sigungu" hint="서울 25개 구와 경기 31개 시·군은 자체 지원까지 계산해요.">
-          <select id="sigungu" className="field max-w-72" value={draft.sigungu ?? ""} onChange={(e) => update({ sigungu: e.target.value || undefined })}>
+          <select id="sigungu" className="field" value={draft.sigungu ?? ""} onChange={(e) => update({ sigungu: e.target.value || undefined })}>
             <option value="">골라 주세요</option>
             {sigunguList.map((r) => (
               <option key={r.id} value={r.sigungu}>
@@ -230,7 +225,7 @@ function StepPlace({ draft, update }: StepProps) {
         </>
       )}
       <Field label="지금 주소로 전입한 날" htmlFor="movein" hint="거주기간 조건을 따질 때 써요. 모르면 비워 두세요. 1년 이상 산 것으로 계산해요.">
-        <input id="movein" type="date" className="field max-w-56 num" value={draft.moveInDate ?? ""} max={TODAY} onChange={(e) => update({ moveInDate: e.target.value || undefined })} />
+        <input id="movein" type="date" className="field num" value={draft.moveInDate ?? ""} max={TODAY} onChange={(e) => update({ moveInDate: e.target.value || undefined })} />
       </Field>
     </>
   );
@@ -312,7 +307,7 @@ function ParentBlock({ who, title, draft, update }: StepProps & { who: "mother" 
   const prefix = who === "mother" ? "m" : "f";
   return (
     <section aria-label={title} className="mt-4">
-      <h3 className="font-serif text-xl font-semibold pt-2">{title}</h3>
+      <h3 className="text-xl font-semibold pt-2">{title}</h3>
       <Segmented<Employment>
         legend="고용 형태"
         value={p.employment}
@@ -345,7 +340,7 @@ function ParentBlock({ who, title, draft, update }: StepProps & { who: "mother" 
                   <label htmlFor={`${prefix}lm`} className="text-sm block mb-1">
                     기간
                   </label>
-                  <select id={`${prefix}lm`} className="field max-w-56" value={p.leave.months} onChange={(e) => set({ leave: { ...p.leave!, months: Number(e.target.value) } })}>
+                  <select id={`${prefix}lm`} className="field" value={p.leave.months} onChange={(e) => set({ leave: { ...p.leave!, months: Number(e.target.value) } })}>
                     {Array.from({ length: 18 }, (_, i) => i + 1).map((m) => (
                       <option key={m} value={m}>
                         {m}개월
