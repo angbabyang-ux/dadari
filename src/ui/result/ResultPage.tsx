@@ -180,7 +180,7 @@ export function ResultPage({ input, params }: { input: Input; params: URLSearchP
         )}
       </section>
 
-      <section aria-labelledby="by-period" className="pt-10">
+      <section aria-labelledby="by-period" className="pt-10 cv-auto">
         <h2 id="by-period" className="font-serif text-xl font-semibold pb-2 rule-b border-ink">
           시기별로 받는 돈
         </h2>
@@ -193,7 +193,7 @@ export function ResultPage({ input, params }: { input: Input; params: URLSearchP
         <ExcludedList items={result.ended} title="종료된 제도" />
       </section>
 
-      <section aria-labelledby="todo" className="pt-10">
+      <section aria-labelledby="todo" className="pt-10 cv-auto">
         <h2 id="todo" className="font-serif text-xl font-semibold pb-2 rule-b border-ink">
           신청할 것
         </h2>
@@ -240,7 +240,7 @@ function SummaryStrip({ summary: s, delta }: { summary: ReturnType<typeof summar
     <section aria-label="요약" className="grid md:grid-cols-12 gap-x-8 pt-6">
       <div className="md:col-span-5 pb-4 md:pb-0">
         <p className="text-sm text-ink-2">입학 전까지 모두</p>
-        <p className="font-serif font-bold text-accent text-[40px] md:text-[56px] leading-none mt-1">
+        <p className="font-serif font-bold text-accent text-[40px] md:text-[56px] leading-none mt-1 h-[1em] contain-box">
           <CountUp value={s.total} />
         </p>
         <p className="mt-2 min-h-7 font-semibold text-accent text-lg num" aria-live="polite" data-testid="leave-delta">

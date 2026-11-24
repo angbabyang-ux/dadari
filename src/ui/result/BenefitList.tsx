@@ -40,6 +40,7 @@ export function BenefitList({ rows, birthDate, today }: { rows: MonthRow[]; birt
 
 function BenefitCard({ g, birthDate, today }: { g: BenefitGroup; birthDate: string; today: string }) {
   const [open, setOpen] = useState(false);
+  const [everOpened, setEverOpened] = useState(false); // 처음 펼칠 때 패널을 만들고, 접을 때도 부드럽게 닫히도록 남겨 둔다
   const panelId = useId();
   const first = g.items[0]!;
   const auto = g.items.every((i) => i.auto);
@@ -60,7 +61,7 @@ function BenefitCard({ g, birthDate, today }: { g: BenefitGroup; birthDate: stri
   return (
     <li className="py-3 rule-b">
       {b.usage ? (
-        <button type="button" className="w-full text-left min-h-11 block" aria-expanded={open} aria-controls={panelId} onClick={() => setOpen(!open)}>
+        <button type="button" className="w-full text-left min-h-11 block" aria-expanded={open} aria-controls={panelId} onClick={() => (setOpen(!open), setEverOpened(true))}>
           {head}
           <span className="block text-sm underline underline-offset-4 decoration-rule mt-1">{open ? "접기" : "이렇게 써요"}</span>
         </button>
@@ -95,7 +96,7 @@ function BenefitCard({ g, birthDate, today }: { g: BenefitGroup; birthDate: stri
       {b.usage && (
         <div className="unfold" data-open={open} id={panelId} role="region" aria-label={`${b.name} 이렇게 써요`}>
           <div inert={!open} aria-hidden={!open}>
-            <UsagePanel usage={b.usage} birthDate={birthDate} today={today} />
+            {everOpened && <UsagePanel usage={b.usage} birthDate={birthDate} today={today} />}
           </div>
         </div>
       )}
