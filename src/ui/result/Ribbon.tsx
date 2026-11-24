@@ -2,7 +2,11 @@
 import { useEffect, useMemo, useRef, type ReactNode } from "react";
 import type { Item, MonthRow } from "../../engine/types";
 import { formatWon } from "../../engine/money";
+import { benefits } from "../../data";
 import { isLeaveItem } from "./leavePlan";
+
+// 한 번(또는 몇 번 나눠) 받는 일시금. 막대 높이 상한을 정할 때 뺀다
+const ONE_OFF = new Set(benefits.filter((b) => b.schedule.type === "lumpSum").map((b) => b.id));
 
 const BAR = 14;
 const GAP = 5;
@@ -46,11 +50,11 @@ export function Ribbon({
   growKey: string; // 바뀌면 육아휴직 층이 다시 자란다
 }) {
   const scroller = useRef<HTMLDivElement>(null);
+  // 세로 상한: 한 번만 받는 일시금을 뺀 "매달 들어오는 돈"의 최댓값. 육아휴직 층은 항상 다 보이고,
+  // 출생 직후 일시금처럼 튀는 달만 꺾임 표시와 실제 금액 라벨로 보여준다
   const cap = useMemo(() => {
-    const totals = rows.map((r) => r.total).filter((t) => t > 0).sort((a, b) => a - b);
-    if (totals.length === 0) return 1;
-    const p85 = totals[Math.floor(totals.length * 0.85)] ?? totals[totals.length - 1]!;
-    return Math.max(p85 * 1.35, 1);
+    const recurring = rows.map((r) => r.items.filter((it) => !ONE_OFF.has(it.benefitId)).reduce((a, c) => a + c.amount, 0));
+    return Math.max(...recurring, 1) * 1.08;
   }, [rows]);
   const width = rows.length * STEP + GAP;
   const currentIndex = rows.findIndex((r) => r.month === currentMonth);
