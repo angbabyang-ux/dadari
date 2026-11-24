@@ -1,4 +1,4 @@
-// 공공데이터(서울형 키즈카페, 전국 도서관·박물관미술관·도시공원 표준데이터)를 받아 지역별 「아이랑 갈 곳」 JSON을 만든다
+// 공공데이터(서울형 키즈카페, 전국 도서관·박물관미술관·도시공원 표준데이터)를 받아 지역별 「아이랑 가볼만한 곳」 JSON을 만든다
 // 실행: node scripts/fetch-places.mjs  (인증키가 필요 없는 공개 내려받기 주소만 쓴다. 하나라도 실패하면 기존 파일을 그대로 둔다)
 import { mkdirSync, readFileSync, writeFileSync, readdirSync, rmSync } from "node:fs";
 import { join } from "node:path";
@@ -309,7 +309,7 @@ async function main() {
       .sort((a, b) => rank(a) - rank(b) || a.sigungu.localeCompare(b.sigungu));
     picks[sido] = cands.slice(0, 6);
   }
-  // 출처(데이터 페이지가 첫 화면 묶음에서 씀)와 색인(아이랑 갈 곳 화면 묶음에서만 씀)을 나눠 저장한다
+  // 출처(데이터 페이지가 첫 화면 묶음에서 씀)와 색인(아이랑 가볼만한 곳 화면 묶음에서만 씀)을 나눠 저장한다
   writeFileSync("src/data/places-meta.json", `${JSON.stringify({ fetchedAt: new Date().toISOString().slice(0, 10), sources: SOURCES, extra: [KIDS_RESERVE_SRC, KIDS_OUTDOOR_SRC] }, null, 1)}\n`);
   writeFileSync("src/data/places-index.json", `${JSON.stringify({ counts, picks }, null, 1)}\n`);
   console.log(`지역 ${regions.length}곳 저장. 10곳 미만: ${short.length ? short.join(", ") : "없음"}`);

@@ -16,7 +16,7 @@ export function render(url: string): string {
   return renderToString(<App />);
 }
 
-/** 아이랑 갈 곳 경로의 제목·설명 (prerender.mjs가 쓴다) */
+/** 아이랑 가볼만한 곳 경로의 제목·설명 (prerender.mjs가 쓴다) */
 export function placesMeta(path: string) {
   return placesSeo(placesPathOf(path));
 }

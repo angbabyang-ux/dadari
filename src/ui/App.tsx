@@ -7,13 +7,13 @@ import { draftFromParams, isComplete } from "../state/url";
 import { ChangesPage } from "./ChangesPage";
 import { ComparePage } from "./ComparePage";
 import { DataPage } from "./DataPage";
+import { HomePage } from "./HomePage";
 import { ResultPage } from "./result/ResultPage";
 import { Wizard } from "./Wizard";
 
 const NAV: { route: Route; label: string }[] = [
-  { route: "home", label: "지원금 계산" },
-  { route: "places", label: "아이랑 갈 곳" },
-  { route: "compare", label: "지역 비교" },
+  { route: "calc", label: "지원금 계산" },
+  { route: "places", label: "아이랑 가볼만한 곳" },
   { route: "changes", label: "2027 변화" },
   { route: "data", label: "데이터" },
 ];
@@ -40,7 +40,9 @@ export function App() {
   } else if (route === "changes") page = <ChangesPage />;
   else if (route === "data") page = <DataPage />;
   else if (route === "places") page = placesUI ? <placesUI.PlacesApp pathname={pathname} params={params} /> : <p className="mx-auto max-w-6xl px-4 md:px-8 py-16 text-ink-2">장소를 불러오고 있어요.</p>;
-  else page = <Wizard draft={draft} />;
+  // 입력 화면: /calc/, 지역 랜딩(/r/…/), 예전 공유 주소(/?b=…)
+  else if (route === "calc" || regionId || params.has("b")) page = <Wizard draft={draft} />;
+  else page = <HomePage />;
 
   return (
     <>
@@ -49,14 +51,14 @@ export function App() {
       </a>
       <header className="rule-b no-print">
         <div className="mx-auto max-w-6xl px-4 md:px-8 flex flex-wrap md:flex-nowrap items-center gap-x-4 md:h-14">
-          <a href={hrefFor("home", complete ? query : undefined)} onClick={(e) => (e.preventDefault(), navigate("home", complete ? query : undefined))} className="font-serif text-xl font-semibold no-underline flex items-center h-12 md:h-auto flex-1 md:flex-none">
+          <a href={hrefFor("home")} onClick={(e) => (e.preventDefault(), navigate("home"))} className="font-serif text-xl font-semibold no-underline flex items-center h-12 md:h-auto flex-1 md:flex-none">
             다달이
           </a>
           <nav aria-label="주 메뉴" className="order-last md:order-none w-full md:w-auto md:flex-1 overflow-x-auto">
             <ul className="flex justify-between md:justify-start md:gap-4 text-sm whitespace-nowrap">
               {NAV.map((n) => {
-                const q = (n.route === "compare" || n.route === "home") && complete ? query : undefined;
-                const active = route === n.route || (n.route === "home" && route === "result");
+                const q = n.route === "calc" && complete ? query : undefined;
+                const active = route === n.route || (n.route === "calc" && (route === "result" || route === "compare" || !!regionId || (route === "home" && params.has("b"))));
                 return (
                   <li key={n.route}>
                     <a
@@ -96,7 +98,7 @@ function EmptyState() {
     <div className="mx-auto max-w-6xl px-4 md:px-8 py-16">
       <h1 className="font-serif text-2xl font-semibold">계산할 정보가 아직 없어요.</h1>
       <p className="mt-2 text-ink-2">출생일과 사는 곳만 넣어도 결과를 볼 수 있어요.</p>
-      <a className="btn btn-primary mt-6" href={hrefFor("home")} onClick={(e) => (e.preventDefault(), navigate("home"))}>
+      <a className="btn btn-primary mt-6" href={hrefFor("calc")} onClick={(e) => (e.preventDefault(), navigate("calc"))}>
         입력하러 가기
       </a>
     </div>

@@ -35,7 +35,8 @@ function page(path, title, desc, { ssr = true } = {}) {
 }
 
 const urls = [];
-urls.push(page("", "다달이 — 출산·육아 지원금 월별 계산", DEFAULT_DESC));
+urls.push(page("", "다달이 — 출산·육아 지원금 계산과 아이랑 가볼만한 곳", "출산·육아 지원금을 달마다 계산하고, 서울·경기에서 아이랑 가볼만한 키즈카페·도서관·박물관·공원을 찾아요."));
+urls.push(page("calc/", "출산·육아 지원금 월별 계산 — 다달이", DEFAULT_DESC));
 page("result/", "계산 결과 — 다달이", DEFAULT_DESC, { ssr: false });
 page("compare/", "지역별 출산지원금 비교 — 다달이", "지금 조건 그대로 사는 곳만 바꿔 두 지역의 출산·육아 지원금을 나란히 비교해요.", { ssr: false });
 urls.push(page("changes/", "2027년에 바뀌는 출산 지원금 — 다달이", "2027년 1월 21일 자동지급, 7월 1일 아이맞이지원금·아동기본수당 정부안까지 출생일에 따라 무엇이 달라지는지 보여줘요."));
@@ -52,7 +53,7 @@ for (const r of regions.sigungu) {
   );
 }
 
-// 아이랑 갈 곳: 첫 화면·실내·시도 2곳·지역 56곳
+// 아이랑 가볼만한 곳: 첫 화면·실내·시도 2곳·지역 56곳
 const placePaths = ["places/", "places/indoor/", "places/seoul/", "places/gyeonggi/"];
 for (const r of regions.sigungu) {
   if (r.sido !== "서울특별시" && r.sido !== "경기도") continue;

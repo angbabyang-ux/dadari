@@ -1,4 +1,4 @@
-// 아이랑 갈 곳 필터·정렬과 URL 쿼리 변환 (순수 함수, 화면과 테스트가 같이 쓴다)
+// 아이랑 가볼만한 곳 필터·정렬과 URL 쿼리 변환 (순수 함수, 화면과 테스트가 같이 쓴다)
 import type { AgeBand, Place } from "../data/schema";
 
 export type PlaceFilter = {

@@ -1,4 +1,4 @@
-// 아이랑 갈 곳 화면들: 첫 화면, 시·도(추천+지역 칩), 지역(필터·목록/지도), 실내 모음. 첫 화면 묶음과 따로 불러온다
+// 아이랑 가볼만한 곳 화면들: 첫 화면, 시·도(추천+지역 칩), 지역(필터·목록/지도), 실내 모음. 첫 화면 묶음과 따로 불러온다
 import { useCallback, useEffect, useMemo, useState, type ComponentType, type ReactNode } from "react";
 import { picks } from "../../data/places-index.json";
 import type { AgeBand, Place } from "../../data/schema";
@@ -103,7 +103,7 @@ function NotFound() {
     <div className="py-16">
       <h1 className="font-serif text-2xl font-semibold">찾는 지역이 없어요.</h1>
       <p className="mt-2">
-        <Link href={placesHref()}>아이랑 갈 곳 처음으로</Link>
+        <Link href={placesHref()}>아이랑 가볼만한 곳 처음으로</Link>
       </p>
     </div>
   );
@@ -114,29 +114,43 @@ const SIDO_UNIT: Record<SidoId, string> = { seoul: "개 구", gyeonggi: "개 시
 function PlacesHome() {
   return (
     <>
-      <h1 className="font-serif text-3xl md:text-5xl font-semibold pt-10 pb-3 rule-b">아이랑 갈 곳</h1>
+      <h1 className="font-serif text-3xl md:text-5xl font-semibold pt-10 pb-3 rule-b">아이랑 가볼만한 곳</h1>
       <p className="pt-4 max-w-2xl min-h-[5.5rem] md:min-h-0">서울 25개 구와 경기 31개 시·군에서 아이와 갈 만한 키즈카페·도서관·박물관·공원을 공공데이터로 모았어요.</p>
-      <ul className="grid md:grid-cols-2 gap-x-8 pt-6">
+      {/* 시·도는 세로로 크게, 실내 모음은 그보다 한 단계 작게 */}
+      <ul className="mt-8 rule-t border-ink">
         {SIDO_IDS.map((s) => {
           const rs = regionsOfSido(s);
-          const total = rs.reduce((a, r) => a + regionCount(r.id).total, 0);
+          const c = rs.reduce((a, r) => { const x = regionCount(r.id); return { total: a.total + x.total, indoor: a.indoor + x.indoor, free: a.free + x.free }; }, { total: 0, indoor: 0, free: 0 });
           return (
-            <li key={s} className="rule-t">
-              <Link href={placesHref(s)} className="flex items-baseline gap-3 py-5 no-underline group">
-                <span className="font-serif text-2xl font-semibold flex-1 group-hover:underline">{SIDO_SHORT[s]}</span>
-                <span className="num text-ink-2">
-                  {rs.length}
-                  {SIDO_UNIT[s]} · {total}곳
+            <li key={s} className="rule-b">
+              <Link href={placesHref(s)} className="grid grid-cols-[1fr_auto] items-center gap-x-4 py-6 no-underline group hover:bg-card transition-colors">
+                <span>
+                  <span className="block font-serif text-3xl md:text-4xl font-semibold group-hover:underline underline-offset-8 decoration-2">{SIDO_SHORT[s]}</span>
+                  <span className="block mt-2 text-sm text-ink-2 num">
+                    {rs.length}
+                    {SIDO_UNIT[s]} · {c.total}곳 · 실내 {c.indoor}곳 · 무료 {c.free}곳
+                  </span>
+                  <span className="block mt-1 text-sm text-ink-2 truncate max-w-[calc(100vw-6rem)] md:max-w-3xl">{rs.map((r) => r.sigungu).join(" · ")}</span>
+                </span>
+                <span aria-hidden className="font-serif text-2xl text-ink-2 group-hover:text-ink transition-colors">
+                  →
                 </span>
               </Link>
             </li>
           );
         })}
+        <li className="rule-b">
+          <Link href={placesHref("indoor")} className="grid grid-cols-[1fr_auto] items-center gap-x-4 py-5 no-underline group hover:bg-card transition-colors">
+            <span>
+              <span className="block text-lg md:text-xl font-semibold group-hover:underline underline-offset-4">아이랑 가볼만한 실내 장소 모음</span>
+              <span className="block mt-1 text-sm text-ink-2">비 오는 날, 눈 오는 날, 너무 더운 날에 좋아요. 무료 공공시설을 먼저 보여 줘요.</span>
+            </span>
+            <span aria-hidden className="text-xl text-ink-2 group-hover:text-ink transition-colors">
+              →
+            </span>
+          </Link>
+        </li>
       </ul>
-      <Link href={placesHref("indoor")} className="block mt-8 border border-ink px-5 py-6 no-underline hover:bg-card">
-        <span className="block font-serif text-xl md:text-2xl font-semibold">비 오는 날, 눈 오는 날, 너무 더운 날.</span>
-        <span className="block mt-1 text-ink-2">실내에서 갈 만한 곳만 모아 봤어요.</span>
-      </Link>
       <DataNote />
     </>
   );
@@ -157,8 +171,8 @@ function SidoPage({ sido }: { sido: SidoId }) {
   const recs = (picks as unknown as Record<SidoId, Place[]>)[sido];
   return (
     <>
-      <Crumbs items={[["아이랑 갈 곳", placesHref()], [short]]} />
-      <h1 className="font-serif text-3xl md:text-4xl font-semibold pb-3 rule-b">{short}에서 아이랑 갈 곳</h1>
+      <Crumbs items={[["아이랑 가볼만한 곳", placesHref()], [short]]} />
+      <h1 className="font-serif text-3xl md:text-4xl font-semibold pb-3 rule-b">{short}에서 아이랑 가볼만한 곳</h1>
       <section aria-labelledby="pick-region" className="pt-6">
         <h2 id="pick-region" className="font-semibold">
           {sido === "seoul" ? "구" : "시·군"}를 골라 주세요.
@@ -260,8 +274,8 @@ function RegionPage({ pp, params }: { pp: Extract<PlacesPath, { kind: "region" }
 
   return (
     <>
-      <Crumbs items={[["아이랑 갈 곳", placesHref()], [SIDO_SHORT[sido], placesHref(sido)], [r.sigungu]]} />
-      <h1 className="font-serif text-3xl md:text-4xl font-semibold pb-3 rule-b">{r.sigungu}에서 아이랑 갈 곳</h1>
+      <Crumbs items={[["아이랑 가볼만한 곳", placesHref()], [SIDO_SHORT[sido], placesHref(sido)], [r.sigungu]]} />
+      <h1 className="font-serif text-3xl md:text-4xl font-semibold pb-3 rule-b">{r.sigungu}에서 아이랑 가볼만한 곳</h1>
       <p className="pt-3 text-sm text-ink-2 num">
         {c.total}곳 · 실내 {c.indoor}곳 · 무료 {c.free}곳
       </p>
@@ -329,9 +343,9 @@ function IndoorPage({ params, ready }: { params: URLSearchParams; ready: boolean
   const nameOf = (id: string) => placeRegions.find((r) => r.id === id)?.sigungu;
   return (
     <>
-      <Crumbs items={[["아이랑 갈 곳", placesHref()], ["실내"]]} />
-      <h1 className="font-serif text-3xl md:text-5xl font-semibold pb-3 rule-b leading-tight">비 오는 날, 눈 오는 날, 너무 더운 날.</h1>
-      <p className="pt-4 max-w-2xl">실내에서 아이와 갈 만한 곳이에요. 무료로 확인된 공공시설을 먼저 보여 줘요.</p>
+      <Crumbs items={[["아이랑 가볼만한 곳", placesHref()], ["실내 장소 모음"]]} />
+      <h1 className="font-serif text-3xl md:text-4xl font-semibold pb-3 rule-b leading-tight">아이랑 가볼만한 실내 장소 모음</h1>
+      <p className="pt-4 max-w-2xl">비 오는 날, 눈 오는 날, 너무 더운 날에 갈 만한 곳이에요. 무료로 확인된 공공시설을 먼저 보여 줘요.</p>
       <div className="grid sm:grid-cols-2 gap-4 pt-6 max-w-2xl">
         <div className="seg grid grid-cols-2" role="radiogroup" aria-label="시·도">
           {SIDO_IDS.map((s) => (

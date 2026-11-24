@@ -1,19 +1,19 @@
-// 아이랑 갈 곳: 메뉴 → 서울 → 강서구 → 실내만 → 카드 펼치기 → 지원금 계산 이동, 실내 페이지 바로 들어가기, 지도 지연 로딩
+// 아이랑 가볼만한 곳: 메뉴 → 서울 → 강서구 → 실내만 → 카드 펼치기 → 지원금 계산 이동, 실내 페이지 바로 들어가기, 지도 지연 로딩
 import { expect, test } from "@playwright/test";
 
-test("아이랑 갈 곳에서 강서구 실내 장소를 보고 지원금 계산으로 넘어간다", async ({ page, isMobile }) => {
+test("아이랑 가볼만한 곳에서 강서구 실내 장소를 보고 지원금 계산으로 넘어간다", async ({ page, isMobile }) => {
   await page.goto("./");
   const nav = page.getByRole("navigation", { name: "주 메뉴" });
-  await nav.getByRole("link", { name: "아이랑 갈 곳" }).click();
+  await nav.getByRole("link", { name: "아이랑 가볼만한 곳" }).click();
   await expect(page).toHaveURL(/\/places\/$/);
-  await expect(page.getByRole("heading", { level: 1 })).toHaveText("아이랑 갈 곳");
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("아이랑 가볼만한 곳");
 
-  await page.getByRole("link", { name: /^서울/ }).click();
+  await page.getByRole("main").getByRole("link", { name: /^서울/ }).click();
   await expect(page).toHaveURL(/\/places\/seoul\/$/);
   await page.getByRole("link", { name: /^강서구/ }).click();
   await expect(page).toHaveURL(/\/places\/seoul\/gangseo\/$/);
-  await expect(page.getByRole("heading", { level: 1 })).toHaveText("강서구에서 아이랑 갈 곳");
-  await expect(page).toHaveTitle(/강서구 아이랑 갈 만한 곳 — 실내·무료·연령별/);
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("강서구에서 아이랑 가볼만한 곳");
+  await expect(page).toHaveTitle(/강서구 아이랑 가볼만한 곳 — 실내·무료·연령별/);
 
   const cards = page.locator("main ul > li[id]");
   const before = await cards.count();
@@ -44,7 +44,7 @@ test("아이랑 갈 곳에서 강서구 실내 장소를 보고 지원금 계산
 
 test("실내 페이지로 바로 들어와도 목록이 보이고 시·도와 시·군을 고를 수 있다", async ({ page }) => {
   await page.goto("./places/indoor/", { waitUntil: "networkidle" });
-  await expect(page.getByRole("heading", { level: 1 })).toHaveText("비 오는 날, 눈 오는 날, 너무 더운 날.");
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("아이랑 가볼만한 실내 장소 모음");
   const count = page.locator("p[aria-live]", { hasText: /곳$/ });
   await expect(count).toHaveText(/^\d+곳$/);
   const cards = page.locator("main ul > li[id]");
@@ -67,7 +67,7 @@ test("지도 라이브러리는 지도 보기를 누를 때만 불러온다", as
     if (/MapView|leaflet/i.test(r.url())) loaded.push(r.url());
   });
   await page.goto("./places/gyeonggi/suwon/", { waitUntil: "networkidle" });
-  await expect(page.getByRole("heading", { level: 1 })).toHaveText("수원시에서 아이랑 갈 곳");
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("수원시에서 아이랑 가볼만한 곳");
   expect(loaded).toEqual([]);
   await page.getByText("지도", { exact: true }).click();
   await expect(page.locator(".leaflet-container")).toBeVisible();

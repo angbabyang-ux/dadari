@@ -1,4 +1,4 @@
-// 아이랑 갈 곳 데이터가 스키마·출처·확인일·지역 규칙을 지키는지 검사하는 테스트
+// 아이랑 가볼만한 곳 데이터가 스키마·출처·확인일·지역 규칙을 지키는지 검사하는 테스트
 import { readdirSync, readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { PlacesFile } from "../../src/data/schema";
@@ -10,7 +10,7 @@ const files = readdirSync(DIR).filter((f) => f.endsWith(".json"));
 const load = (f: string) => JSON.parse(readFileSync(`${DIR}/${f}`, "utf8"));
 const targets = regions.sigungu.filter((r) => r.sido === "서울특별시" || r.sido === "경기도");
 
-describe("아이랑 갈 곳 데이터", () => {
+describe("아이랑 가볼만한 곳 데이터", () => {
   it("서울 25개 구·경기 31개 시군 파일이 모두 있다", () => {
     expect(targets).toHaveLength(56);
     expect(files.sort()).toEqual(targets.map((r) => `${r.id}.json`).sort());

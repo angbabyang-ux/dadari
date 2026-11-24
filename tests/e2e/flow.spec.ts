@@ -2,7 +2,10 @@
 import { expect, test } from "@playwright/test";
 
 test("입력부터 공유 링크 복원까지 한 줄기", async ({ page, context }) => {
+  // 첫 화면에서 지원금 계산으로 들어간다
   await page.goto("./");
+  await page.getByRole("main").getByRole("link", { name: "지원금 계산하기" }).click();
+  await expect(page).toHaveURL(/\/calc\/$/);
 
   // 1. 아이
   await page.getByLabel("출생일 또는 출산 예정일").fill("2026-12-15");

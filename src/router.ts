@@ -1,15 +1,15 @@
 // History API 기반의 작은 라우터. 경로와 쿼리스트링을 React 상태로 연결한다
 import { useSyncExternalStore } from "react";
 
-export type Route = "home" | "result" | "compare" | "changes" | "data" | "places";
+export type Route = "home" | "calc" | "result" | "compare" | "changes" | "data" | "places";
 
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, ""); // "/dadari"
-const PATHS: Record<Route, string> = { home: "/", result: "/result/", compare: "/compare/", changes: "/changes/", data: "/data/", places: "/places/" };
+const PATHS: Record<Route, string> = { home: "/", calc: "/calc/", result: "/result/", compare: "/compare/", changes: "/changes/", data: "/data/", places: "/places/" };
 
 function routeOf(pathname: string): Route {
   const p = pathname.startsWith(BASE) ? pathname.slice(BASE.length) : pathname;
   const seg = p.replace(/^\/+|\/+$/g, "").split("/")[0];
-  if (seg === "result" || seg === "compare" || seg === "changes" || seg === "data" || seg === "places") return seg;
+  if (seg === "calc" || seg === "result" || seg === "compare" || seg === "changes" || seg === "data" || seg === "places") return seg;
   return "home";
 }
 
@@ -44,7 +44,7 @@ function regionOf(pathname: string): string | undefined {
   return m?.[1];
 }
 
-/** 아이랑 갈 곳 하위 경로: /places/ · /places/indoor/ · /places/<시도>/ · /places/<시도>/<지역>/ */
+/** 아이랑 가볼만한 곳 하위 경로: /places/ · /places/indoor/ · /places/<시도>/ · /places/<시도>/<지역>/ */
 export type PlacesPath = { kind: "home" } | { kind: "indoor" } | { kind: "sido"; sido: string } | { kind: "region"; sido: string; slug: string };
 export function placesPathOf(pathname: string): PlacesPath {
   const p = pathname.startsWith(BASE) ? pathname.slice(BASE.length) : pathname;
@@ -55,7 +55,7 @@ export function placesPathOf(pathname: string): PlacesPath {
   if (segs.length === 1) return { kind: "sido", sido: segs[0]! };
   return { kind: "home" };
 }
-/** 아이랑 갈 곳 주소. 지역 slug는 regions.json id에서 시도 접두어를 뗀 것 (seoul-gangseo → gangseo) */
+/** 아이랑 가볼만한 곳 주소. 지역 slug는 regions.json id에서 시도 접두어를 뗀 것 (seoul-gangseo → gangseo) */
 export function placesHref(sub = "", query?: string): string {
   return `${BASE}/places/${sub ? `${sub.replace(/^\/|\/$/g, "")}/` : ""}${query ? `?${query}` : ""}`;
 }

@@ -101,7 +101,7 @@ export function DataPage() {
       </div>
 
       <h2 id="places" className="font-serif text-xl font-semibold pt-10 pb-2 rule-b border-ink scroll-mt-4">
-        아이랑 갈 곳 데이터
+        아이랑 가볼만한 곳 데이터
       </h2>
       <div className="grid md:grid-cols-12 gap-x-8 pt-3 text-sm">
         <div className="md:col-span-7 space-y-2">

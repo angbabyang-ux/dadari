@@ -1,4 +1,4 @@
-// 아이랑 갈 곳 필터·정렬·URL 변환 로직 테스트
+// 아이랑 가볼만한 곳 필터·정렬·URL 변환 로직 테스트
 import { describe, expect, it } from "vitest";
 import type { Place } from "../../src/data/schema";
 import { EMPTY_FILTER, filterFromParams, filterPlaces, filterToParams, isEmptyFilter, sortIndoor } from "../../src/places/filter";
@@ -86,7 +86,7 @@ describe("URL 쿼리", () => {
 });
 
 describe("경로", () => {
-  it("아이랑 갈 곳 하위 경로를 읽는다", () => {
+  it("아이랑 가볼만한 곳 하위 경로를 읽는다", () => {
     expect(placesPathOf("/dadari/places/")).toEqual({ kind: "home" });
     expect(placesPathOf("/dadari/places/indoor/")).toEqual({ kind: "indoor" });
     expect(placesPathOf("/dadari/places/seoul/")).toEqual({ kind: "sido", sido: "seoul" });

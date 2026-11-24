@@ -1,4 +1,4 @@
-// 아이랑 갈 곳 화면 묶음을 따로 불러와 등록한다 (지원금 계산 첫 화면 묶음을 가볍게 유지)
+// 아이랑 가볼만한 곳 화면 묶음을 따로 불러와 등록한다 (지원금 계산 첫 화면 묶음을 가볍게 유지)
 import { useEffect, useSyncExternalStore } from "react";
 
 type Mod = typeof import("../ui/places/PlacesApp");

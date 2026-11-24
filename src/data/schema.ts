@@ -200,7 +200,7 @@ export type AllowanceTier = z.infer<typeof AllowanceTier>;
 export type Status = z.infer<typeof Status>;
 export type Category = z.infer<typeof Category>;
 
-/* ───────── 아이랑 갈 곳 ───────── */
+/* ───────── 아이랑 가볼만한 곳 ───────── */
 const triBool = z.boolean().nullable(); // null = 확인 필요
 export const AgeBand = z.enum(["0", "1-3", "4-7"]); // 0~12개월 / 1~3세 / 4~7세
 export const PlaceCategory = z.enum(["kidscafe", "library", "museum", "park"]);

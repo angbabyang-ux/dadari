@@ -22,10 +22,10 @@ const app = (
 // 미리 그린 화면은 쿼리 없는 주소 기준이라, 쿼리가 있으면 새로 그린다.
 // 하이드레이션은 첫 화면과 지역 랜딩에만 쓴다 (/changes·/data는 Lighthouse의 Edge에서만 불일치가 나서 새로 그림, context-notes 참고)
 const path = window.location.pathname.replace(import.meta.env.BASE_URL, "/");
-const hydratable = path === "/" || path.startsWith("/r/");
+const hydratable = path === "/" || path === "/calc/" || path.startsWith("/r/");
 if (root.hasChildNodes() && !window.location.search && hydratable) hydrateRoot(root, app);
 else if (path.startsWith("/places")) {
-  // 아이랑 갈 곳: 화면 묶음과 필요한 지역 데이터를 먼저 받은 뒤 그린다 (그동안은 미리 그린 HTML이 보인다)
+  // 아이랑 가볼만한 곳: 화면 묶음과 필요한 지역 데이터를 먼저 받은 뒤 그린다 (그동안은 미리 그린 HTML이 보인다)
   void loadPlacesUI()
     .then((m) => loadRegions(m.regionsNeeded(window.location.pathname, new URLSearchParams(window.location.search))))
     .finally(() => {

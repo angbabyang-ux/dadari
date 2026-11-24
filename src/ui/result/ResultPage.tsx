@@ -102,7 +102,7 @@ export function ResultPage({ input, params }: { input: Input; params: URLSearchP
           </p>
         </div>
         <div className="flex flex-wrap gap-2 mt-3 md:mt-0 no-print">
-          <a className="btn min-h-11 text-sm" href={hrefFor("home", draftToParams(input))} onClick={(e) => (e.preventDefault(), navigate("home", draftToParams(input)))}>
+          <a className="btn min-h-11 text-sm" href={hrefFor("calc", draftToParams(input))} onClick={(e) => (e.preventDefault(), navigate("calc", draftToParams(input)))}>
             입력 고치기
           </a>
           <a className="btn min-h-11 text-sm" href={hrefFor("compare", withDraft(params, input))} onClick={(e) => (e.preventDefault(), navigate("compare", withDraft(params, input)))}>
@@ -271,7 +271,7 @@ function SummaryStrip({ summary: s, delta }: { summary: ReturnType<typeof summar
   );
 }
 
-/** 사는 곳이 서울·경기 시군구면 그 지역의 「아이랑 갈 곳」으로 잇는다 */
+/** 사는 곳이 서울·경기 시군구면 그 지역의 「아이랑 가볼만한 곳」으로 잇는다 */
 function PlacesLink({ input }: { input: Input }) {
   const r = regions.sigungu.find((x) => x.sido === input.sido && x.sigungu === input.sigungu);
   if (!r || !/^(seoul|gyeonggi)-/.test(r.id)) return null;
@@ -279,7 +279,7 @@ function PlacesLink({ input }: { input: Input }) {
   return (
     <section className="mt-12 rule-t pt-6 no-print">
       <a href={href} onClick={(e) => (e.preventDefault(), navigateHref(href))} className="font-serif text-xl font-semibold">
-        {r.sigungu}에서 아이랑 갈 곳
+        {r.sigungu}에서 아이랑 가볼만한 곳
       </a>
       <p className="text-sm text-ink-2 mt-1">키즈카페·도서관·박물관·공원을 실내·무료·연령으로 골라 볼 수 있어요.</p>
     </section>
